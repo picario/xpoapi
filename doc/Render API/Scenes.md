@@ -1,0 +1,40 @@
+# XPO Render API
+
+XPO uses a render API that to render scenes.<br/>
+Using a specific url you can customize the way the scene is rendered.
+
+## Query parameters
+####Scenes:
+| **Parameter** | **Type** | **Description**                   																  | **Values** 						  				  |
+|:------------- |:-------- |:------------------------------------------------------------------------------------------------ |:------------------------------------------------- |
+|width *		| double   | The width of the rendered image.  																  |									 				  |
+|height **      | double   | The height of the rendered image. 																  |													  |
+|format         | string   | The format of the rendered image. 																  |jpg or png  						 				  |
+|p.jsonName     | string   | The name of the variable the should be returned <br />to the caller when requesting coordinates. | 								  				  |
+|p.objectthumb  | int      | The id of the object of the scene. 															  | Ranges from 0 to the max objects of the scene - 1 |
+|p.frame        | int      | The id of the frame, for a multiframe scene. <br />Default is 1. 								  | Ranges from 1 to max frame number 				  |
+|mode           | string   | The rendering mode for the image. 																  | max, stretch, crop, canvas 						  |
+|p.coords       | int      | Whether you want to get the coordinates. 														  | 0 or 1 							  				  |
+|bgcolor        | string   | The background color for the image. 															  | Color name or hex color string 	  				  |
+|Cache          | string   | The cache to use. 																				  | Default or No 					  			  	  |
+
+*) **Required**<br/>
+**) Required for coordinate request
+<br /><br /><br />
+####Scene rendering
+Base URL: 
+
+	http://<yourid>.picarioxpo.com/<scene_identifier>?<url_parameters>
+	
+	http://demo.picarioxpo.com/laura_room.pfs?1=1&width=1000
+	
+The `<scene_identifier>` can be specified in two ways:
+
+1. The reference id (the system will find the correct scene to render)
+	
+		http://demo.picarioxpo.com/laura_room.pfs?1=1&width=1000
+	
+2. The scene id with the scene filename (the file needs to have the pfs extension)
+
+		http://demo.picarioxpo.com/scenes-546/laura3-room.pfs?1=1&width=1000
+		

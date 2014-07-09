@@ -1,0 +1,42 @@
+# XPO Render API
+
+XPO uses a render API that to render colors on scenes.<br/>
+Using a specific url you can customize the way the color is rendered on the scene.
+
+## Query parameters
+####Colors:
+| **Parameter** | **Type** | **Description**                  | **Values** 						  				 				   |
+|:------------- |:-------- |:-------------------------------- |:------------------------------------------------------------------ |
+|p.c *			| string   | The color string to be rendered. | Color name, hex color value OR a_r_g_b representation of the color |
+
+*) **Required**
+<br /><br />
+####Color rendering
+When rendering colors on a scene you need to specify the object on which the color should be rendered. <br />
+In order to do this you need to use , to split colors.
+
+Example:
+
+	http://demo.picarioxpo.com/scenes-546/laura3-room.pfs?1=1&width=1000&height=1000&p.tw=380&p.th=430&p.c=,red,0000ff,134_152_142
+
+<br /><br />	
+####Color('p.c')
+Colors can be defined in 3 ways:
+1.	By Name (Pink, Red, Black)
+2.	By HEX value (FFFFFF, 9C9C9C)
+3.	By RGB or ARGB value (255_255_255)
+
+The RGB or ARGB values can be used by sending the value separated by underscores.
+
+Example:
+
+The following URL’s all give the same result.
+
+	By Name:
+	http://demo.picarioxpo.com/scenes-546/laura3-room.pfs?1=1&width=1000&height=1000&p.tw=380&p.th=430&p.c=red
+	
+	By HEX
+	http://demo.picarioxpo.com/scenes-546/laura3-room.pfs?1=1&width=1000&height=1000&p.tw=380&p.th=430&p.c=ff0000
+
+	By RGB
+	http://demo.picarioxpo.com/scenes-546/laura3-room.pfs?1=1&width=1000&height=1000&p.tw=380&p.th=430&p.c=255_0_0

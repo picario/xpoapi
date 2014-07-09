@@ -1,0 +1,114 @@
+# XPO Render API
+
+XPO uses a render API that to render design on scenes.<br/>
+Using a specific url you can customize the way the design is rendered on the scene.
+
+## Query parameters
+####Designs:
+| **Parameter** | **Type** | **Description**                   						    | **Values** 						  				 |
+|:------------- |:-------- |:---------------------------------------------------------- |:-------------------------------------------------- |
+|p.tn *			| string   | The name of the design that will be rendered on the scene. | 								  	                 |
+|p.tw 			| double   | The width of the design.								    | 								  	                 |
+|p.th 			| double   | The height of the design.								    | 								  	                 |
+|p.tpx 			| double   | The x coordinate placing point for the design.			    | Between 0 and 1				  	                 |
+|p.tpy 			| double   | The y coordinate placing point for the design.			    | Between 0 and 1				  	                 |
+|p.tr 			| bool     | Whether the design should be repeated.					    | True or False					  	                 |
+|p.tc 			| double   | The contrast of the design.							    | Between 0 and 1				  	                 |
+|p.tdx 			| double   | The drop x coordinate of the design.					    | Between 0 and < 1				  	                 |
+|p.tdy 			| double   | The drop y coordinate of the design.					    | Between 0 and < 1				  	                 |
+|p.trt 			| int	   | The rotation of the design.							    | 90, 180, 270 other values will be interpreted as 0 |
+|p.tf 			| bool	   | Whether the design should be flipped.					    | True or False                                      |
+|p.dc 			| int	   | Whether to use design cache.							    | True or False                                      |
+
+*) **Required**
+<br /><br /><br />
+####Design rendering
+When rendering designs on a scene you need to specify the object on which the design should be rendered. In order to do this you need to use , to split designs(and options for the design).<br/>
+Example:
+
+	http://demo.picarioxpo.com/scenes-546/laura3-room.pfs?1=1&width=1000&height=1000&p.tn=designs-2786/MO11-JeffreyPillow.jpg,,&p.tw=380,,&p.th=430,,
+
+<br /><br />
+####Design name('p.tn')
+The design name must be specified. There are 3 possible values:
+
+1.	Texture file (.pft files)
+
+		The texture files contain all the information needed for the system to render it. Therefore it doesn’t need any additional information like width, height, dropping points etc.
+		
+2.	Image file 
+
+		The name has to have an extension other than .pft.
+		The system needs to have more information to render the image. All parameters can be specified.
+		
+3.	External URL
+
+		An URL pointing to an external image file (for example: http://www.picarisplatform.com/design/logo.jpg) 
+		The system needs to have more information to render the image. All parameters can be specified. 
+	
+You can either use the reference id to render the design(the system will find the right design to render) or specify the id of the design and the filename.
+
+Example:
+
+	http://demo.picarioxpo.com/scenes-546/laura3-room.pfs?1=1&width=1000&Cache=Default&height=1000&p.tn=Jeffrey_Pillow.jpg
+	http://demo.picarioxpo.com/scenes-546/laura3-room.pfs?1=1&width=1000&Cache=Default&height=1000&p.tn=designs-2786/MO11-JeffreyPillow.jpg
+
+<br /><br />
+####Design width and height('p.tw' & 'p.th')
+The width and/or height can be specified for a design. If both dimensions are specified the design will <br />
+be shrunk to keep the aspect ratio for the smallest version of the width and height. <br />
+Either width or height needs to be supplied in order to render a design.<br />
+
+Example:
+
+	http://demo.picarioxpo.com/scenes-546/laura3-room.pfs?1=1&width=1000&Cache=Default&height=1000&p.tn=designs-2786/MO11-JeffreyPillow.jpg&p.tw=380&p.th=430
+	
+<br /><br />
+####Contrast('p.tc')
+A value of **0.0** specifies no contrast correction. The contrast property works in such a way that bright <br />
+colors are rendered brighter, and dark colors are rendered darker when contrast is increased.
+
+Constraint: **>= 0.0 & <= 1.0**
+
+The following images show the effect of different values for contrast.
+
+![Design contrast](/Doc/Render%20Api/images/texture_contrast.png "Design contrast")
+
+Example:
+
+	http://demo.picarioxpo.com/scenes-546/laura3-room.pfs?1=1&width=1000&Cache=Default&height=1000&p.tn=designs-2786/MO11-JeffreyPillow.jpg&p.tw=380&p.th=430&p.tc=0.9
+
+<br /><br />	
+####Drop X and Drop Y ('p.tdx' & 'p.tdy')
+Sets the repeat dropping points of a texture to create special repeats (e.g. brick repeat or half drop).<br />
+Only one of the 2 properties can be set at the same time. Drop x will allways be used if both are supplied in the url.
+
+Constraint: **>= 0.0 & <= 1.0**
+
+The following images show the effect of different values for Drop X.
+
+![Design drop X](/Doc/Render%20Api/images/dropx.png "Design drop X")
+
+The following images show the effect of different values for Drop Y.
+
+![Design drop Y](/Doc/Render%20Api/images/dropy.png "Design drop Y")
+
+Example:
+
+	http://demo.picarioxpo.com/scenes-546/laura3-room.pfs?1=1&width=1000&Cache=Default&height=1000&p.tn=designs-2786/MO11-JeffreyPillow.jpg&p.tw=380&p.th=430&p.tdx=0.1
+
+<br /><br />
+####Placingpoint X and Placingpoint Y('p.tpx' & 'p.tpy')
+Specifies the placing point (referenced to the object of the scene) of the design on the object.<br />
+The placing point (or hot spot) of the design is always mapped onto the reference points of the scene objects.
+
+Constraint: **>= 0.0 & <= 1.0**
+
+The following images show the effect of different values for Placing Point X and Y.
+
+![Design placing point X and Y](/Doc/Render%20Api/images/placingpoint.png "Design placing point X and Y")
+
+Example:
+
+	http://demo.picarioxpo.com/scenes-546/laura3-room.pfs?1=1&width=1000&Cache=Default&height=1000&p.tn=designs-2786/MO11-JeffreyPillow.jpg&p.tw=380&p.th=430&p.tpx=0.7&p.tpy=0.3
+	
