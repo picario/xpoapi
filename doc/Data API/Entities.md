@@ -1,4 +1,4 @@
-# XPO Developer API
+﻿# XPO Developer API
 
 XPO uses a developer API that allows developers to extract information from their XPO environment.
 
@@ -6,7 +6,7 @@ In order to use the developer API you need an API key. This API key can be found
 This API key can be used in two ways:
 
 1.	Add the API key to the querystring(?apiKey=1234).
-2.	Add the API key to the http header, the header name is the same as the querystring parameter.
+2.	Add the API key to the http header (the header name is the same as the querystring parameter).
 
 <br />
 The base URL for all API calls is: <br />
