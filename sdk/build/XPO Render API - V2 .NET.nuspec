@@ -4,7 +4,7 @@
     <id>PicarioXPO.RenderAPI.NET.V2</id>
     <version>1.0.0</version>
     <title>XPO Render API .NET V2</title>
-    <description>SDK for .NET simplifies working with the XPO Render API v1</description>
+    <description>SDK for .NET simplifies working with the XPO Render API v2</description>
 
     <authors>Picario</authors>
     <owners>Picario</owners>
