@@ -4,9 +4,15 @@
     <id>PicarioXPO.RenderAPI.V2</id>
     <version>1.0.0</version>
     <title>XPO Render API V2</title>
-    <authors>Lucrasoft Solutions BV</authors>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Visualization URL generator for the XPO Render API V2</description>
+    
+    <authors>Lucrasoft Solutions BV</authors>
+    <owners>Lucrasoft Solutions BV</owners>
+    <licenseUrl>http://www.picarioxpo.com/pricing-2/</licenseUrl>
+    <projectUrl>http://www.picarioxpo.com/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <iconUrl>http://www.lucrasoft.nl/static/picarioxpo-logo.png</iconUrl>
+    <tags>visualization xpo picarioxpo rendering API SDK</tags>
   </metadata>
   <files>
     <file src="..\c#\PicarioXPO.RenderAPI.V2\bin\release\PicarioXPO.RenderAPI.V2.dll" target="lib" />
