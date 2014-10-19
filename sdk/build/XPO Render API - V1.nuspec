@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>PicarioXPO.RenderAPI.V1</id>
+    <version>1.0.0</version>
+    <title>XPO Render API V1</title>
+    <authors>Lucrasoft Solutions BV</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Visualization URL generator for the XPO Render API V1</description>
+  </metadata>
+  <files>
+    <file src="..\c#\PicarioXPO.RenderAPI.V1\bin\release\PicarioXPO.RenderAPI.V1.dll" target="lib" />
+  </files>
+</package>

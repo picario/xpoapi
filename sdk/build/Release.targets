@@ -1,0 +1,22 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+	
+  <PropertyGroup>
+		<OutputFolder>$(BuildOutput)</OutputFolder>
+		<SolutionProperties>
+      OutDir=$(OutputFolder);
+      Platform=Any CPU;
+      Configuration=Release
+    </SolutionProperties>
+  </PropertyGroup>
+  
+	<ItemGroup>
+		<Solution Include="..\PicarioXPO_SDK.sln">
+			<Properties>$(SolutionProperties)</Properties>
+		</Solution>
+	</ItemGroup>
+	<Target Name="Build">
+    <Message Text="Building project" />
+    <MSBuild Projects="@(Solution)"/>
+	</Target>
+</Project>

@@ -1,0 +1,16 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+
+  <UsingTask TaskName="ILMerge.MSBuild.Tasks.ILMerge" AssemblyFile="$(SolutionDir)\packages\ILMerge.MSBuild.Tasks.1.0.0.3\tools\ILMerge.MSBuild.Tasks.dll" />
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <MergeAsm Include="$(OutputPath)$(TargetFileName)" />
+      <MergeAsm Include="$(OutputPath)PicarioXPO.RenderAPI.dll" />
+    </ItemGroup>
+    <PropertyGroup>
+      <MergedAssembly>$(ProjectDir)$(OutDir)$(TargetFileName)</MergedAssembly>
+    </PropertyGroup>
+    <Message Text="ILMerge @(MergeAsm) -&gt; $(MergedAssembly)" Importance="high" />
+    <ILMerge InputAssemblies="@(MergeAsm)" OutputFile="$(MergedAssembly)" TargetKind="SameAsPrimaryAssembly" />
+  </Target>
+</Project>
