@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1A9234D1-6CCC-40C9-95CD-489E0E0411ED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PicarioXPO.RenderAPI.V2</RootNamespace>
+    <AssemblyName>PicarioXPO.RenderAPI.V2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ColorKeys.cs" />
+    <Compile Include="DesignKeyExtractors\ContrastDesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\FlipDesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\DesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\DropXDesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\DropYDesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\EntityNameDesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\GlossDesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\HeightDesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\PlacingPointXDesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\PlacingPointYDesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\RepeatDesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\RotationDesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\WidthDesignKey.cs" />
+    <Compile Include="DesignKeys.cs" />
+    <Compile Include="GeneralKeys.cs" />
+    <Compile Include="XpoV2UrlGenerator.cs" />
+    <Compile Include="XpoUrlObjectExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\StringBuilderExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PicarioXPO.RenderAPI\PicarioXPO.RenderAPI.csproj">
+      <Project>{141349e8-ba07-44d8-9445-c294102e822b}</Project>
+      <Name>PicarioXPO.RenderAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Import Project="$(SolutionDir)build\Merge.V2.targets" Condition="'$(Configuration)' == 'Release'" />
+</Project>

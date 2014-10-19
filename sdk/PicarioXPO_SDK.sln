@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JS", "JS", "{5E21A179-3291-4027-BEC8-A98DC7C1A251}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Csharp", "Csharp", "{140F0071-56FE-4372-B7A7-863A234C2519}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicarioXPO.RenderAPI", "c#\PicarioXPO.RenderAPI\PicarioXPO.RenderAPI.csproj", "{141349E8-BA07-44D8-9445-C294102E822B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicarioXPO.RenderAPI.V1", "c#\PicarioXPO.RenderAPI.V1\PicarioXPO.RenderAPI.V1.csproj", "{47A5D002-AE68-48B9-8BD2-2749C6331899}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicarioXPO.RenderAPI.V2", "c#\PicarioXPO.RenderAPI.V2\PicarioXPO.RenderAPI.V2.csproj", "{1A9234D1-6CCC-40C9-95CD-489E0E0411ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicarioXPO.RenderAPI.V2", "js\PicarioXPO.RenderAPI.V2\PicarioXPO.RenderAPI.V2.csproj", "{D82DBBD6-16BD-4A2E-A349-5CDC5AD9A160}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7DFB9F04-97D5-49D8-BBF3-2C3381608F76}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuSpecs", "NuSpecs", "{38A999A3-351B-4BD6-9A70-F7B66A9506CC}"
+	ProjectSection(SolutionItems) = preProject
+		build\XPO Render API - V1.nuspec = build\XPO Render API - V1.nuspec
+		build\XPO Render API - V2.nuspec = build\XPO Render API - V2.nuspec
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{141349E8-BA07-44D8-9445-C294102E822B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{141349E8-BA07-44D8-9445-C294102E822B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{141349E8-BA07-44D8-9445-C294102E822B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{141349E8-BA07-44D8-9445-C294102E822B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47A5D002-AE68-48B9-8BD2-2749C6331899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A5D002-AE68-48B9-8BD2-2749C6331899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A5D002-AE68-48B9-8BD2-2749C6331899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A5D002-AE68-48B9-8BD2-2749C6331899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A9234D1-6CCC-40C9-95CD-489E0E0411ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A9234D1-6CCC-40C9-95CD-489E0E0411ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A9234D1-6CCC-40C9-95CD-489E0E0411ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A9234D1-6CCC-40C9-95CD-489E0E0411ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D82DBBD6-16BD-4A2E-A349-5CDC5AD9A160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D82DBBD6-16BD-4A2E-A349-5CDC5AD9A160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D82DBBD6-16BD-4A2E-A349-5CDC5AD9A160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D82DBBD6-16BD-4A2E-A349-5CDC5AD9A160}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{141349E8-BA07-44D8-9445-C294102E822B} = {140F0071-56FE-4372-B7A7-863A234C2519}
+		{47A5D002-AE68-48B9-8BD2-2749C6331899} = {140F0071-56FE-4372-B7A7-863A234C2519}
+		{1A9234D1-6CCC-40C9-95CD-489E0E0411ED} = {140F0071-56FE-4372-B7A7-863A234C2519}
+		{D82DBBD6-16BD-4A2E-A349-5CDC5AD9A160} = {5E21A179-3291-4027-BEC8-A98DC7C1A251}
+	EndGlobalSection
+EndGlobal
