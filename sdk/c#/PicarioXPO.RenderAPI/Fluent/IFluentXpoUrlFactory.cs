@@ -1,7 +1,7 @@
 ﻿namespace PicarioXPO.RenderAPI.Fluent
 {
     /// <summary>
-    /// Represents the Fluent PicarIS URL generator
+    /// Represents the Fluent XPO URL generator
     /// </summary>
     public interface IFluentXpoUrlFactory
     {

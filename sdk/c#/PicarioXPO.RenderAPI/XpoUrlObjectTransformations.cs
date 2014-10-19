@@ -3,7 +3,7 @@
 namespace PicarioXPO.RenderAPI
 {
     /// <summary>
-    /// Defines the different resize methods for PicarIS version 1
+    /// Defines the different resize methods for XPO version 1
     /// </summary>
     [Obsolete("No longer used in version 2. Use the Rotation and Flip parameters.")]
     public enum XpoUrlObjectTransformations

@@ -79,7 +79,7 @@ namespace PicarioXPO.RenderAPI.V1
         private static string CheckUrl(string url)
         {
             if (string.IsNullOrEmpty(url))
-                throw new InvalidOperationException("PicarIS URL cannot be null or empty");
+                throw new InvalidOperationException("XPO URL cannot be null or empty");
 
             if (!url.EndsWith("/"))
                 url = url + "/";

@@ -1,7 +1,7 @@
 ﻿namespace PicarioXPO.RenderAPI
 {
     /// <summary>
-    /// Denines a PicarIS template
+    /// Denines a XPO template
     /// </summary>
     public sealed class XpoUrlTemplate
     {

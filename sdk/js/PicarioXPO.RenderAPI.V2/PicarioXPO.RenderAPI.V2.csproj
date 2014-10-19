@@ -18,7 +18,47 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="PicarioXPO.RenderAPI.V2.ts" />
+    <TypeScriptCompile Include="Collections\Collections.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\ColorKeys.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\DesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\DesignKeyContrast.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\DesignKeys.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\DropXDesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\DropYDesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\EntityNameDesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\FlipDesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\GeneralKeys.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\GlossDesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\HeightDesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\XpoUrlGenerator.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\PlacingPointXDesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\PlacingPointYDesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\RepeatDesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\RotationDesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\WidthDesignKey.ts" />
+    <TypeScriptCompile Include="String\Base64.ts" />
+    <TypeScriptCompile Include="String\String.ts" />
+    <TypeScriptCompile Include="UrlGenerators\FluentXpoUrlColor.ts" />
+    <TypeScriptCompile Include="UrlGenerators\FluentXpoUrlDesign.ts" />
+    <TypeScriptCompile Include="UrlGenerators\FluentXpoUrlFactory.ts" />
+    <TypeScriptCompile Include="UrlGenerators\FluentXpoUrlGenerator.ts" />
+    <TypeScriptCompile Include="UrlGenerators\FluentXpoUrlObject.ts" />
+    <TypeScriptCompile Include="UrlGenerators\FluentXpoUrlText.ts" />
+    <TypeScriptCompile Include="UrlGenerators\IFluentXpoUrlFactory.ts" />
+    <TypeScriptCompile Include="UrlGenerators\IFluentUrlGenerator.ts" />
+    <TypeScriptCompile Include="UrlGenerators\IXpoUrlFactory.ts" />
+    <TypeScriptCompile Include="UrlGenerators\IXpoUrlGenerator.ts" />
+    <TypeScriptCompile Include="UrlGenerators\XpoUrlColor.ts" />
+    <TypeScriptCompile Include="UrlGenerators\XpoUrlDesign.ts" />
+    <TypeScriptCompile Include="UrlGenerators\XpoUrlObject.ts" />
+    <TypeScriptCompile Include="UrlGenerators\XpoUrlRequest.ts" />
+    <TypeScriptCompile Include="UrlGenerators\XpoUrlRequestCoordinates.ts" />
+    <TypeScriptCompile Include="UrlGenerators\XpoUrlRequestImage.ts" />
+    <TypeScriptCompile Include="UrlGenerators\XpoUrlTemplate.ts" />
+    <TypeScriptCompile Include="UrlGenerators\XpoUrlText.ts" />
+    <TypeScriptCompile Include="UrlGenerators\XpoUrlTextDecoration.ts" />
+    <TypeScriptCompile Include="UrlGenerators\UrlGeneratorHelpers.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>

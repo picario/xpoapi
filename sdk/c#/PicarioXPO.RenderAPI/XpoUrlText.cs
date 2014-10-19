@@ -3,7 +3,7 @@
 namespace PicarioXPO.RenderAPI
 {
     /// <summary>
-    /// Represents an text from a Picario scene for the PicarIS URL generator
+    /// Represents an text from a Picario scene for the XPO URL generator
     /// </summary>
     public sealed class XpoUrlText
     {

@@ -1,7 +1,7 @@
 ﻿namespace PicarioXPO.RenderAPI
 {
     /// <summary>
-    /// Defines the different file types for PicarIS version 1
+    /// Defines the different file types for XPO version 1
     /// </summary>
     public enum XpoUrlFileTypes
     {

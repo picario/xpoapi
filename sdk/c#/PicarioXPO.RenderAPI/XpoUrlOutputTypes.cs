@@ -1,7 +1,7 @@
 ﻿namespace PicarioXPO.RenderAPI
 {
     /// <summary>
-    ///  Defines the different output types for PicarIS (all versions)
+    ///  Defines the different output types for XPO (all versions)
     /// </summary>
     public enum XpoUrlOutputTypes
     {

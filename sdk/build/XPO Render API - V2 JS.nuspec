@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>PicarioXPO.RenderAPI.V1</id>
+    <id>PicarioXPO.RenderAPI.JS.V2</id>
     <version>1.0.0</version>
-    <title>XPO Render API .NET V1</title>
-    <description>SDK for .NET simplifies working with the XPO Render API v1</description>
-    
+    <title>XPO Render API JS V2</title>
+    <description>SDK for JavaScript simplifies working with the XPO Render API v1</description>
+
     <authors>Picario</authors>
     <owners>Picario</owners>
     <licenseUrl>http://www.picarioxpo.com/pricing-2/</licenseUrl>
@@ -15,7 +15,7 @@
     <tags>visualization xpo picarioxpo rendering API SDK</tags>
   </metadata>
   <files>
-    <file src="..\c#\PicarioXPO.RenderAPI.V1\bin\release\PicarioXPO.RenderAPI.V1.dll" target="lib" />
+    <file src="..\js\compiled\PicarioXPO.RenderAPI.V2.js" target="Content\Scripts\PicarioXPO.RenderAPI.V2.js" />
+    <file src="..\js\compiled\PicarioXPO.RenderAPI.V2.d.ts" target="Content\Scripts\PicarioXPO.RenderAPI.V2.d.ts" />
   </files>
 </package>
-

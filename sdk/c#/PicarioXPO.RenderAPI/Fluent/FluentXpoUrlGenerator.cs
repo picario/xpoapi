@@ -3,7 +3,7 @@
 namespace PicarioXPO.RenderAPI.Fluent
 {
     /// <summary>
-    /// Represents a Fluent PicarIS URL generator
+    /// Represents a Fluent XPO URL generator
     /// </summary>
     public sealed class FluentXpoUrlGenerator : IFluentXpoUrlGenerator
     {
@@ -268,7 +268,7 @@ namespace PicarioXPO.RenderAPI.Fluent
 
         /// <summary>
         /// Used to group specific scenes together. Use your own session id or another unique value (per user).
-        /// If no value is specified the PicarIS engine will use its own session ID.
+        /// If no value is specified the XPO engine will use its own session ID.
         /// </summary>
         public IFluentXpoUrlGenerator SetSessionId(string id)
         {

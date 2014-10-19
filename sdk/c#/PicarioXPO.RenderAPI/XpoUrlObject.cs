@@ -1,7 +1,7 @@
 ﻿namespace PicarioXPO.RenderAPI
 {
     /// <summary>
-    /// Represents an object from a Picario scene for the PicarIS URL generator
+    /// Represents an object from a Picario scene for the XPO URL generator
     /// </summary>
     public sealed class XpoUrlObject
     {

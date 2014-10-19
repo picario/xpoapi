@@ -3,7 +3,7 @@
 namespace PicarioXPO.RenderAPI.Fluent
 {
     /// <summary>
-    /// Used by FluentPicarISUrlGenerator for object configuration
+    /// Used by FluentXPOUrlGenerator for object configuration
     /// </summary>
     public sealed class FluentXpoUrlColor : IFluentInterface
     {

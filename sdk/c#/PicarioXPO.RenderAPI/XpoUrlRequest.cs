@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace PicarioXPO.RenderAPI
 {
     /// <summary>
-    /// Represents all the PicarIS parameters for an image request
+    /// Represents all the XPO parameters for an image request
     /// </summary>
     public class XpoUrlRequest
     {
@@ -92,9 +92,9 @@ namespace PicarioXPO.RenderAPI
 
         /// <summary>
         /// Used to group specific scenes together. Use your own session id or another unique value (per user).
-        /// If no value is specified the PicarIS engine will use its own session ID.
+        /// If no value is specified the XPO engine will use its own session ID.
         /// </summary>
-        [Obsolete("SessionID is no longer used by PicarIS")]
+        [Obsolete("SessionID is no longer used by XPO")]
         public string SessionId { get; set; }
 
         /// <summary>
