@@ -3,11 +3,11 @@
   <metadata>
     <id>PicarioXPO.RenderAPI.V1</id>
     <version>1.0.0</version>
-    <title>XPO Render API V1</title>
-    <description>Visualization URL generator for the XPO Render API V1</description>
+    <title>XPO Render API .NET V1</title>
+    <description>SDK for .NET simplifies working with the XPO Render API v1</description>
     
-    <authors>Lucrasoft Solutions BV</authors>
-    <owners>Lucrasoft Solutions BV</owners>
+    <authors>Picario</authors>
+    <owners>Picario</owners>
     <licenseUrl>http://www.picarioxpo.com/pricing-2/</licenseUrl>
     <projectUrl>http://www.picarioxpo.com/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
