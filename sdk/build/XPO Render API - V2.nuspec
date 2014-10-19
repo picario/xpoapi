@@ -9,6 +9,6 @@
     <description>Visualization URL generator for the XPO Render API V2</description>
   </metadata>
   <files>
-    <file src="..\c#\PicarioXPO.RenderAPI.V1\bin\release\PicarioXPO.RenderAPI.V2.dll" target="lib" />
+    <file src="..\c#\PicarioXPO.RenderAPI.V2\bin\release\PicarioXPO.RenderAPI.V2.dll" target="lib" />
   </files>
 </package>
