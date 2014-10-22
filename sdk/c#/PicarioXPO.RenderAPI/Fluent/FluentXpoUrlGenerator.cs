@@ -286,17 +286,7 @@ namespace PicarioXPO.RenderAPI.Fluent
 
             return this;
         }
-
-        /// <summary>
-        /// Specifies whether the url should be an absolute url
-        /// </summary>
-        public IFluentXpoUrlGenerator UseAbsoluteUrl(bool useAbsoluteUrl)
-        {
-            EnsureUrlType<XpoUrlRequest>(request).UseAbsoluteUrl = useAbsoluteUrl;
-
-            return this;
-        }
-
+        
         public IFluentXpoUrlGenerator SetAbsoluteUrl(string absoluteUrl)
         {
             EnsureUrlType<XpoUrlRequest>(request).AbsoluteUrl = absoluteUrl;

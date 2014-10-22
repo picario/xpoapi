@@ -1,0 +1,160 @@
+﻿@model XpoRenderApiNetDemo.ViewModels.IndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                PicarioXPO Render API
+                <small>Examples</small>
+            </h1>
+        </div>
+    </div>
+    <!-- /.row -->
+    
+    <!-- Projects Row -->
+    <div class="row">
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Simple scene</a>
+            </h3>
+            <p>Sample image of scene with only a width provided</p>
+            <img class="img-responsive" src="@Model.DefaultSceneUrl" alt="scene image" title="scene image" />
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Simple design</a>
+            </h3>
+            <p>Sample image of design with only a width provided</p>
+            <img class="img-responsive" src="@Model.DefaultDesignUrl" alt="design image" title="design image" />
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Scene with color</a>
+            </h3>
+            <p>Sample image of a color applied to a scene object</p>
+            <img class="img-responsive" src="@Model.ColorSceneUrl" alt="color on scene" title="color on scene" />
+        </div>
+    </div>
+    <!-- /.row -->
+    
+    <!-- Projects Row -->
+    <div class="row">
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Scene with design</a>
+            </h3>
+            <p>Sample image of a design applied to a scene object</p>
+            <img class="img-responsive" src="@Model.DefaultMappedSceneUrl" alt="design on scene" title="design on scene" />
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Design placing point x</a>
+            </h3>
+            <p>Sample image of a design applied to a scene object with a custom placing point for the X coordinate</p>
+            <img class="img-responsive" src="@Model.DesignPlacingPointXSceneUrl" alt="design with placingpoint x" title="design with placingpoint x" />
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Design placing point y</a>
+            </h3>
+            <p>Sample image of a design applied to a scene object with a custom placing point for the Y coordinate</p>
+            <img class="img-responsive" src="@Model.DesignPlacingPointYSceneUrl" alt="design with placingpoint y" title="design with placingpoint y" />
+        </div>
+    </div>
+    <!-- /.row -->
+    
+    <!-- Projects Row -->
+    <div class="row">
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Design repeat</a>
+            </h3>
+            <p>Sample image of a design applied to a scene object with repeat</p>
+            <img class="img-responsive" src="@Model.DesignRepeatSceneUrl" alt="design with repeat" title="design with repeat" />
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Design repeat &amp; drop x</a>
+            </h3>
+            <p>Sample image of design applied to a scene object with repeat and custom drop x</p>
+            <img class="img-responsive" src="@Model.DesignDropXSceneUrl" alt="design with drop x" title="design with drop x" />
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Design repeat &amp; drop y</a>
+            </h3>
+            <p>Sample image of design applied to a scene object with repeat and custom drop y</p>
+            <img class="img-responsive" src="@Model.DesignDropYSceneUrl" alt="design with drop y" title="design with drop y" />
+        </div>
+    </div>
+    <!-- /.row -->
+    
+    <!-- Projects Row -->
+    <div class="row">
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Design flip</a>
+            </h3>
+            <p>Sample image of design applied to a scene object with flip</p>
+            <img class="img-responsive" src="@Model.DesignFlipSceneUrl" alt="design with flip" title="design with flip" />
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Design flip &amp; rotate</a>
+            </h3>
+            <p>Sample image of design applied to a scene object with flip and rotation</p>
+            <img class="img-responsive" src="@Model.DesignMirrorSceneUrl" alt="design with flip and rotation" title="design with flip and rotation" />
+        </div>
+    </div>
+    <!-- /.row -->
+    
+    <!-- Projects Row -->
+    <div class="row">
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Design without contrast</a>
+            </h3>
+            <p>Sample image of design applied to a scene object without contrast</p>
+            <img class="img-responsive" src="@Model.DesignMappedContrastSceneUrl" alt="design without contrast" title="design without contrast" />
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Design contrast</a>
+            </h3>
+            <p>Sample image of design applied to a scene object with contrast</p>
+            <img class="img-responsive" src="@Model.DesignContrastSceneUrl" alt="design with contrast" title="design with contrast" />
+        </div>
+    </div>
+    <!-- /.row -->
+    
+    <!-- Projects Row -->
+    <div class="row">
+        <div class="col-md-4 portfolio-item">
+            <h3>
+                <a href="#">Other examples</a>
+            </h3>
+            <p>Click <a href="/js">here</a> for the JavaScript examples</p>
+        </div>
+    </div>
+    <!-- /.row -->
+    
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Picario @DateTime.Now.Year</p>
+            </div>
+        </div>
+        <!-- /.row -->
+    </footer>
+
+    </div>
+<!-- /.container -->

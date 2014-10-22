@@ -139,11 +139,6 @@ namespace PicarioXPO.RenderAPI
         public int? SceneThumbnailObjectNumber { get; set; }
 
         /// <summary>
-        /// Specifies whether the xpo url should be absolute or relative
-        /// </summary>
-        public bool UseAbsoluteUrl { get; set; }
-
-        /// <summary>
         /// Specifies the absolute url to use
         /// </summary>
         public string AbsoluteUrl { get; set; }

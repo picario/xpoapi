@@ -139,12 +139,7 @@ namespace PicarioXPO.RenderAPI.Fluent
         /// Specifies the name of the template to use.
         /// </summary>
         IFluentXpoUrlGenerator SetTemplateName(string name);
-
-        /// <summary>
-        /// Specifies whether the url should be an absolute url
-        /// </summary>
-        IFluentXpoUrlGenerator UseAbsoluteUrl(bool useAbsoluteUrl);
-
+        
         /// <summary>
         /// Specifies the absolute url to use
         /// </summary>

@@ -34,7 +34,7 @@ namespace PicarioXPO.RenderAPI.V2
 
         private string GetXpoBaseUrl(XpoUrlRequest urlRequest)
         {
-            if (urlRequest != null && urlRequest.UseAbsoluteUrl)
+            if (urlRequest != null && !string.IsNullOrEmpty(urlRequest.AbsoluteUrl))
             {
                 return urlRequest.AbsoluteUrl.EndsWith("/") ? urlRequest.AbsoluteUrl : urlRequest.AbsoluteUrl + "/";
             }
