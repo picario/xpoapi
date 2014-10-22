@@ -20,7 +20,6 @@ namespace XpoRenderApiNetDemo.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Title = "PicarioXPO Render API";
             var viewmodel = new IndexViewModel
             {
                 DefaultSceneUrl = GetDefaultSceneUrl(DefaultImageWidth, DefaultImageHeight),
@@ -45,24 +44,16 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates a basic image url for a scene.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the scene and the storage name of the scene to let render engine know where to find the file.
-            // If you know the reference id of the scene you can also use that instead of the id + the storage name.
+            // We use the referece id of the scene. This can be found in the PicarioXPO backend.
             // We choose jpg as image type, but we can also choose png or bmp.
             // The entity type is needed for the url generator to render the image correctly. 
-            // If we want to render a design on a scene we need to use the scene entitytype so it will use the correct scene file (.pfs).
-            // If we want a normal image of the scene we can use the image entity type.
-            // In XPO we generate smaller versions of the image of each entity.
-            // We store this smaller version under a different filename, namely the substitute storage filename.
-            // For small image request we use this resized image to speed up the rendering process.
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
 
             var fluentUrlGenerator = GetFluentXpoImageUrlGenerator();
             return fluentUrlGenerator.SetPrimaryKey(database.Scene.ReferenceId)
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
                                      .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
-                                     .UseAbsoluteUrl(true)
                                      .GetUrl();
         }
 
@@ -71,24 +62,18 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates a basic image url for a design.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the design and the storage name of the design to let render engine know where to find the file.
-            // If you know the reference id of the design you can also use that instead of the id + the storage name.
+            // We use the referece id of the design. This can be found in the PicarioXPO backend.
             // We choose png as image type, but we can also choose jpg or bmp.
             // The entity type is needed for the url generator to render the image correctly. 
             // If we want to render a design file(.pft) we need to use the design url image type.
             // If we want a normal image of the design we can use the image entity type.
-            // In XPO we generate smaller versions of the image of each entity.
-            // We store this smaller version under a different filename, namely the substitute storage filename.
-            // For small image request we use this resized image to speed up the rendering process.
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
 
             var fluentUrlGenerator = GetFluentXpoImageUrlGenerator();
             return fluentUrlGenerator.SetPrimaryKey(database.Design.ReferenceId)
                                      .SetEntityType(GetDesignUrlFileType(database.Design))
                                      .SetImageType(XpoUrlImageTypes.Png)
                                      .SetWidth(width)
-                                     .UseAbsoluteUrl(true)
                                      .GetUrl();
         }
 
@@ -97,13 +82,11 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates an image url for a color rendered on a scene.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the scene and the storage name of the scene to let render engine know where to find the file.
-            // If you know the reference id of the scene you can also use that instead of the id + the storage name.
+            // We use the referece id of the scene. This can be found in the PicarioXPO backend.
             // We choose jpg as image type, but we can also choose png or bmp.
             // The primary key should allways use the storage name of a scene when you render colors/design on it.
             // The entitytype is allways Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
             // We use the name of color to set the color but we can also use the hex notation or a rgb notation.
             // I.e. red is the same as ff0000 or 255_0_0
             // When adding a color you also need to specify the index of the object, in this case we use the first object.
@@ -113,7 +96,6 @@ namespace XpoRenderApiNetDemo.Controllers
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
                                      .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
-                                     .UseAbsoluteUrl(true)
                                      .AddObject(obj =>
                                      {
                                          obj.Color("red");
@@ -127,12 +109,9 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates an image url for a design rendered on a scene.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the scene and the storage name of the scene to let render engine know where to find the file.
-            // We choose jpg as image type, but we can also choose png or bmp.
-            // The primary key should allways use the storage name of a scene when you render colors/design on it.
+            // We use the referece id of the scene. This can be found in the PicarioXPO backend.
             // The entitytype is allways Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
             // Not all files can be used to render so we use the correct render file for the design.
             // We also set the width and height that should be used to render the design.
             // When adding a design you also need to specify the index of the object, in this case we use the first object.
@@ -142,7 +121,6 @@ namespace XpoRenderApiNetDemo.Controllers
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
                                      .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
-                                     .UseAbsoluteUrl(true)
                                      .AddObject(obj =>
                                      {
                                          obj.Design(database.Design.ReferenceId)
@@ -158,12 +136,10 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates an image url for a design rendered on a scene.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the scene and the storage name of the scene to let render engine know where to find the file.
+            // We use the referece id of the scene. This can be found in the PicarioXPO backend.
             // We choose jpg as image type, but we can also choose png or bmp.
-            // The primary key should allways use the storage name of a scene when you render colors/design on it.
             // The entitytype is allways Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
             // Not all files can be used to render so we use the correct render file for the design.
             // We also set the width and height that should be used to render the design.
             // When adding a design you also need to specify the index of the object, in this case we use the first object.
@@ -173,7 +149,6 @@ namespace XpoRenderApiNetDemo.Controllers
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
                                      .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
-                                     .UseAbsoluteUrl(true)
                                      .AddObject(obj =>
                                      {
                                          obj.Design(database.ContrastDesign.ReferenceId)
@@ -189,12 +164,10 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates an image url for a design rendered on a scene.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the scene and the storage name of the scene to let render engine know where to find the file.
+            // We use the referece id of the scene. This can be found in the PicarioXPO backend.
             // We choose jpg as image type, but we can also choose png or bmp.
-            // The primary key should allways use the storage name of a scene when you render colors/design on it.
             // The entitytype is allways Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
             // Not all files can be used to render so we use the correct render file for the design.
             // We also set the width and height that should be used to render the design.
             // By specifying the placing point x we can position the design along the x axis.
@@ -205,7 +178,6 @@ namespace XpoRenderApiNetDemo.Controllers
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
                                      .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
-                                     .UseAbsoluteUrl(true)
                                      .AddObject(obj =>
                                      {
                                          obj.Design(database.Design.ReferenceId)
@@ -222,12 +194,10 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates an image url for a design rendered on a scene.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the scene and the storage name of the scene to let render engine know where to find the file.
+            // We use the referece id of the scene. This can be found in the PicarioXPO backend.
             // We choose jpg as image type, but we can also choose png or bmp.
-            // The primary key should allways use the storage name of a scene when you render colors/design on it.
             // The entitytype is allways Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
             // Not all files can be used to render so we use the correct render file for the design.
             // We also set the width and height that should be used to render the design.
             // By specifying the placing point y we can position the design along the y axis.
@@ -238,7 +208,6 @@ namespace XpoRenderApiNetDemo.Controllers
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
                                      .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
-                                     .UseAbsoluteUrl(true)
                                      .AddObject(obj =>
                                      {
                                          obj.Design(database.Design.ReferenceId)
@@ -255,12 +224,10 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates an image url for a design rendered on a scene.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the scene and the storage name of the scene to let render engine know where to find the file.
+            // We use the referece id of the scene. This can be found in the PicarioXPO backend.
             // We choose jpg as image type, but we can also choose png or bmp.
-            // The primary key should allways use the storage name of a scene when you render colors/design on it.
             // The entitytype is allways Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
             // Not all files can be used to render so we use the correct render file for the design.
             // We also set the width and height that should be used to render the design.
             // By specifying the repeat we can fill the scene object with the design.
@@ -271,7 +238,6 @@ namespace XpoRenderApiNetDemo.Controllers
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
                                      .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
-                                     .UseAbsoluteUrl(true)
                                      .AddObject(obj =>
                                      {
                                          obj.Design(database.FloorDesign.ReferenceId)
@@ -288,12 +254,10 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates an image url for a design rendered on a scene.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the scene and the storage name of the scene to let render engine know where to find the file.
+            // We use the referece id of the scene. This can be found in the PicarioXPO backend.
             // We choose jpg as image type, but we can also choose png or bmp.
-            // The primary key should allways use the storage name of a scene when you render colors/design on it.
             // The entitytype is allways Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
             // Not all files can be used to render so we use the correct render file for the design.
             // We also set the width and height that should be used to render the design.
             // By specifying the repeat we can fill the scene object with the design.
@@ -305,7 +269,6 @@ namespace XpoRenderApiNetDemo.Controllers
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
                                      .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
-                                     .UseAbsoluteUrl(true)
                                      .AddObject(obj =>
                                      {
                                          obj.Design(database.FloorDesign.ReferenceId)
@@ -323,12 +286,10 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates an image url for a design rendered on a scene.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the scene and the storage name of the scene to let render engine know where to find the file.
+            // We use the referece id of the scene. This can be found in the PicarioXPO backend.
             // We choose jpg as image type, but we can also choose png or bmp.
-            // The primary key should allways use the storage name of a scene when you render colors/design on it.
             // The entitytype is allways Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
             // Not all files can be used to render so we use the correct render file for the design.
             // We also set the width and height that should be used to render the design.
             // By specifying the repeat we can fill the scene object with the design.
@@ -340,7 +301,6 @@ namespace XpoRenderApiNetDemo.Controllers
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
                                      .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
-                                     .UseAbsoluteUrl(true)
                                      .AddObject(obj =>
                                      {
                                          obj.Design(database.FloorDesign.ReferenceId)
@@ -358,12 +318,10 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates an image url for a design rendered on a scene.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the scene and the storage name of the scene to let render engine know where to find the file.
+            // We use the referece id of the scene. This can be found in the PicarioXPO backend.
             // We choose jpg as image type, but we can also choose png or bmp.
             // The primary key should allways use the storage name of a scene when you render colors/design on it.
-            // The entitytype is allways Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
             // Not all files can be used to render so we use the correct render file for the design.
             // We also set the width and height that should be used to render the design.
             // By specifying the flip parameter we can flip the design on the x axis.
@@ -374,7 +332,6 @@ namespace XpoRenderApiNetDemo.Controllers
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
                                      .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
-                                     .UseAbsoluteUrl(true)
                                      .AddObject(obj =>
                                      {
                                          obj.Design(database.Design.ReferenceId)
@@ -393,12 +350,10 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates an image url for a design rendered on a scene.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the scene and the storage name of the scene to let render engine know where to find the file.
+            // We use the referece id of the scene. This can be found in the PicarioXPO backend.
             // We choose jpg as image type, but we can also choose png or bmp.
-            // The primary key should allways use the storage name of a scene when you render colors/design on it.
             // The entitytype is allways Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
             // Not all files can be used to render so we use the correct render file for the design.
             // We also set the width and height that should be used to render the design.
             // By specifying the flip parameter we can flip the design on the x axis.
@@ -410,7 +365,6 @@ namespace XpoRenderApiNetDemo.Controllers
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
                                      .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
-                                     .UseAbsoluteUrl(true)
                                      .AddObject(obj =>
                                      {
                                          obj.Design(database.Design.ReferenceId)
@@ -430,12 +384,10 @@ namespace XpoRenderApiNetDemo.Controllers
             // This function creates an image url for a design rendered on a scene.
             // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
             // The primary key is used by our render engine to find the correct file to render the image.
-            // We use the database id of the scene and the storage name of the scene to let render engine know where to find the file.
+            // We use the referece id of the scene. This can be found in the PicarioXPO backend.
             // We choose jpg as image type, but we can also choose png or bmp.
-            // The primary key should allways use the storage name of a scene when you render colors/design on it.
             // The entitytype is allways Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
             // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
-            // We use caching so we can reuse the rendered image for this specific url.
             // Not all files can be used to render so we use the correct render file for the design.
             // We also set the width and height that should be used to render the design.
             // We can alter the contrast of the rendered design by setting the contrast property when adding the design to an object.
@@ -446,7 +398,6 @@ namespace XpoRenderApiNetDemo.Controllers
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
                                      .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
-                                     .UseAbsoluteUrl(true)
                                      .AddObject(obj =>
                                      {
                                          obj.Design(database.ContrastDesign.ReferenceId)
