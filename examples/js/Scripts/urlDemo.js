@@ -22,7 +22,7 @@ UrlDemo.prototype.GetBaseSceneUrl = function (width, height) {
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
                              .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
 							 .setAbsoluteUrl(this.baseUrl)
                              .getUrl();
@@ -41,7 +41,7 @@ UrlDemo.prototype.GetDefaultDesignUrl = function (width, height) {
 
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.design.referenceId)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Image)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Image)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Png)
                              .setWidth(width)
                              .setAbsoluteUrl(this.baseUrl)
@@ -64,7 +64,7 @@ UrlDemo.prototype.GetColorSceneUrl = function (width, height) {
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
                              .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
                              .setAbsoluteUrl(this.baseUrl)
                              .addObject(function (obj) {
@@ -89,7 +89,7 @@ UrlDemo.prototype.GetDefaultMappedSceneUrl = function (width, height) {
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
                              .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
                              .setAbsoluteUrl(this.baseUrl)
                              .addObject(function (obj) {
@@ -117,7 +117,7 @@ UrlDemo.prototype.GetDesignContrastMappedSceneUrl = function (width, height) {
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
                              .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
                              .setAbsoluteUrl(this.baseUrl)
                              .addObject(function (obj) {
@@ -149,7 +149,7 @@ UrlDemo.prototype.GetDesignPlacingPointXSceneUrl = function (width, height) {
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
                              .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
                              .setAbsoluteUrl(this.baseUrl)
                              .addObject(function (obj) {
@@ -179,7 +179,7 @@ UrlDemo.prototype.GetDesignPlacingPointYSceneUrl = function (width, height) {
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
                              .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
                              .setAbsoluteUrl(this.baseUrl)
                              .addObject(function (obj) {
@@ -209,7 +209,7 @@ UrlDemo.prototype.GetDesignRepeatSceneUrl = function (width, height) {
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
                              .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
                              .setAbsoluteUrl(this.baseUrl)
                              .addObject(function (obj) {
@@ -240,7 +240,7 @@ UrlDemo.prototype.GetDesignDropXSceneUrl = function (width, height) {
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
                              .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
                              .setAbsoluteUrl(this.baseUrl)
                              .addObject(function (obj) {
@@ -272,7 +272,7 @@ UrlDemo.prototype.GetDesignDropYSceneUrl = function (width, height) {
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
                              .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
                              .setAbsoluteUrl(this.baseUrl)
                              .addObject(function (obj) {
@@ -303,7 +303,7 @@ UrlDemo.prototype.GetDesignFlipSceneUrl = function (width, height) {
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
                              .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
                              .setAbsoluteUrl(this.baseUrl)
                              .addObject(function (obj) {
@@ -336,7 +336,7 @@ UrlDemo.prototype.GetDesignMirrorSceneUrl = function (width, height) {
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
                              .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
                              .setAbsoluteUrl(this.baseUrl)
                              .addObject(function (obj) {
@@ -369,7 +369,7 @@ UrlDemo.prototype.GetDesignContrastSceneUrl = function (width, height) {
     var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
                              .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
-                             .setentity type(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
                              .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
                              .setAbsoluteUrl(this.baseUrl)
                              .addObject(function (obj) {
