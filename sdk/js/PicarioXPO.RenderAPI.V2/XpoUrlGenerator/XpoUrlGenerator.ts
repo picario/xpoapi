@@ -15,7 +15,7 @@
         var designKeys = new DesignKeys();
         var colorKeys = new ColorKeys();
 
-        var baseUri = this.getXpoImageUrl(request);
+        var baseUri = this.getXpoBaseUrl(request);
 
         var stringBuilder = baseUri;
         stringBuilder = stringBuilder.concat(request.getPrimaryKey());
@@ -29,7 +29,7 @@
 
     getCoordsUrl(request: XpoCoordinatesUrlRequest) {
         var generalKeys = new GeneralKeys();
-        var baseUri = "/";
+        var baseUri = this.getXpoBaseUrl(request);
 
         var stringBuilder = baseUri;
         stringBuilder = stringBuilder.concat(request.getPrimaryKey());
@@ -38,13 +38,9 @@
         return stringBuilder;
     }
 
-    getXpoImageUrl(imageRequest: XpoImageUrlRequest) {
-        return this.getXpoBaseUrl(imageRequest);
-    }
-
-    getXpoBaseUrl(imageRequest: XpoImageUrlRequest) {
-        if (imageRequest != null && imageRequest.getUseAbsoluteUrl())
-            return imageRequest.getAbsoluteUrl().endsWith("/") ? imageRequest.getAbsoluteUrl() : imageRequest.getAbsoluteUrl() + "/";
+    getXpoBaseUrl(urlRequest: XpoUrlRequest) {
+        if (urlRequest != null && urlRequest.getUseAbsoluteUrl())
+            return urlRequest.getAbsoluteUrl().endsWith("/") ? urlRequest.getAbsoluteUrl() : urlRequest.getAbsoluteUrl() + "/";
 
         return "/";
     }

@@ -19,7 +19,7 @@ namespace PicarioXPO.RenderAPI.V2
 
         public string GetUrl(XpoImageUrlRequest request)
         {
-            var baseUri = GetXpoImageUrl(request);
+            var baseUri = GetXpoBaseUrl(request);
 
             var stringBuilder = new StringBuilder(baseUri);
             stringBuilder
@@ -32,24 +32,19 @@ namespace PicarioXPO.RenderAPI.V2
             return stringBuilder.ToString();
         }
 
-        private string GetXpoBaseUrl(XpoImageUrlRequest imageRequest)
+        private string GetXpoBaseUrl(XpoUrlRequest urlRequest)
         {
-            if (imageRequest != null && imageRequest.UseAbsoluteUrl)
+            if (urlRequest != null && urlRequest.UseAbsoluteUrl)
             {
-                return imageRequest.AbsoluteUrl.EndsWith("/") ? imageRequest.AbsoluteUrl : imageRequest.AbsoluteUrl + "/";
+                return urlRequest.AbsoluteUrl.EndsWith("/") ? urlRequest.AbsoluteUrl : urlRequest.AbsoluteUrl + "/";
             }
 
             return "/";
         }
 
-        private string GetXpoImageUrl(XpoImageUrlRequest imageRequest)
-        {
-            return GetXpoBaseUrl(imageRequest);
-        }
-
         public string GetUrl(XpoCoordinatesUrlRequest request)
         {
-            const string baseUri = "/";
+            var baseUri = GetXpoBaseUrl(request);
 
             var stringBuilder = new StringBuilder(baseUri);
             stringBuilder
