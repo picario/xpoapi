@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>PicarioXPO Render API Examples</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="Content/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="Content/3-col-portfolio.css" rel="stylesheet">
+
+	<!-- jQuery Version 1.11.0 -->
+    <script src="Scripts/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/underscore.min.js"></script>
+	
+	<script src="Scripts/PicarioXPO.RenderAPI.V2.js"></script>
+	<script src="Scripts/database.js"></script>
+	<script src="Scripts/index.js"></script>
+	<script src="Scripts/urlDemo.js"></script>
+	<script src="Scripts/coordinatesDemo.js"></script>
+	
+</head>
+
+<body>
+	<a href="https://github.com/picario/xpoapi"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">PicarioXPO Render API
+                    <small>Examples</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+		<div class="row">
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Simple scene</a>
+				</h3>
+				<p>Sample image of scene with only a width provided</p>
+				<img id="simpleScene" class="img-responsive" src="http://placehold.it/700x400" alt="scene image" title="scene image" />
+			</div>
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Simple design</a>
+				</h3>
+				<p>Sample image of design with only a width provided</p>
+				<img id="simpleDesign" class="img-responsive" src="http://placehold.it/700x400" alt="design image" title="design image" />
+			</div>
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Scene with color</a>
+				</h3>
+				<p>Sample image of a color applied to a scene object</p>
+				<img id="colorScene" class="img-responsive" src="http://placehold.it/700x400" alt="color on scene" title="color on scene" />
+			</div>
+		</div>
+		<!-- /.row -->
+		
+		<!-- Projects Row -->
+		<div class="row">
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Scene with design</a>
+				</h3>
+				<p>Sample image of a design applied to a scene object</p> <br/>
+				<img id="designScene" class="img-responsive" src="http://placehold.it/700x400" alt="design on scene" title="design on scene" />
+			</div>
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Design placing point x</a>
+				</h3>
+				<p>Sample image of a design applied to a scene object with a custom placing point for the X coordinate</p>
+				<img id="designPlacingPointX" class="img-responsive" src="http://placehold.it/700x400" alt="design with placingpoint x" title="design with placingpoint x" />
+			</div>
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Design placing point y</a>
+				</h3>
+				<p>Sample image of a design applied to a scene object with a custom placing point for the Y coordinate</p>
+				<img id="designPlacingPointY" class="img-responsive" src="http://placehold.it/700x400" alt="design with placingpoint y" title="design with placingpoint y" />
+			</div>
+		</div>
+		<!-- /.row -->
+		
+		<!-- Projects Row -->
+		<div class="row">
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Design repeat</a>
+				</h3>
+				<p>Sample image of a design applied to a scene object with repeat</p>
+				<img id="designRepeat" class="img-responsive" src="http://placehold.it/700x400" alt="design with repeat" title="design with repeat" />
+			</div>
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Design repeat &amp; drop x</a>
+				</h3>
+				<p>Sample image of design applied to a scene object with repeat and custom drop x</p>
+				<img id="designDropX" class="img-responsive" src="http://placehold.it/700x400" alt="design with drop x" title="design with drop x" />
+			</div>
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Design repeat &amp; drop y</a>
+				</h3>
+				<p>Sample image of design applied to a scene object with repeat and custom drop y</p>
+				<img id="designDropY" class="img-responsive" src="http://placehold.it/700x400" alt="design with drop y" title="design with drop y" />
+			</div>
+		</div>
+		<!-- /.row -->
+		
+		<!-- Projects Row -->
+		<div class="row">
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Design flip</a>
+				</h3>
+				<p>Sample image of design applied to a scene object with flip</p>
+				<img id="designFlip" class="img-responsive" src="http://placehold.it/700x400" alt="design with flip" title="design with flip" />
+			</div>
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Design flip &amp; rotate</a>
+				</h3>
+				<p>Sample image of design applied to a scene object with flip and rotation</p>
+				<img id="designFlipRotate" class="img-responsive" src="http://placehold.it/700x400" alt="design with flip and rotation" title="design with flip and rotation" />
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- Projects Row -->
+		<div class="row">
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Design without contrast</a>
+				</h3>
+				<p>Sample image of design applied to a scene object without contrast</p>
+				<img id="designWithoutContrast" class="img-responsive" src="http://placehold.it/700x400" alt="design without contrast" title="design without contrast" />
+			</div>
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Design contrast</a>
+				</h3>
+				<p>Sample image of design applied to a scene object with contrast</p>
+				<img id="designContrast" class="img-responsive" src="http://placehold.it/700x400" alt="design with contrast" title="design with contrast" />
+			</div>
+		
+		</div>
+		<!-- /.row -->
+		
+		<!-- Projects Row -->
+		<div class="row">
+			<div class="col-md-10 portfolio-item">
+				<h3>
+					<a href="#">Scene coordinates</a>
+				</h3>
+				<p>You can hover over the scene to select an object.</p>
+				<h3 id="objectNumber" >No object selected</h3>
+				<img id="coordsScene" class="img-responsive" src="http://placehold.it/700x400" alt="scene with coordinates" title="scene with coordinates" />
+			</div>
+		</div>
+		<!-- /.row -->
+		
+		<!-- Projects Row -->
+		<div class="row">
+			<div class="col-md-4 portfolio-item">
+				<h3>
+					<a href="#">Other examples</a>
+				</h3>
+				<p>Click <a href="/csharp">here</a> for the C# examples</p>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p id="copyright">Copyright &copy; Picario</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+</body>
+
+</html>
