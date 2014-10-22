@@ -3,7 +3,10 @@
     private americanCulture = "en-US";
 
     addToList(value: any, omitIfDefault: boolean = true) {
-        if ((!value || value.toString() == "") && omitIfDefault) {
+        if (value === undefined || value === null) {
+            this.addEmpty();
+            return;
+        }else if ((!value || value.toString() == "") && omitIfDefault) {
             this.addEmpty();
             return;
         }
