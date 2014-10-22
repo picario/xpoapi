@@ -39,7 +39,7 @@
     }
 
     getXpoBaseUrl(urlRequest: XpoUrlRequest) {
-        if (urlRequest != null && urlRequest.getUseAbsoluteUrl())
+        if (urlRequest != null && urlRequest.getAbsoluteUrl())
             return urlRequest.getAbsoluteUrl().endsWith("/") ? urlRequest.getAbsoluteUrl() : urlRequest.getAbsoluteUrl() + "/";
 
         return "/";
