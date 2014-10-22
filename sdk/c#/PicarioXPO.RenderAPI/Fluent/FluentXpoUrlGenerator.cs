@@ -292,7 +292,7 @@ namespace PicarioXPO.RenderAPI.Fluent
         /// </summary>
         public IFluentXpoUrlGenerator UseAbsoluteUrl(bool useAbsoluteUrl)
         {
-            EnsureUrlType<XpoImageUrlRequest>(request).UseAbsoluteUrl = useAbsoluteUrl;
+            EnsureUrlType<XpoUrlRequest>(request).UseAbsoluteUrl = useAbsoluteUrl;
 
             return this;
         }
