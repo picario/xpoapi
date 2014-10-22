@@ -228,12 +228,6 @@
         return this;
     }
 
-    useAbsoluteUrl(useAbsoluteUrl: boolean) {
-        this.ensureUrlType(this.request).setUseAbsoluteUrl(useAbsoluteUrl);
-
-        return this;
-    }
-
     setAbsoluteUrl(absoluteUrl: string) {
         this.ensureUrlType(this.request).setAbsoluteUrl(absoluteUrl);
 

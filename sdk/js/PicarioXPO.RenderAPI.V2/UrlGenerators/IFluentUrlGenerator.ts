@@ -124,12 +124,7 @@
          * Specifies the name of the template to use
          */
         setTemplateName(name: string): IFluentXpoUrlGenerator;
-
-        /*
-         * Specifies whether the URL should be an absolute URL
-         */
-        useAbsoluteUrl(useAbsoluteUrl: boolean): IFluentXpoUrlGenerator;
-
+        
         /*
          * Specifies the absolute URL to use
          */

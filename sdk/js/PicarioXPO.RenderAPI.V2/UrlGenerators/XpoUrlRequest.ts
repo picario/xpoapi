@@ -11,7 +11,6 @@
     private frame: number;
     private watermarkImage: string
     private absoluteUrl: string;
-    private useAbsoluteUrl: boolean;
     private sceneThumbnailObjectNumber: number;
     private highlightObject: number;
     private isEntity: boolean;
@@ -178,12 +177,6 @@
      */
     getSceneThumbnailObjectNumber(): number { return this.sceneThumbnailObjectNumber; }
     setSceneThumbnailObjectNumber(val: number) { this.sceneThumbnailObjectNumber = val; }
-
-    /*
-     *  Specifies whether the xpo url should be absolute or relative
-     */
-    getUseAbsoluteUrl(): boolean { return this.useAbsoluteUrl; }
-    setUseAbsoluteUrl(val: boolean) { this.useAbsoluteUrl = val; }
 
     /*
      *  Specifies the absolute url to use
