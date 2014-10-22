@@ -44,7 +44,7 @@
 
     getXpoBaseUrl(imageRequest: XpoImageUrlRequest) {
         if (imageRequest != null && imageRequest.getUseAbsoluteUrl())
-            return imageRequest.getAbsoluteUrl();
+            return imageRequest.getAbsoluteUrl().endsWith("/") ? imageRequest.getAbsoluteUrl() : imageRequest.getAbsoluteUrl() + "/";
 
         return "/";
     }

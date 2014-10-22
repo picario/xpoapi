@@ -36,7 +36,7 @@ namespace PicarioXPO.RenderAPI.V2
         {
             if (imageRequest != null && imageRequest.UseAbsoluteUrl)
             {
-                return imageRequest.AbsoluteUrl + "/";
+                return imageRequest.AbsoluteUrl.EndsWith("/") ? imageRequest.AbsoluteUrl : imageRequest.AbsoluteUrl + "/";
             }
 
             return "/";

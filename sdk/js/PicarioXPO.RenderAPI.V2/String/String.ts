@@ -1,6 +1,7 @@
 ﻿interface String {
     format(...replacements: string[]): string;
     appendDictionary(values: Collections.Dictionary<string, Object>): string;
+    endsWith(value: string) : boolean;
 }
 
 if (!String.prototype.format) {
@@ -21,5 +22,12 @@ if (!String.prototype.appendDictionary) {
         });
 
         return result;
+    }
+}
+
+if (!String.prototype.endsWith) {
+    String.prototype.endsWith = function (value) {
+        var lastIndex = this.lastIndexOf(value);
+        return (lastIndex != -1) && (lastIndex + value.length == this.length);
     }
 }
