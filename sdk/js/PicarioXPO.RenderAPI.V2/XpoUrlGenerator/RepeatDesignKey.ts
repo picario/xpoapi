@@ -8,7 +8,7 @@
 
             var urlObject = designs[index];
             if (urlObject != null)
-                this.addToList(urlObject.getDesign().getRepeat());
+                this.addToList(urlObject.getDesign().getRepeat(), false);
             else if (i != max)
                 this.addEmpty();
         }
