@@ -44,8 +44,12 @@ CoordinatesDemo.prototype.GetCoords = function (sceneWidth, sceneHeight) {
 CoordinatesDemo.prototype.OnMouseDown = function (jqEvent, self) {
 	var width = jqEvent.target.clientWidth;
     var height = jqEvent.target.clientHeight;
-    var x = Math.round(jqEvent.offsetX);
-    var y = Math.round(jqEvent.offsetY);
+	
+    var offsetX = (jqEvent.offsetX !== undefined) ? jqEvent.offsetX : (jqEvent.pageX - $(jqEvent.target).offset().left);
+	var offsetY = (jqEvent.offsetY !== undefined) ? jqEvent.offsetY : (jqEvent.pageY - $(jqEvent.target).offset().top);
+	
+    var x = Math.round(offsetX);
+    var y = Math.round(offsetY);
 
 	var objectNumber = this.GetObjectNumberByCoords(x, y, width, height);
 	
