@@ -33,6 +33,9 @@ namespace PicarioXPO.RenderAPI.Fluent
         private static TUrlType EnsureUrlType<TUrlType>(XpoUrlRequest urlRequest) 
             where TUrlType : XpoUrlRequest
         {
+            if(urlRequest == null)
+                throw new ArgumentNullException("urlRequest", "Cannot use this class without an instance of the correct URL request.");
+
             if (urlRequest is TUrlType)
                 return urlRequest as TUrlType;
 
@@ -314,13 +317,15 @@ namespace PicarioXPO.RenderAPI.Fluent
 
             return this;
         }
-
-        /// <summary>
-        /// Returns the URL generated using these parameters
-        /// </summary>
+        
         public string GetUrl()
         {
             return generator.GetUrl(request);
+        }
+
+        public XpoUrlParts GetUrlParts()
+        {
+            return generator.GetUrlParts(request);
         }
     }
 }

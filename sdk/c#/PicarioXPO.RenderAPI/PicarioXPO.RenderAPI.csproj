@@ -60,6 +60,7 @@
     <Compile Include="XpoUrlObjectTransformations.cs" />
     <Compile Include="XpoUrlObjectTypes.cs" />
     <Compile Include="XpoUrlOutputTypes.cs" />
+    <Compile Include="XpoUrlParts.cs" />
     <Compile Include="XpoUrlRequest.cs" />
     <Compile Include="XpoUrlResizeMethods.cs" />
     <Compile Include="XpoUrlTemplate.cs" />

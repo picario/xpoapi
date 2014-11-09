@@ -48,6 +48,21 @@ namespace PicarioXPO.RenderAPI.V1
             return stringBuilder.ToString();
         }
 
+        public XpoUrlParts GetUrlParts(XpoUrlRequest request)
+        {
+            throw new NotImplementedException("Cannot get URL parts for the XPO V1 implementation");
+        }
+
+        public XpoUrlParts GetUrlParts(XpoImageUrlRequest request)
+        {
+            throw new NotImplementedException("Cannot get URL parts for the XPO V1 implementation");
+        }
+
+        public XpoUrlParts GetUrlParts(XpoCoordinatesUrlRequest request)
+        {
+            throw new NotImplementedException("Cannot get URL parts for the XPO V1 implementation");
+        }
+
         private string GetXpoBaseUrl(XpoUrlRequest request)
         {
             if (request == null)

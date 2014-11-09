@@ -53,5 +53,45 @@ namespace PicarioXPO.RenderAPI.V2
                 
             return stringBuilder.ToString();
         }
+
+        public XpoUrlParts GetUrlParts(XpoUrlRequest request)
+        {
+            if (request is XpoImageUrlRequest)
+                return GetUrlParts(request as XpoImageUrlRequest);
+
+            if (request is XpoCoordinatesUrlRequest)
+                return GetUrlParts(request as XpoCoordinatesUrlRequest);
+
+            throw new NotSupportedException("Input type is not recognized");
+        }
+
+        public XpoUrlParts GetUrlParts(XpoImageUrlRequest request)
+        {
+            var baseUri = GetXpoBaseUrl(request);
+
+            if (baseUri == "/") baseUri = "";
+
+            var stringBuilder = new StringBuilder(baseUri);
+            stringBuilder
+                .AppendRequest(request)
+                .AppendColors(request.Objects.Where(x => x.Color != null))
+                .AppendDesigns(request.Objects.Where(x => x.Design != null));
+
+
+            return new XpoUrlParts(request.PrimaryKey, stringBuilder.ToString());
+        }
+
+        public XpoUrlParts GetUrlParts(XpoCoordinatesUrlRequest request)
+        {
+            var baseUri = GetXpoBaseUrl(request);
+
+            if (baseUri == "/") baseUri = "";
+
+            var stringBuilder = new StringBuilder(baseUri);
+            stringBuilder
+                .AppendRequest(request);
+
+            return new XpoUrlParts(request.PrimaryKey, stringBuilder.ToString());
+        }
     }
 }

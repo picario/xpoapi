@@ -164,5 +164,10 @@ namespace PicarioXPO.RenderAPI.Fluent
         /// Returns the URL generated using these parameters
         /// </summary>
         string GetUrl();
+
+        /// <summary>
+        /// Returns the URL generated using these parameters into parts
+        /// </summary>
+        XpoUrlParts GetUrlParts();
     }
 }

@@ -19,5 +19,20 @@
         /// Returns the URL generated using XPO parameters
         /// </summary>
         string GetUrl(XpoCoordinatesUrlRequest request);
+
+        /// <summary>
+        /// Returns the URL generated using these parameters into parts
+        /// </summary>
+        XpoUrlParts GetUrlParts(XpoUrlRequest request);
+
+        /// <summary>
+        /// Returns the URL generated using these parameters into parts
+        /// </summary>
+        XpoUrlParts GetUrlParts(XpoImageUrlRequest request);
+
+        /// <summary>
+        /// Returns the URL generated using these parameters into parts
+        /// </summary>
+        XpoUrlParts GetUrlParts(XpoCoordinatesUrlRequest request);
     }
 }
