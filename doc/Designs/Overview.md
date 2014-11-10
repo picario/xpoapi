@@ -1,0 +1,107 @@
+#Overview
+
+####All
+When ‘All’ is selected all available design files will be shown on the overview page.
+<br/><br/>
+
+####New
+When ‘New’ is selected only the latest design files will be shown on the overview page. <br/>
+The date from which a design file is marked as new can be set in the admin panel.
+<br/><br/>
+
+####Unlabeled
+When ‘Unlabeled’ is selected the design files that not have been labeled yet will be shown.
+<br/><br/>
+
+####Favorite
+When ‘Favorite’ is selected all design files that are marked as favorite will be displayed. <br/>
+No matter which favorite folder they belong too.
+
+![Sort](/Doc/Designs/images/Sort.png "Sort")
+<br/><br/>
+
+####Add Design
+When you click on the ‘Add Design’ button a small window will pop-up allowing you to upload new design files to your PicarioXPO account. <br/>
+You can click on the ‘Choose file’ button to browse to your folders on your pc and select the desired file(s) by hand.<br/>
+Or you can ‘drag and drop’ the file(s) to the Add Design window and the upload process will begin automatically.<br/>
+The file types which are supported as designs are: pft, jpeg, png, bmp and tiff.
+
+![Add Design](/Doc/Designs/images/Add_Design.png "Add Design")
+<br/><br/>
+
+####Labels
+On the left side of the Design Overview page the available labels for the Designs are displayed. The labels are divided into root and sub labels.<br/>
+The labels can be managed in the admin panel. When clicking on a label the corresponding design files will be shown.<br/>
+You can drag and drop a label on top of a design file to assign that label to a specific design file.
+
+![Labels](/Doc/Designs/images/Labels.png "Labels")
+<br/><br/>
+
+####Label Search
+When a lot of labels are available you can click on the small search icon to enter the name of the label you are looking for. <br/>
+The desired label will pop-up instantly when you type in (a part of) the word(s) corresponding to a label.
+<br/><br/>
+
+####Sort
+The ‘sort’ button lets you filter the available design files based on when the files have been ‘created’ or the ‘name’ of the files. <br/>
+This can further be filtered on ascending or descending based on the date or alphabetical order.
+<br/><br/>
+
+####2D/3D
+You can select two variations of the design thumb images. Either 2D or 3D. The 2D versions are just flat thumb versions of the actual design images. <br/>
+The 3D version is the design image mapped on a design file. This can for example be a specific product scene or a curved surfaces to display fabrics on.
+<br/><br/>
+
+####Select All
+The ‘Select All’ buttons selects all available design files. This can be used, for example, with the multiselect or delete actions. <br/>
+
+<b>Warning:</b> Selecting all files can take a while depending on the amount of files you have stored in your PicarioXPO account.
+<br/><br/>
+
+####DisplayType
+This changes the way the thumb images of the design files are displayed. You can either choose between small, large or list view.<br/>
+The standard settings can be altered in the admin panel.
+
+![Displaytype](/Doc/Designs/images/Displaytype.png "Displaytype")
+<br/><br/>
+
+####Search
+When you click on the small search icon you can enter the name or a part of the name of the design you are looking for. Results matching the description will pop-up instantly.<br/>
+But you are not only searching on the file name. You can even search for a word used in a label corresponding to a design file, words that are used in the description or in the properties.
+<br/><br/>
+
+####File Information
+Based on the file or files you select in your PicarioXPO the file information is shown on the right side of the page. When a single file is selected the name, width, height, <br/>
+file size, file type and corresponding labels are mentioned. Extra properties you’ve added to files are also displayed here. Beneath the file information are multiple actions.
+
++ <b>Full design info</b><br>
+The ‘full design info’ button will open the pop-up with all the information and settings per file.
+
++ <b>Delete this design / Delete all selected designs</b><br>
+This will delete the selected design file(s).
+
++ <b>Visualize with this design / Visualize with these design</b><br>
+This will start the Designer with the selected design file(s).
+
++ <b>Download Design / Download all selected Designs</b><br>
+Download the selected design file(s) to your harddisk.
+
++ <b>Multi Select Options</b><br>
+The Multi Select Options button will be displayed when you select 2 or more files. It lets you assign an action to multiple files at once.<br/>
+This can be adding labels, removing labels, adding roles, removing roles and changing the owner of the files.
+<br/><br/>
+
+####Add Favorite Folder
+You can create multiple favorite folders to store your favorite designs. Click on the ‘add favorite folder’ button and enter a name for your new favorite folder.<br/>
+You can drag and drop design files to the newly created folder. The available folders will be shown in the bottom right corner of the screen.<br/>
+There can be up to six favorite folders per user account.
+
+![Favorite Folders](/Doc/Designs/images/favorite_folders.png "Favorite Folders")  
+<br/><br/>
+
+####Properties filter
+The Properties Filter is displayed in the bottom left corner of the screen. The Properties filter shows all available properties that are marked as ‘Show in overview’.<br/>
+You could use the properties filter to search files based on the properties.
+
+![Properties Filter](/Doc/Designs/images/properties_filter.png "Properties Filter")  
+<br/><br/>
