@@ -33,7 +33,7 @@ You can drag and drop a label on top of an scene file to assign that label to a 
 
 ####Label Search
 When a lot of labels are available you can click on the small search icon to enter the name of the label you are looking for. <br/>
-The desired label will pop-up instantly when you type in (a part of) the word(s) corresponding to a label.
+The desired label will instantly show up when you type in (a part of) the word(s) corresponding to a label.
 <br/><br/>
 
 ####Sort
@@ -55,8 +55,8 @@ The standard settings can be altered in the admin panel.
 
 ####Search
 When you click on the small search icon you can enter the name or a part of the name of the project you are looking for. <br/>
-Results matching the description will pop-up instantly. But you are not only searching on the file name. You can even search for a word used <br/>
-in a label corresponding to a project, words that are used in the description or in the properties.
+Results matching the search criteria will pop-up instantly. The search results are not limited by just the filename.<br/>
+You can even search for a word used in a label corresponding to a project, words that are used in the description or in the properties.
 
 ![Search](/Doc/Projects/images/search.png "Search")
 <br/><br/>

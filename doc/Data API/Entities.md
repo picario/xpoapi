@@ -1,4 +1,4 @@
-﻿# XPO Developer API
+﻿#XPO Developer API
 
 XPO uses a developer API that allows developers to extract information from their XPO environment.
 
@@ -10,9 +10,9 @@ This API key can be used in two ways:
 
 <br />
 The base URL for all API calls is: <br />
-	
+
 	http://{hostname}/xpo/api/v1/{documentType}
-	
+
 The API calls for the 4 document types(scene, design, image, project) are all the same.<br />
 For the examples we will use design as entity type. <br />
 The url uses the plural of the document type (scenes, designs, images, projects).
@@ -29,14 +29,14 @@ The developer needs viewing rights for all the document types he wants to use.
 
 		Retrieves a single entity
 		Example: /xpo/api/v1/designs/byreference/logo.png
-<br />		
+<br />
 - GET &nbsp;&nbsp;&nbsp; /multi/{entitiyIds}
 
 		Returns a list of entities
 		Restricted to a maximum of 50 entities
 		Split entity ids by ,
 		Example: /xpo/api/v1/designs/multi/673,641
-<br />		
+<br />
 - GET &nbsp;&nbsp;&nbsp; /stream/{skip}/{take}
 
 		Returns a list of entities
@@ -45,13 +45,13 @@ The developer needs viewing rights for all the document types he wants to use.
 			Take = 50
 		Skip and take can be specified in the url: /xpo/api/v1/designs/stream/50/100 (means: skip 50, take 100)
 		Skip and take can also be specified separately in the querystring: /xpo/api/v1/designs/stream?skip=20&take=50
-<br />		
+<br />
 - GET &nbsp;&nbsp;&nbsp; /search/{searchTerm}/{skip}/{take}
 
 		Returns a list of entities
 		Searches the entityType with a fulltext search. The searchTerm is splitted on spaces before the search is applied.
 		Skip and take parameters work the same as with the stream API call
-<br />	
+<br />
 - GET &nbsp;&nbsp;&nbsp; /bylabels/{labelIds}/{skip}/{take}
 
 		Returns a list of entities
@@ -67,13 +67,13 @@ The developer needs viewing rights for all the document types he wants to use.
 		Multiple names result in an AND filter
 		Skip and take parameters work the same as with the stream API call
 		Example: /xpo/api/v1/designs/byproperties/material/cotton$silk
-<br />		
+<br />
 - GET &nbsp;&nbsp;&nbsp; /new/{skip}/{take}
 
 		Returns a list of new entities(based on the date set in XPO that determines when an entity is considered new)
 		Doesn’t work for projects
 		Skip and take parameters work the same as with the stream API call
-<br />		
+<br />
 - GET &nbsp;&nbsp;&nbsp; /dump
 
 		Returns a list of all the entities

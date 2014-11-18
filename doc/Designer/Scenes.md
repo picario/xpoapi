@@ -32,7 +32,7 @@ The standard settings can be altered in the admin panel.
 
 ####Search
 When you click on the small search icon you can enter the name or a part of the name of the scene you are looking for. <br />
-Results matching the description will pop-up instantly. But you are not only searching on the file name.<br />
+Results matching your search criteria will pop-up instantly. The search results are not limited by just filenames.<br />
 You can even search for a word used in a label corresponding to a scene file, words that are used in the description or in the properties.
 
 ![Search](/Doc/Designer/images/search.png "Search")

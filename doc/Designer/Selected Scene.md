@@ -6,7 +6,7 @@ The selected scene file which you will use for the visualizations is featured in
 ####Download
 The Download button lets you download the created visualization to the format you desire.<br/>
 When you click on the download button you will see a small window where you can alter the filename, the file type, the resolution, dpi and unit.<br/>
-Once you have chosen the desired settings and you hit the download button again the image will be download to your hard drive in the specified format.
+Once you have chosen the desired settings and hit the download button again, the image will be downloaded to your hard drive in the specified format.
 <br /><br />
 
 ####Report

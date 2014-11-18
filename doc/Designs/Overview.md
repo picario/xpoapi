@@ -22,7 +22,7 @@ No matter which favorite folder they belong too.
 
 ####Add Design
 When you click on the ‘Add Design’ button a small window will pop-up allowing you to upload new design files to your PicarioXPO account. <br/>
-You can click on the ‘Choose file’ button to browse to your folders on your pc and select the desired file(s) by hand.<br/>
+You can click on the ‘Choose file’ button to browse your pc and select the desired file(s) by hand.<br/>
 Or you can ‘drag and drop’ the file(s) to the Add Design window and the upload process will begin automatically.<br/>
 The file types which are supported as designs are: pft, jpeg, png, bmp and tiff.
 
@@ -39,12 +39,12 @@ You can drag and drop a label on top of a design file to assign that label to a 
 
 ####Label Search
 When a lot of labels are available you can click on the small search icon to enter the name of the label you are looking for. <br/>
-The desired label will pop-up instantly when you type in (a part of) the word(s) corresponding to a label.
+The desired label will instantly show up when you type in (a part of) the word(s) corresponding to a label.
 <br/><br/>
 
 ####Sort
 The ‘sort’ button lets you filter the available design files based on when the files have been ‘created’ or the ‘name’ of the files. <br/>
-This can further be filtered on ascending or descending based on the date or alphabetical order.
+This can be filtered on ascending or descending based on the date or alphabetical order.
 <br/><br/>
 
 ####2D/3D
@@ -66,8 +66,8 @@ The standard settings can be altered in the admin panel.
 <br/><br/>
 
 ####Search
-When you click on the small search icon you can enter the name or a part of the name of the design you are looking for. Results matching the description will pop-up instantly.<br/>
-But you are not only searching on the file name. You can even search for a word used in a label corresponding to a design file, words that are used in the description or in the properties.
+When you click on the small search icon you can enter the name or a part of the name of the design you are looking for. Results matching your search criteria will pop-up instantly.<br/>
+The search results are not limited by just filenames. You can even search for a word used in a label corresponding to a design file, words that are used in the description or in the properties.
 <br/><br/>
 
 ####File Information
@@ -94,7 +94,7 @@ This can be adding labels, removing labels, adding roles, removing roles and cha
 ####Add Favorite Folder
 You can create multiple favorite folders to store your favorite designs. Click on the ‘add favorite folder’ button and enter a name for your new favorite folder.<br/>
 You can drag and drop design files to the newly created folder. The available folders will be shown in the bottom right corner of the screen.<br/>
-There can be up to six favorite folders per user account.
+PicarioXPO allows you to have six favorite folders per user account.
 
 ![Favorite Folders](/Doc/Designs/images/favorite_folders.png "Favorite Folders")  
 <br/><br/>

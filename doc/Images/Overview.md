@@ -22,7 +22,7 @@ No matter which favorite folder they belong too.
 
 ####Add image
 When you click on the ‘Add Image’ button a small window will pop-up allowing you to upload new image files to your PicarioXPO account.<br/>
-You can click on the ‘Choose file’ button to browse to your folders on your pc and select the desired file(s) by hand.<br/>
+You can click on the ‘Choose file’ button to browse on your pc and select the desired file(s) by hand.<br/>
 Or you can ‘drag and drop’ the file(s) to the Add Image window and the upload process will begin automatically.
 <br/><br/>
 
@@ -36,14 +36,14 @@ You can drag and drop a label on top of an image file to assign that label to a 
 
 ####Label Search
 When a lot of labels are available you can click on the small search icon to enter the name of the label you are looking for.<br/>
-The desired label will pop-up instantly when you type in (a part of) the word(s) corresponding to a label.
+The desired label will instantly show up when you type in (a part of) the word(s) corresponding to a label.
 
 ![Search](/Doc/Images/images/Search.png "Search")
 <br/><br/>
 
 ####Sort
 The ‘sort’ button lets you filter the available image files based on when the files have been ‘created’ or the ‘name’ of the files.<br/>
-This can further be filtered on ascending or descending based on the date or alphabetical order.
+This can be filtered on ascending or descending based on the date or alphabetical order.
 <br/><br/>
 
 ####Select All
@@ -61,8 +61,8 @@ or list view. The standard settings can be altered in the admin panel.
 
 ####Search
 When you click on the small search icon you can enter the name or a part of the name of the image you are looking for.<br/>
- Results matching the description will pop-up instantly. But you are not only searching on the file name. <br/>
- You can even search for a word used in a label corresponding to a image file, words that are used in the description or in the properties.
+Results matching the search criteria will pop-up instantly. The search results are not only limited to the filename. <br/>
+You can even search for a word used in a label corresponding to a image file, words that are used in the description or in the properties.
 
 ![Search](/Doc/Images/images/Search.png "Search")
 <br/><br/>
@@ -70,7 +70,7 @@ When you click on the small search icon you can enter the name or a part of the 
 ####File Information
 Based on the file or files you select in your PicarioXPO the file information is shown on the right side of the page. <br/>
 When a single file is selected the name, width, height, file size and corresponding labels are mentioned. <br/>
-Extra properties you’ve added to files are also displayed here. Beneath the file information are multiple actions.  
+Additional properties you’ve added to files are also displayed here. Beneath the file information are multiple actions.  
 
   + <b>Full image info</b><br>
 The ‘full image info’ button will open the pop-up with all the information and settings per file.
@@ -79,7 +79,7 @@ The ‘full image info’ button will open the pop-up with all the information a
 	This will delete the selected image file(s).  
 
   + <b>Download Image / Download all selected images</b><br>
-	Download the selected image file(s) to your hard disc.
+	Download the selected image file(s) to your hard disk.
 
   + <b>Multi Select Options</b><br>
 The Multi Select Options button will be displayed when you select 2 or more files. It lets you assign an action to multiple files at once. <br/>
@@ -88,8 +88,8 @@ This can be adding labels, removing labels, adding roles, removing roles and cha
 
 ####Add Favorite Folder
 You can create multiple favorite folders to store your favorite images in. Click on the ‘add favorite folder’ button and enter a name for your new favorite folder.<br/>
- You can drag and drop image files to the newly created folder. The available folders will be shown in the bottom <br/>
- right corner of the screen. There can be up to six favorite folders per user account.
+You can drag and drop image files to the newly created folder. The available folders will be shown in the bottom <br/>
+right corner of the screen. PicarioXPO allows you to have up to six favorite folders per user account.
 
 ![Favorite_Folders](/Doc/Images/images/Favorite_Folders.png "Favorite Folders")
 <br/><br/>

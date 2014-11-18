@@ -26,14 +26,14 @@ The labels tab shown all available labels and labels that are assigned to the pr
 <br/><br/>
 
 ####Properties
-Depending on the properties that have been created you can add property information or assign properties to the project.  
+You can add property information or assign properties to the project depending on the properties that have been created.
 <br/>
 
 ####Security
 The security tab lets you add an owner or a specific role (or roles) to the project. When a specific role has been added to the project, only the users which also<br/>
 have that/those role(s) assigned to their account can see and use project.
 
-<b>Important:</b> If a project doesn’t have any security roles everybody will be able to see them.
+<b>Important:</b> If a project doesn’t have any security roles everyone will be able to see them.
 <br/><br/>
 
 ####Attachments
@@ -46,4 +46,4 @@ The relations tab lets you connect a different projects to the selected projects
 <br/><br/>
 
 ####Previous Project / Next Project
-The previous Project and next Project buttons let you browse to the Projects.
+The previous Project and next Project buttons let you browse through the Projects.

@@ -1,7 +1,7 @@
 #Full Design Information
 
 To open the design file information pop-up simply double click on a scene file or click on the ‘Full design info’ button on the right side of the Design Overview page.<br/>
-The Design information window is divided in to the following options: Overview, Settings, Labels, Properties, Restrictions, Security, Default Scene, Attachments, Relations and Rendering.
+The Design information window is divided into the following options: Overview, Settings, Labels, Properties, Restrictions, Security, Default Scene, Attachments, Relations and Rendering.
 <br/><br/>
 
 ####Overview
@@ -14,28 +14,28 @@ You can click on the Zoom button to open up the full image and zoom in / zoom ou
 
 ####Settings
 The settings tab shows the display name of the design file, which you can alter if desired. It also lets you add a description to the design file.<br/>
-Furthermore the Reference ID is mentioned over here which developers need when using the Render or Data API. When a design file has been <br/>
+Furthermore the Reference ID is mentioned here which developers need when using the Render or Data API. When a design file has been <br/>
 modified outside of PicarioXPO you can use the overwrite scene option to exchange it with another version of the same design file.
 
 ![Info Settings](/Doc/Designs/images/Info_Settings.png "Info Settings")  
 <br/>
 
 ####Labels
-The labels tab shows all available labels, and labels that are assigned to the design file. Click on a label to add it to the design file, <br/>
+The labels tab shows all available labels and labels that are assigned to the design file. Click on a label to add it to the design file, <br/>
 it will be highlighted when assigned. Click on the small x on top of the label to remove the label from the design file.
 
 ![Info Labels](/Doc/Designs/images/Info_Labels.png "Info Labels")  
 <br/>
 
 ####Properties
-Depending on the properties that have been created you can add property information or assign properties to the design file.
+You can add property information or assign properties to the design file, depending on the properties that have been created.
 
 ![Info Properties](/Doc/Designs/images/Info_Properties.png "Info Properties")  
 <br/>
 
 ####Restrictions
-The restrictions tab lets you assign specific scene labels to the design file, restriction that design to only be used on specific scene files.<br/>
-For example curtain fabrics can only be used on scene files labeled as window decoration. New labels can be added on the admin page.
+The restrictions tab lets you assign specific scene labels to the design file, restrict that design so it can only be used on specific scene files.<br/>
+For example, curtain fabrics can only be used on scene files labeled as window decoration. New labels can be added on the admin page.
 
 ![Info Restrictions](/Doc/Designs/images/Info_Restrictions.png "Info Restrictions")  
 <br/>
@@ -44,7 +44,7 @@ For example curtain fabrics can only be used on scene files labeled as window de
 The security tab lets you add an owner or a specific role (or roles) to the design file. When a specific role has been added to the design file, <br/>
 only the users which also have that/those role(s) assigned to their account can see and use the design file.
 
-<b>Important:</b> If a design doesn’t have any security roles everybody will be able to see the design.
+<b>Important:</b> If a design doesn’t have any security roles, everyone will be able to see the design.
 
 ![Info Security](/Doc/Designs/images/Info_Security.png "Info Security")  
 <br/>
