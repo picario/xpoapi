@@ -11,7 +11,12 @@ The Overview tab shows a slightly larger version of the thumb image. If any atta
 ####Settings
 The settings tab shows the display name of the scene files, which you can alter if desired. It also lets you add a description to the file.<br>
  Furthermore the Reference ID is mentioned over here which developers need when using the Render or Data API. When a scene file has been modified<br>
-  outside of PicarioXPO you can use the overwrite scene option to exchange it with another version of the same scene file.
+  outside of PicarioXPO you can use the overwrite scene option to exchange it with another version of the same scene file. <br/>
+  
+<b>Transparency Mask</b><br>
+Using a transparency mask you can control the transparency in the output of a rendered scene. The transparency mask needs to contain<br>
+transparent pixels to create a transparency in the rendered scene. You can upload a transparency mask (PNG) designed specifically for a scene.<br>
+Ask your vendor for more information.
 <br><br>
 
 ####Labels
