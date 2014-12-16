@@ -40,9 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="PicarioXPO.RenderAPI.V2">
-      <HintPath>packages\PicarioXPO.RenderAPI.NET.V2.1.2.0.34-beta\lib\PicarioXPO.RenderAPI.V2.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="PicarioXPO.RenderAPI.V2, Version=1.3.0.37, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\PicarioXPO.RenderAPI.NET.V2.1.3.0.37\lib\PicarioXPO.RenderAPI.V2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
