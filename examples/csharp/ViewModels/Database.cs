@@ -3,6 +3,7 @@
     public class Database
     {
         public Scene Scene { get; set; }
+        public Scene OverlayScene { get; set; }
         public Design Design { get; set; }
         public Design FloorDesign { get; set; }
         public Design ContrastDesign { get; set; }
@@ -14,6 +15,13 @@
                 DisplayWidth = 1535,
                 DisplayHeight = 1535,
                 ReferenceId = "laura_room.pfs",
+            };
+
+            OverlayScene = new Scene
+            {
+                DisplayWidth = 800,
+                DisplayHeight = 450,
+                ReferenceId = "OverlayScene.pfs",
             };
 
             Design = new Design

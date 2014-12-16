@@ -34,7 +34,9 @@ namespace XpoRenderApiNetDemo.Controllers
                 DesignFlipSceneUrl = GetDesignFlipSceneUrl(DefaultImageWidth, DefaultImageHeight),
                 DesignMirrorSceneUrl = GetDesignMirrorSceneUrl(DefaultImageWidth, DefaultImageHeight),
                 DesignMappedContrastSceneUrl = GetDesignMappedContrastSceneUrl(DefaultImageWidth, DefaultImageHeight),
-                DesignContrastSceneUrl = GetDesignContrastSceneUrl(DefaultImageWidth, DefaultImageHeight)
+                DesignContrastSceneUrl = GetDesignContrastSceneUrl(DefaultImageWidth, DefaultImageHeight),
+                SceneWithOverlay = GetSingleOverlaySceneUrl(DefaultImageWidth, DefaultImageHeight),
+                SceneWithMultipleOverlays = GetMultipleOverlaySceneUrl(DefaultImageWidth, DefaultImageHeight)
             };
             return View(viewmodel);
         }
@@ -408,7 +410,54 @@ namespace XpoRenderApiNetDemo.Controllers
                                      })
                                      .GetUrl();
         }
-        
+
+        private string GetSingleOverlaySceneUrl(int width, int height)
+        {
+            // This function creates an image url for a scene with an overlay.
+            // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
+            // The primary key is used by our render engine to find the correct file to render the image.
+            // We use the reference id of the scene. This can be found in the PicarioXPO backend.
+            // We choose jpg as image type, but we can also choose png or bmp.
+            // The primary key should always use the storage name of a scene when you render colors/design on it.
+            // The entitytype is always Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
+            // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
+            // We use the name of color to set the color but we can also use the hex notation or a rgb notation.
+            // I.e. red is the same as ff0000 or 255_0_0
+            // When adding a color you also need to specify the index of the object, in this case we use the first object.
+
+            var fluentUrlGenerator = GetFluentXpoImageUrlGenerator();
+            return fluentUrlGenerator.SetPrimaryKey(database.OverlayScene.ReferenceId)
+                                     .SetImageType(XpoUrlImageTypes.Jpg)
+                                     .SetEntityType(XpoUrlFileTypes.Scene)
+                                     .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
+                                     .AddOverlay(overlay => overlay.SetName("V002-U003-0035.png"))
+                                     .GetUrl();
+        }
+
+        private string GetMultipleOverlaySceneUrl(int width, int height)
+        {
+            // This function creates an image url for a scene with mutliple overlays.
+            // The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
+            // The primary key is used by our render engine to find the correct file to render the image.
+            // We use the reference id of the scene. This can be found in the PicarioXPO backend.
+            // We choose jpg as image type, but we can also choose png or bmp.
+            // The primary key should always use the storage name of a scene when you render colors/design on it.
+            // The entitytype is always Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
+            // We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
+            // We use the name of color to set the color but we can also use the hex notation or a rgb notation.
+            // I.e. red is the same as ff0000 or 255_0_0
+            // When adding a color you also need to specify the index of the object, in this case we use the first object.
+
+            var fluentUrlGenerator = GetFluentXpoImageUrlGenerator();
+            return fluentUrlGenerator.SetPrimaryKey(database.OverlayScene.ReferenceId)
+                                     .SetImageType(XpoUrlImageTypes.Jpg)
+                                     .SetEntityType(XpoUrlFileTypes.Scene)
+                                     .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
+                                     .AddOverlay(overlay => overlay.SetName("V002-U003-0035.png"))
+                                     .AddOverlay(overlay => overlay.SetName("O001-0035.png"))
+                                     .GetUrl();
+        }
+
         private static XpoUrlFileTypes GetDesignUrlFileType(Design design)
         {
             if (design.DesignType == DesignTypes.Pft)

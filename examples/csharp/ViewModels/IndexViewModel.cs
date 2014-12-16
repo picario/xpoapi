@@ -15,5 +15,7 @@
         public string DesignMirrorSceneUrl { get; set; }
         public string DesignContrastSceneUrl { get; set; }
         public string DesignMappedContrastSceneUrl { get; set; }
+        public string SceneWithOverlay { get; set; }
+        public string SceneWithMultipleOverlays { get; set; }
     }
 }
