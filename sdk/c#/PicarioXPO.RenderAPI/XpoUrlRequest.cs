@@ -38,9 +38,8 @@ namespace PicarioXPO.RenderAPI
         /// <summary>
         /// Specifies the optional overlay images to be rendered upon the scene or design.
         /// You can specify multiple images (has to be PNG).
-        /// Images must be present in the Overlays folder.
         /// </summary>
-        public List<string> Overlays { get; private set; }
+        public List<XpoUrlOverlay> Overlays { get; private set; }
 
         /// <summary>
         /// Gets or sets the filetype for this URL
@@ -170,7 +169,7 @@ namespace PicarioXPO.RenderAPI
             // Create instance lists
             Objects = new List<XpoUrlObject>();
             TemplateParameters = new List<XpoUrlTemplate>();
-            Overlays = new List<string>();
+            Overlays = new List<XpoUrlOverlay>();
             CustomParameters = new Dictionary<string, object>();
 
             Caching = true;

@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Web;
 using PicarioXPO.RenderAPI.V1.Extensions;
@@ -52,7 +53,7 @@ namespace PicarioXPO.RenderAPI.V1
                 .Append(AllColor, request.AllColor)
                 .Append(PrefillCaching, request.PrefillCaching)
                 .Append(SessionId, request.SessionId)
-                .Append(Overlays, request.Overlays.ToArray().Join(","))
+                .Append(Overlays, request.Overlays.OrderBy(x => x.Index).Select(x => x.OverlayName).ToArray().Join(","))
                 .Append(TemplateName, request.TemplateName)
                 .AppendDictionary(request.CustomParameters);
 

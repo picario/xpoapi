@@ -37,7 +37,7 @@ namespace PicarioXPO.RenderAPI.Fluent
         /// <summary>
         /// Adds an overlay to the output
         /// </summary>
-        IFluentXpoUrlGenerator AddOverlay(string overlay);
+        IFluentXpoUrlGenerator AddOverlay(FluentXpoUrlOverlay overlay);
 
         /// <summary>
         /// Sets the filetype for this URL

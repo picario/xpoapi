@@ -42,8 +42,15 @@
   <ItemGroup>
     <Compile Include="ColorKeys.cs" />
     <Compile Include="DesignKeyExtractors\ContrastDesignKey.cs" />
-    <Compile Include="DesignKeyExtractors\FlipDesignKey.cs" />
     <Compile Include="DesignKeyExtractors\DesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\FlipDesignKey.cs" />
+    <Compile Include="OverlayKeyExtractors\LocationOverlayKey.cs" />
+    <Compile Include="OverlayKeyExtractors\OperationOverlayKey.cs" />
+    <Compile Include="OverlayKeyExtractors\TimeOverlayKey.cs" />
+    <Compile Include="OverlayKeyExtractors\ModeOverlayKey.cs" />
+    <Compile Include="OverlayKeyExtractors\NameOverlayKey.cs" />
+    <Compile Include="OverlayKeyExtractors\OverlayKey.cs" />
+    <Compile Include="UrlKey.cs" />
     <Compile Include="DesignKeyExtractors\DropXDesignKey.cs" />
     <Compile Include="DesignKeyExtractors\DropYDesignKey.cs" />
     <Compile Include="DesignKeyExtractors\EntityNameDesignKey.cs" />
@@ -54,6 +61,7 @@
     <Compile Include="DesignKeyExtractors\RepeatDesignKey.cs" />
     <Compile Include="DesignKeyExtractors\RotationDesignKey.cs" />
     <Compile Include="DesignKeyExtractors\WidthDesignKey.cs" />
+    <Compile Include="OverlayKeys.cs" />
     <Compile Include="DesignKeys.cs" />
     <Compile Include="GeneralKeys.cs" />
     <Compile Include="XpoV2UrlGenerator.cs" />
@@ -67,6 +75,7 @@
       <Name>PicarioXPO.RenderAPI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

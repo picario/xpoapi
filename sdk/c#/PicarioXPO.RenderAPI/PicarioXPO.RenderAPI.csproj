@@ -43,6 +43,7 @@
     <Compile Include="Fluent\FluentXpoUrlColor.cs" />
     <Compile Include="Fluent\FluentXpoUrlFactory.cs" />
     <Compile Include="Fluent\FluentXpoUrlGenerator.cs" />
+    <Compile Include="Fluent\FluentXpoUrlOverlay.cs" />
     <Compile Include="Fluent\FluentXpoUrlObject.cs" />
     <Compile Include="Fluent\FluentXpoUrlText.cs" />
     <Compile Include="Fluent\FluentXpoUrlDesign.cs" />
@@ -56,6 +57,11 @@
     <Compile Include="XpoUrlColor.cs" />
     <Compile Include="XpoUrlFileTypes.cs" />
     <Compile Include="XpoUrlImageTypes.cs" />
+    <Compile Include="XpoUrlOverlayLocation.cs" />
+    <Compile Include="XpoUrlOverlayOperations.cs" />
+    <Compile Include="XpoUrlOverlayTimes.cs" />
+    <Compile Include="XpoUrlOverlayModes.cs" />
+    <Compile Include="XpoUrlOverlay.cs" />
     <Compile Include="XpoUrlObject.cs" />
     <Compile Include="XpoUrlObjectTransformations.cs" />
     <Compile Include="XpoUrlObjectTypes.cs" />

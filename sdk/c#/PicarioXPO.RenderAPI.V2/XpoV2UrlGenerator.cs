@@ -26,8 +26,8 @@ namespace PicarioXPO.RenderAPI.V2
                 .Append(request.PrimaryKey)
                 .AppendRequest(request)
                 .AppendColors(request.Objects.Where(x => x.Color != null))
-                .AppendDesigns(request.Objects.Where(x => x.Design != null));
-
+                .AppendDesigns(request.Objects.Where(x => x.Design != null))
+                .AppendOverlays(request.Overlays);
             
             return stringBuilder.ToString();
         }
@@ -75,8 +75,8 @@ namespace PicarioXPO.RenderAPI.V2
             stringBuilder
                 .AppendRequest(request)
                 .AppendColors(request.Objects.Where(x => x.Color != null))
-                .AppendDesigns(request.Objects.Where(x => x.Design != null));
-
+                .AppendDesigns(request.Objects.Where(x => x.Design != null))
+                .AppendOverlays(request.Overlays);      
 
             return new XpoUrlParts(request.PrimaryKey, stringBuilder.ToString());
         }
@@ -88,8 +88,7 @@ namespace PicarioXPO.RenderAPI.V2
             if (baseUri == "/") baseUri = "";
 
             var stringBuilder = new StringBuilder(baseUri);
-            stringBuilder
-                .AppendRequest(request);
+            stringBuilder.AppendRequest(request);
 
             return new XpoUrlParts(request.PrimaryKey, stringBuilder.ToString());
         }

@@ -96,13 +96,13 @@ namespace PicarioXPO.RenderAPI.Fluent
 
             return this;
         }
-
+        
         /// <summary>
         /// Adds an overlay to the output
         /// </summary>
-        public IFluentXpoUrlGenerator AddOverlay(string overlay)
+        public IFluentXpoUrlGenerator AddOverlay(FluentXpoUrlOverlay overlay)
         {
-            EnsureUrlType<XpoImageUrlRequest>(request).Overlays.Add(overlay);
+            EnsureUrlType<XpoImageUrlRequest>(request).Overlays.Add(overlay.XpoUrlOverlay);
 
             return this;
         }

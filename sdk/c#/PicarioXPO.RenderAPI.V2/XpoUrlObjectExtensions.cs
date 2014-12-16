@@ -9,5 +9,10 @@ namespace PicarioXPO.RenderAPI.V2
         {
             return xpoUrlObjects.Max(x => x.Index);
         }
+
+        internal static int GetMaxOverlayNumber(this IEnumerable<XpoUrlOverlay> xpoUrlOverlays)
+        {
+            return xpoUrlOverlays.Max(x => x.Index);
+        }
     }
 }
