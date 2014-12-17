@@ -9,6 +9,12 @@ function Database() {
         referenceId: "laura_room.pfs"
     }
 
+	this.overlayScene = {
+		displayWidth: 800,
+		displayHeight: 450,
+		referenceId: "OverlayScene.pfs"
+	}
+	
     this.design = {
         displayWidth: 876,
         displayHeight: 318,

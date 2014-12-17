@@ -1376,6 +1376,34 @@ declare class GlossDesignKey extends DesignKey {
 declare class HeightDesignKey extends DesignKey {
     public getValues(designs: XpoUrlObject[]): string;
 }
+declare class OverlayKey {
+    private keyList;
+    private americanCulture;
+    public addToList(value: any, omitIfDefault?: boolean): void;
+    public addDouble(value: number, omitIfDefault?: boolean): void;
+    public getUrlValue(): string;
+    public getValues(designs: XpoUrlOverlay[]): string;
+    public addEmpty(): void;
+    public isEmpty(): boolean;
+}
+declare class OverlayKeys {
+    private overlayKeys;
+    constructor();
+    public appendOverlays(stringBuilder: string, xpoUrlOverlays: XpoUrlOverlay[]): string;
+}
+declare class LocationOverlayKey extends OverlayKey {
+    public getValues(overlays: XpoUrlOverlay[]): string;
+}
+declare class ModeOverlayKey extends OverlayKey {
+    public getValues(overlays: XpoUrlOverlay[]): string;
+}
+declare class NameOverlayKey extends OverlayKey {
+    public getValues(overlays: XpoUrlOverlay[]): string;
+    public convertToBase64UrlString(value: string): string;
+}
+declare class OperationOverlayKey extends OverlayKey {
+    public getValues(overlays: XpoUrlOverlay[]): string;
+}
 declare class XpoUrlGenerator implements UrlGeneratorModule.IXpoUrlGenerator {
     public getUrl(request: XpoUrlRequest): string;
     public getImageUrl(request: XpoImageUrlRequest): string;
@@ -1393,6 +1421,9 @@ declare class RepeatDesignKey extends DesignKey {
 }
 declare class RotationDesignKey extends DesignKey {
     public getValues(designs: XpoUrlObject[]): string;
+}
+declare class TimeOverlayKey extends OverlayKey {
+    public getValues(overlays: XpoUrlOverlay[]): string;
 }
 declare class WidthDesignKey extends DesignKey {
     public getValues(designs: XpoUrlObject[]): string;
@@ -1434,7 +1465,7 @@ declare class FluentXpoUrlGenerator implements UrlGeneratorModule.IFluentXpoUrlG
     public setOutputType(outputType: UrlGeneratorModule.XpoUrlOutputTypes): FluentXpoUrlGenerator;
     public addObject(xpoObject: Function, options: any): FluentXpoUrlGenerator;
     public addTemplateParameter(index: number, parameterValue: string): FluentXpoUrlGenerator;
-    public addOverlay(overlay: string): FluentXpoUrlGenerator;
+    public addOverlay(xpoOverlay: Function, options: any): FluentXpoUrlGenerator;
     public setEntityType(fileType: UrlGeneratorModule.XpoUrlFileTypes): FluentXpoUrlGenerator;
     public setWidth(width: number): FluentXpoUrlGenerator;
     public setHeight(height: number): FluentXpoUrlGenerator;
@@ -1465,6 +1496,17 @@ declare class FluentXpoUrlObject {
     public text(text: string): FluentXpoUrlText;
     public color(color: string): FluentXpoUrlColor;
 }
+declare class FluentXpoUrlOverlay {
+    private xpoUrlOverlay;
+    constructor(overlayName?: string);
+    public getXpoOverlay(): XpoUrlOverlay;
+    public setIndex(index: number): FluentXpoUrlOverlay;
+    public setLocation(location: UrlGeneratorModule.XpoUrlOverlayLocations): XpoUrlOverlay;
+    public setMode(mode: UrlGeneratorModule.XpoUrlOverlayModes): XpoUrlOverlay;
+    public setName(name: string): XpoUrlOverlay;
+    public setOperation(operation: UrlGeneratorModule.XpoUrlOverlayOperations): XpoUrlOverlay;
+    public setTime(time: UrlGeneratorModule.XpoUrlOverlayTimes): XpoUrlOverlay;
+}
 declare class FluentXpoUrlText {
     private xpoUrlText;
     constructor(text: string);
@@ -1494,7 +1536,7 @@ declare module UrlGeneratorModule {
         setOutputType(outputType: XpoUrlOutputTypes): IFluentXpoUrlGenerator;
         addObject(xpoObject: Function, options: any): IFluentXpoUrlGenerator;
         addTemplateParameter(index: number, parameterValue: string): IFluentXpoUrlGenerator;
-        addOverlay(overlay: string): IFluentXpoUrlGenerator;
+        addOverlay(xpoOverlay: Function, options: any): IFluentXpoUrlGenerator;
         setEntityType(fileType: XpoUrlFileTypes): IFluentXpoUrlGenerator;
         setWidth(width: number): IFluentXpoUrlGenerator;
         setHeight(height: number): IFluentXpoUrlGenerator;
@@ -1598,13 +1640,34 @@ declare class XpoUrlObject {
     public getDesign(): XpoUrlDesign;
     public setDesign(val: XpoUrlDesign): void;
 }
+declare class XpoUrlOverlay {
+    private index;
+    private overlayName;
+    private overlayMode;
+    private overlayTime;
+    private overlayOperation;
+    private overlayLocation;
+    constructor(overlayName?: string);
+    public getIndex(): number;
+    public setIndex(val: number): void;
+    public getOverlayName(): string;
+    public setOverlayName(val: string): void;
+    public getOverlayMode(): UrlGeneratorModule.XpoUrlOverlayModes;
+    public setOverlayMode(val: UrlGeneratorModule.XpoUrlOverlayModes): void;
+    public getOverlayTime(): UrlGeneratorModule.XpoUrlOverlayTimes;
+    public setOverlayTime(val: UrlGeneratorModule.XpoUrlOverlayTimes): void;
+    public getOverlayOperation(): UrlGeneratorModule.XpoUrlOverlayOperations;
+    public setOverlayOperation(val: UrlGeneratorModule.XpoUrlOverlayOperations): void;
+    public getOverlayLocation(): UrlGeneratorModule.XpoUrlOverlayLocations;
+    public setOverlayLocation(val: UrlGeneratorModule.XpoUrlOverlayLocations): void;
+}
 declare class XpoUrlRequest {
     public primaryKey: string;
     private outputType;
     private outputQuality;
     public objects: XpoUrlObject[];
+    public overlays: XpoUrlOverlay[];
     public templateParameters: XpoUrlTemplate[];
-    public overlays: string[];
     private fileType;
     private width;
     public customParameters: Collections.Dictionary<string, Object>;
@@ -1635,7 +1698,7 @@ declare class XpoUrlRequest {
     public setOutputQuality(val: number): void;
     public getObjects(): XpoUrlObject[];
     public getTemplateParameters(): XpoUrlTemplate[];
-    public getOverlays(): string[];
+    public getOverlays(): XpoUrlOverlay[];
     public getFileType(): UrlGeneratorModule.XpoUrlFileTypes;
     public setFileType(val: UrlGeneratorModule.XpoUrlFileTypes): void;
     public getWidth(): number;
@@ -1785,5 +1848,22 @@ declare module UrlGeneratorModule {
         FlipX = 4,
         FlipY = 5,
     }
+    enum XpoUrlOverlayModes {
+        MatchSizeOfOutput = 0,
+        KeepOriginalSize = 1,
+    }
+    enum XpoUrlOverlayTimes {
+        BeforeResize = 0,
+        AfterResize = 1,
+    }
+    enum XpoUrlOverlayOperations {
+        Normal = 0,
+        ColoredMapping = 1,
+    }
+    interface XpoUrlOverlayLocations {
+        x: number;
+        y: number;
+    }
     function getMaxObjectNumber(xpoUrlObjects: XpoUrlObject[]): number;
+    function getMaxOverlayNumber(xpoUrlOverlays: XpoUrlOverlay[]): number;
 }

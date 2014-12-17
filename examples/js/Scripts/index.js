@@ -4,7 +4,7 @@
 
 	/* Images demo */
     var database = new Database();
-    var urlDemo = new UrlDemo(database.scene, database.design, database.floorDesign, database.contrastDesign);
+    var urlDemo = new UrlDemo(database.scene, database.overlayScene, database.design, database.floorDesign, database.contrastDesign);
 	
 	var defaultImageWidth = 250;
 	var defaultImageHeight = 250;
@@ -47,6 +47,12 @@
 	
 	var designContrastSceneUrl = urlDemo.GetDesignContrastSceneUrl(defaultImageWidth, defaultImageHeight);
 	$('img#designContrast').attr('src', designContrastSceneUrl);
+	
+	var singleOverlaySceneUrl = urlDemo.GetSingleOverlaySceneUrl(defaultImageWidth, defaultImageHeight);
+	$('img#singleOverlay').attr('src', singleOverlaySceneUrl);
+	
+	var multipleOverlaySceneUrl = urlDemo.GetMultipleOverlaySceneUrl(defaultImageWidth, defaultImageHeight);
+	$('img#multipleOverlay').attr('src', multipleOverlaySceneUrl);
 	
 	/* Coordinates demo */
 	var coordsSceneUrl = urlDemo.GetBaseSceneUrl(750, 750);

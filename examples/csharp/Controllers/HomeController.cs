@@ -429,7 +429,7 @@ namespace XpoRenderApiNetDemo.Controllers
             return fluentUrlGenerator.SetPrimaryKey(database.OverlayScene.ReferenceId)
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
-                                     .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
+                                     .SetWidth(GetSmallestWidth(database.OverlayScene.DisplayWidth, width))
                                      .AddOverlay(overlay => overlay.SetName("V002-U003-0035.png"))
                                      .GetUrl();
         }
@@ -452,7 +452,7 @@ namespace XpoRenderApiNetDemo.Controllers
             return fluentUrlGenerator.SetPrimaryKey(database.OverlayScene.ReferenceId)
                                      .SetImageType(XpoUrlImageTypes.Jpg)
                                      .SetEntityType(XpoUrlFileTypes.Scene)
-                                     .SetWidth(GetSmallestWidth(database.Scene.DisplayWidth, width))
+                                     .SetWidth(GetSmallestWidth(database.OverlayScene.DisplayWidth, width))
                                      .AddOverlay(overlay => overlay.SetName("V002-U003-0035.png"))
                                      .AddOverlay(overlay => overlay.SetName("O001-0035.png"))
                                      .GetUrl();

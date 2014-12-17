@@ -1,5 +1,6 @@
-﻿function UrlDemo(scene, design, floorDesign, contrastDesign) {
+﻿function UrlDemo(scene, overlayScene, design, floorDesign, contrastDesign) {
     this.scene = scene;
+	this.overlayScene = overlayScene;
     this.design = design;
     this.floorDesign = floorDesign;
     this.contrastDesign = contrastDesign;
@@ -383,6 +384,61 @@ UrlDemo.prototype.GetDesignContrastSceneUrl = function (width, height) {
                                  obj.setIndex(0);
                              })
                             .getUrl();
+}
+
+UrlDemo.prototype.GetSingleOverlaySceneUrl = function(width, height){
+	// This function creates an image url for a scene with an overlay.
+	// The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
+	// The primary key is used by our render engine to find the correct file to render the image.
+	// We use the reference id of the scene. This can be found in the PicarioXPO backend.
+	// We choose jpg as image type, but we can also choose png or bmp.
+	// The primary key should always use the storage name of a scene when you render colors/design on it.
+	// The entitytype is always Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
+	// We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
+	// We use the name of color to set the color but we can also use the hex notation or a rgb notation.
+	// I.e. red is the same as ff0000 or 255_0_0
+	// When adding a color you also need to specify the index of the object, in this case we use the first object.
+
+	var self = this;
+    var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
+	return fluentUrlGenerator.setPrimaryKey(this.overlayScene.referenceId)
+							 .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
+							 .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+							 .setWidth(this.GetSmallestWidth(this.overlayScene.displayWidth, width))
+							 .setAbsoluteUrl(this.baseUrl)
+							 .addOverlay(function(overlay){
+								overlay.setName("V002-U003-0035.png");
+							 })
+							 .getUrl();
+}
+
+UrlDemo.prototype.GetMultipleOverlaySceneUrl = function(width, height){
+	// This function creates an image url for a scene with mutliple overlays.
+	// The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
+	// The primary key is used by our render engine to find the correct file to render the image.
+	// We use the reference id of the scene. This can be found in the PicarioXPO backend.
+	// We choose jpg as image type, but we can also choose png or bmp.
+	// The primary key should always use the storage name of a scene when you render colors/design on it.
+	// The entitytype is always Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
+	// We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
+	// We use the name of color to set the color but we can also use the hex notation or a rgb notation.
+	// I.e. red is the same as ff0000 or 255_0_0
+	// When adding a color you also need to specify the index of the object, in this case we use the first object.
+
+	var self = this;
+    var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
+	return fluentUrlGenerator.setPrimaryKey(this.overlayScene.referenceId)
+							 .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
+							 .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+							 .setWidth(this.GetSmallestWidth(this.overlayScene.displayWidth, width))
+							 .setAbsoluteUrl(this.baseUrl)
+							 .addOverlay(function(overlay){
+								overlay.setName("V002-U003-0035.png");
+							 })
+							 .addOverlay(function(overlay){
+								overlay.setName("O001-0035.png");
+							 })
+							 .getUrl();
 }
 
 UrlDemo.prototype.GetSceneCoordsUrl = function() {

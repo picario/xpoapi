@@ -1887,6 +1887,196 @@ var HeightDesignKey = (function (_super) {
     };
     return HeightDesignKey;
 })(DesignKey);
+var OverlayKey = (function () {
+    function OverlayKey() {
+        this.keyList = new Array();
+        this.americanCulture = "en-US";
+    }
+    OverlayKey.prototype.addToList = function (value, omitIfDefault) {
+        if (typeof omitIfDefault === "undefined") { omitIfDefault = true; }
+        if (value === undefined || value === null) {
+            this.addEmpty();
+            return;
+        } else if ((!value || value.toString() == "") && omitIfDefault) {
+            this.addEmpty();
+            return;
+        }
+
+        if (!isNaN(parseFloat(value)) && ((value | 0) != value))
+            this.addDouble(value, omitIfDefault);
+        else
+            this.keyList.push(value.toString());
+    };
+
+    OverlayKey.prototype.addDouble = function (value, omitIfDefault) {
+        if (typeof omitIfDefault === "undefined") { omitIfDefault = true; }
+        var convertValue = value.toLocaleString(this.americanCulture);
+
+        if ((convertValue.length != null && convertValue != "") || !omitIfDefault)
+            this.keyList.push(convertValue);
+    };
+
+    OverlayKey.prototype.getUrlValue = function () {
+        return this.keyList.join(",");
+    };
+
+    OverlayKey.prototype.getValues = function (designs) {
+        throw ("Can't call getValues on base class.");
+    };
+
+    OverlayKey.prototype.addEmpty = function () {
+        this.keyList.push("");
+    };
+
+    OverlayKey.prototype.isEmpty = function () {
+        var isEmpty = true;
+
+        for (var i = 0; i < this.keyList.length; i++) {
+            if (this.keyList[i]) {
+                isEmpty = false;
+                break;
+            }
+        }
+
+        return isEmpty;
+    };
+    return OverlayKey;
+})();
+var OverlayKeys = (function () {
+    function OverlayKeys() {
+        this.overlayKeys = new Array();
+        this.overlayKeys.push(new NameOverlayKey(), new ModeOverlayKey(), new LocationOverlayKey(), new OperationOverlayKey(), new TimeOverlayKey());
+    }
+    OverlayKeys.prototype.appendOverlays = function (stringBuilder, xpoUrlOverlays) {
+        if (xpoUrlOverlays == null || xpoUrlOverlays.length <= 0)
+            return stringBuilder;
+
+        for (var i = 0; i < this.overlayKeys.length; i++) {
+            var keyValue = this.overlayKeys[i].getValues(xpoUrlOverlays);
+
+            if (keyValue) {
+                stringBuilder = stringBuilder.concat("&").concat(keyValue);
+            }
+        }
+
+        return stringBuilder;
+    };
+    return OverlayKeys;
+})();
+var LocationOverlayKey = (function (_super) {
+    __extends(LocationOverlayKey, _super);
+    function LocationOverlayKey() {
+        _super.apply(this, arguments);
+    }
+    LocationOverlayKey.prototype.getValues = function (overlays) {
+        var max = UrlGeneratorModule.getMaxOverlayNumber(overlays);
+
+        for (var i = 0; i <= max; i++) {
+            var index = overlays.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlOverlay = overlays[index];
+            if (urlOverlay != null)
+                this.addToList(urlOverlay.getOverlayLocation());
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.ol=" + this.getUrlValue();
+    };
+    return LocationOverlayKey;
+})(OverlayKey);
+var ModeOverlayKey = (function (_super) {
+    __extends(ModeOverlayKey, _super);
+    function ModeOverlayKey() {
+        _super.apply(this, arguments);
+    }
+    ModeOverlayKey.prototype.getValues = function (overlays) {
+        var max = UrlGeneratorModule.getMaxOverlayNumber(overlays);
+
+        for (var i = 0; i <= max; i++) {
+            var index = overlays.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlOverlay = overlays[index];
+            if (urlOverlay != null)
+                this.addToList(urlOverlay.getOverlayMode());
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.om=" + this.getUrlValue();
+    };
+    return ModeOverlayKey;
+})(OverlayKey);
+var NameOverlayKey = (function (_super) {
+    __extends(NameOverlayKey, _super);
+    function NameOverlayKey() {
+        _super.apply(this, arguments);
+    }
+    NameOverlayKey.prototype.getValues = function (overlays) {
+        var max = UrlGeneratorModule.getMaxOverlayNumber(overlays);
+
+        for (var i = 0; i <= max; i++) {
+            var index = overlays.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlOverlay = overlays[index];
+            if (urlOverlay != null)
+                this.addToList(this.convertToBase64UrlString(urlOverlay.getOverlayName()));
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.on=" + this.getUrlValue();
+    };
+
+    NameOverlayKey.prototype.convertToBase64UrlString = function (value) {
+        var base64 = new Base64();
+
+        return encodeURIComponent(base64.encode(value));
+    };
+    return NameOverlayKey;
+})(OverlayKey);
+var OperationOverlayKey = (function (_super) {
+    __extends(OperationOverlayKey, _super);
+    function OperationOverlayKey() {
+        _super.apply(this, arguments);
+    }
+    OperationOverlayKey.prototype.getValues = function (overlays) {
+        var max = UrlGeneratorModule.getMaxOverlayNumber(overlays);
+
+        for (var i = 0; i <= max; i++) {
+            var index = overlays.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlOverlay = overlays[index];
+            if (urlOverlay != null)
+                this.addToList(urlOverlay.getOverlayOperation());
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.oo=" + this.getUrlValue();
+    };
+    return OperationOverlayKey;
+})(OverlayKey);
 var XpoUrlGenerator = (function () {
     function XpoUrlGenerator() {
     }
@@ -1904,6 +2094,7 @@ var XpoUrlGenerator = (function () {
         var generalKeys = new GeneralKeys();
         var designKeys = new DesignKeys();
         var colorKeys = new ColorKeys();
+        var overlayKeys = new OverlayKeys();
 
         var baseUri = this.getXpoBaseUrl(request);
 
@@ -1917,6 +2108,7 @@ var XpoUrlGenerator = (function () {
         stringBuilder = colorKeys.appendColors(stringBuilder, request.getObjects().filter(function (value) {
             return value.getColor() != null;
         }));
+        stringBuilder = overlayKeys.appendOverlays(stringBuilder, request.getOverlays());
 
         return stringBuilder;
     };
@@ -2048,6 +2240,33 @@ var RotationDesignKey = (function (_super) {
     };
     return RotationDesignKey;
 })(DesignKey);
+var TimeOverlayKey = (function (_super) {
+    __extends(TimeOverlayKey, _super);
+    function TimeOverlayKey() {
+        _super.apply(this, arguments);
+    }
+    TimeOverlayKey.prototype.getValues = function (overlays) {
+        var max = UrlGeneratorModule.getMaxOverlayNumber(overlays);
+
+        for (var i = 0; i <= max; i++) {
+            var index = overlays.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlOverlay = overlays[index];
+            if (urlOverlay != null)
+                this.addToList(urlOverlay.getOverlayTime());
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.ot=" + this.getUrlValue();
+    };
+    return TimeOverlayKey;
+})(OverlayKey);
 var WidthDesignKey = (function (_super) {
     __extends(WidthDesignKey, _super);
     function WidthDesignKey() {
@@ -2242,8 +2461,12 @@ var FluentXpoUrlGenerator = (function () {
         return this;
     };
 
-    FluentXpoUrlGenerator.prototype.addOverlay = function (overlay) {
-        this.ensureUrlType(this.request).overlays.push(overlay);
+    FluentXpoUrlGenerator.prototype.addOverlay = function (xpoOverlay, options) {
+        var fluentXpoOverlay = new FluentXpoUrlOverlay();
+        fluentXpoOverlay.setIndex(this.ensureUrlType(this.request).getOverlays().length);
+        xpoOverlay(fluentXpoOverlay, options);
+
+        this.ensureUrlType(this.request).overlays.push(fluentXpoOverlay.getXpoOverlay());
 
         return this;
     };
@@ -2403,6 +2626,52 @@ var FluentXpoUrlObject = (function () {
         return fluentXpoUrlColor;
     };
     return FluentXpoUrlObject;
+})();
+var FluentXpoUrlOverlay = (function () {
+    function FluentXpoUrlOverlay(overlayName) {
+        if (typeof overlayName === "undefined") { overlayName = ""; }
+        this.xpoUrlOverlay = new XpoUrlOverlay(overlayName);
+    }
+    FluentXpoUrlOverlay.prototype.getXpoOverlay = function () {
+        return this.xpoUrlOverlay;
+    };
+
+    FluentXpoUrlOverlay.prototype.setIndex = function (index) {
+        this.xpoUrlOverlay.setIndex(index);
+
+        return this;
+    };
+
+    FluentXpoUrlOverlay.prototype.setLocation = function (location) {
+        this.xpoUrlOverlay.setOverlayLocation(location);
+
+        return this.xpoUrlOverlay;
+    };
+
+    FluentXpoUrlOverlay.prototype.setMode = function (mode) {
+        this.xpoUrlOverlay.setOverlayMode(mode);
+
+        return this.xpoUrlOverlay;
+    };
+
+    FluentXpoUrlOverlay.prototype.setName = function (name) {
+        this.xpoUrlOverlay.setOverlayName(name);
+
+        return this.xpoUrlOverlay;
+    };
+
+    FluentXpoUrlOverlay.prototype.setOperation = function (operation) {
+        this.xpoUrlOverlay.setOverlayOperation(operation);
+
+        return this.xpoUrlOverlay;
+    };
+
+    FluentXpoUrlOverlay.prototype.setTime = function (time) {
+        this.xpoUrlOverlay.setOverlayTime(time);
+
+        return this.xpoUrlOverlay;
+    };
+    return FluentXpoUrlOverlay;
 })();
 var FluentXpoUrlText = (function () {
     function FluentXpoUrlText(text) {
@@ -2646,6 +2915,54 @@ var XpoUrlObject = (function () {
         this.design = val;
     };
     return XpoUrlObject;
+})();
+var XpoUrlOverlay = (function () {
+    function XpoUrlOverlay(overlayName) {
+        if (typeof overlayName === "undefined") { overlayName = ""; }
+        this.overlayName = overlayName;
+    }
+    XpoUrlOverlay.prototype.getIndex = function () {
+        return this.index;
+    };
+    XpoUrlOverlay.prototype.setIndex = function (val) {
+        this.index = val;
+    };
+
+    XpoUrlOverlay.prototype.getOverlayName = function () {
+        return this.overlayName;
+    };
+    XpoUrlOverlay.prototype.setOverlayName = function (val) {
+        this.overlayName = val;
+    };
+
+    XpoUrlOverlay.prototype.getOverlayMode = function () {
+        return this.overlayMode;
+    };
+    XpoUrlOverlay.prototype.setOverlayMode = function (val) {
+        this.overlayMode = val;
+    };
+
+    XpoUrlOverlay.prototype.getOverlayTime = function () {
+        return this.overlayTime;
+    };
+    XpoUrlOverlay.prototype.setOverlayTime = function (val) {
+        this.overlayTime = val;
+    };
+
+    XpoUrlOverlay.prototype.getOverlayOperation = function () {
+        return this.overlayOperation;
+    };
+    XpoUrlOverlay.prototype.setOverlayOperation = function (val) {
+        this.overlayOperation = val;
+    };
+
+    XpoUrlOverlay.prototype.getOverlayLocation = function () {
+        return this.overlayLocation;
+    };
+    XpoUrlOverlay.prototype.setOverlayLocation = function (val) {
+        this.overlayLocation = val;
+    };
+    return XpoUrlOverlay;
 })();
 var XpoUrlRequest = (function () {
     function XpoUrlRequest() {
@@ -3042,6 +3359,29 @@ var UrlGeneratorModule;
     })(UrlGeneratorModule.XpoUrlObjectTransformations || (UrlGeneratorModule.XpoUrlObjectTransformations = {}));
     var XpoUrlObjectTransformations = UrlGeneratorModule.XpoUrlObjectTransformations;
 
+    (function (XpoUrlOverlayModes) {
+        XpoUrlOverlayModes[XpoUrlOverlayModes["MatchSizeOfOutput"] = 0] = "MatchSizeOfOutput";
+
+        XpoUrlOverlayModes[XpoUrlOverlayModes["KeepOriginalSize"] = 1] = "KeepOriginalSize";
+    })(UrlGeneratorModule.XpoUrlOverlayModes || (UrlGeneratorModule.XpoUrlOverlayModes = {}));
+    var XpoUrlOverlayModes = UrlGeneratorModule.XpoUrlOverlayModes;
+
+    (function (XpoUrlOverlayTimes) {
+        XpoUrlOverlayTimes[XpoUrlOverlayTimes["BeforeResize"] = 0] = "BeforeResize";
+
+        XpoUrlOverlayTimes[XpoUrlOverlayTimes["AfterResize"] = 1] = "AfterResize";
+    })(UrlGeneratorModule.XpoUrlOverlayTimes || (UrlGeneratorModule.XpoUrlOverlayTimes = {}));
+    var XpoUrlOverlayTimes = UrlGeneratorModule.XpoUrlOverlayTimes;
+
+    (function (XpoUrlOverlayOperations) {
+        XpoUrlOverlayOperations[XpoUrlOverlayOperations["Normal"] = 0] = "Normal";
+
+        XpoUrlOverlayOperations[XpoUrlOverlayOperations["ColoredMapping"] = 1] = "ColoredMapping";
+    })(UrlGeneratorModule.XpoUrlOverlayOperations || (UrlGeneratorModule.XpoUrlOverlayOperations = {}));
+    var XpoUrlOverlayOperations = UrlGeneratorModule.XpoUrlOverlayOperations;
+
+    
+
     function getMaxObjectNumber(xpoUrlObjects) {
         var maxIndex = 0;
 
@@ -3053,4 +3393,16 @@ var UrlGeneratorModule;
         return maxIndex;
     }
     UrlGeneratorModule.getMaxObjectNumber = getMaxObjectNumber;
+
+    function getMaxOverlayNumber(xpoUrlOverlays) {
+        var maxIndex = 0;
+
+        for (var i = 0; i < xpoUrlOverlays.length; i++) {
+            if (xpoUrlOverlays[i].getIndex() > maxIndex)
+                maxIndex = xpoUrlOverlays[i].getIndex();
+        }
+
+        return maxIndex;
+    }
+    UrlGeneratorModule.getMaxOverlayNumber = getMaxOverlayNumber;
 })(UrlGeneratorModule || (UrlGeneratorModule = {}));
