@@ -20,6 +20,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="PicarioXPO.RenderAPI.V2.ts" />
     <TypeScriptCompile Include="Collections\Collections.ts" />
+    <TypeScriptCompile Include="UrlGenerators\FluentXpoUrlOverlay.ts" />
+    <TypeScriptCompile Include="UrlGenerators\XpoUrlOverlay.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\ColorKeys.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\DesignKey.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\DesignKeyContrast.ts" />
@@ -31,6 +33,13 @@
     <TypeScriptCompile Include="XpoUrlGenerator\GeneralKeys.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\GlossDesignKey.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\HeightDesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\TimeOverlayKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\OperationOverlayKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\LocationOverlayKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\ModeOverlayKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\NameOverlayKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\OverlayKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\OverlayKeys.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\XpoUrlGenerator.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\PlacingPointXDesignKey.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\PlacingPointYDesignKey.ts" />

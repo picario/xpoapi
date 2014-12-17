@@ -73,8 +73,12 @@
     /*
      * Adds an overlay to the output
      */
-    addOverlay(overlay: string) {
-        this.ensureUrlType(this.request).overlays.push(overlay);
+    addOverlay(xpoOverlay: Function, options: any) {
+        var fluentXpoOverlay = new FluentXpoUrlOverlay();
+        fluentXpoOverlay.setIndex(this.ensureUrlType(this.request).getOverlays().length);
+        xpoOverlay(fluentXpoOverlay, options);
+
+        this.ensureUrlType(this.request).overlays.push(fluentXpoOverlay.getXpoOverlay());
 
         return this;
     }

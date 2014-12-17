@@ -137,7 +137,60 @@
          /// Images and Text
          /// </summary>
          FlipY = 5
-     }
+    }
+
+    /* <summary>
+     * Defines the different resizing modes for applying overlays
+     */
+    export enum XpoUrlOverlayModes {
+        /// <summary>
+        /// Default: Stretches the size of the overlay to the size of output bitmap
+        /// </summary>
+        MatchSizeOfOutput = 0,
+
+        /// <summary>
+        /// Keeps the original size of the overlay
+        /// </summary>
+        KeepOriginalSize = 1
+    }
+
+    /* <summary>
+     * Defines the different resizing times for applying overlays
+     */
+    export enum XpoUrlOverlayTimes {
+        /// <summary>
+        /// Default: Applies the overlay before resizing the image
+        /// </summary>
+        BeforeResize = 0,
+
+        /// <summary>
+        /// Applies the overlay after resizing the image
+        /// </summary>
+        AfterResize = 1
+    }
+
+    /* <summary>
+     * Defines the different overlay operations
+     */
+    export enum XpoUrlOverlayOperations {
+        /// <summary>
+        /// Default: Normal overlay operation is just simply drawing the overlays on top of the output image at the specified location
+        /// </summary>
+        Normal = 0,
+
+        /// <summary>
+        /// Currently unsupported
+        /// </summary>
+        ColoredMapping = 1
+    }
+
+    /* <summary>
+     * Defines an overlay location based on an x and y location
+     */
+    export interface XpoUrlOverlayLocations {
+        x: number;
+        y: number;
+    }
 
     export function getMaxObjectNumber(xpoUrlObjects: Array<XpoUrlObject>) {
         var maxIndex = 0;
@@ -145,6 +198,17 @@
         for (var i = 0; i < xpoUrlObjects.length; i++) {
             if (xpoUrlObjects[i].getIndex() > maxIndex)
                 maxIndex = xpoUrlObjects[i].getIndex();
+        }
+
+        return maxIndex;
+    }
+
+    export function getMaxOverlayNumber(xpoUrlOverlays: Array<XpoUrlOverlay>) {
+        var maxIndex = 0;
+
+        for (var i = 0; i < xpoUrlOverlays.length; i++) {
+            if (xpoUrlOverlays[i].getIndex() > maxIndex)
+                maxIndex = xpoUrlOverlays[i].getIndex();
         }
 
         return maxIndex;
