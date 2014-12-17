@@ -34,7 +34,7 @@
         /*
          * Adds an overlay to the output
          */
-        addOverlay(overlay: string): IFluentXpoUrlGenerator;
+        addOverlay(xpoOverlay: Function, options: any): IFluentXpoUrlGenerator;
 
         /*
          * Sets the filetype for this URL

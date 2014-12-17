@@ -14,6 +14,7 @@
         var generalKeys = new GeneralKeys();
         var designKeys = new DesignKeys();
         var colorKeys = new ColorKeys();
+        var overlayKeys = new OverlayKeys();
 
         var baseUri = this.getXpoBaseUrl(request);
 
@@ -23,6 +24,7 @@
         stringBuilder = generalKeys.appendRequest(stringBuilder, request); 
         stringBuilder = designKeys.appendDesigns(stringBuilder, request.getObjects().filter(value => value.getDesign() != null)); 
         stringBuilder = colorKeys.appendColors(stringBuilder, request.getObjects().filter(value => value.getColor() != null)); 
+        stringBuilder = overlayKeys.appendOverlays(stringBuilder, request.getOverlays());
 
         return stringBuilder;
     }

@@ -89,7 +89,7 @@ namespace PicarioXPO.RenderAPI.Fluent
         /// <summary>
         /// Sets the time for this object
         /// </summary>
-        public FluentXpoUrlOverlay SetOperation(XpoUrlOverlayTimes time)
+        public FluentXpoUrlOverlay SetTime(XpoUrlOverlayTimes time)
         {
             xpoUrlOverlay.OverlayTime = time;
 

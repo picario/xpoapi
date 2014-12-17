@@ -3,13 +3,13 @@
     private outputType: UrlGeneratorModule.XpoUrlOutputTypes;
     private outputQuality: number;
     objects: Array<XpoUrlObject>;
+    overlays: Array<XpoUrlOverlay>;
     templateParameters: Array<XpoUrlTemplate>;
-    overlays: Array<string>;
     private fileType: UrlGeneratorModule.XpoUrlFileTypes;
     private width: number;
     customParameters: Collections.Dictionary<string, Object>;
     private frame: number;
-    private watermarkImage: string
+    private watermarkImage: string;
     private absoluteUrl: string;
     private sceneThumbnailObjectNumber: number;
     private highlightObject: number;
@@ -33,7 +33,7 @@
     constructor() {
         this.objects = new Array<XpoUrlObject>();
         this.templateParameters = new Array<XpoUrlTemplate>();
-        this.overlays = new Array<string>();
+        this.overlays = new Array<XpoUrlOverlay>();
         this.customParameters = new Collections.Dictionary<string, Object>();
 
         this.caching = true;
@@ -74,7 +74,7 @@
      *  You can specify multiple images (has to be PNG).
      *  Images must be present in the Overlays folder.
      */
-    getOverlays(): Array<string> { return this.overlays; }
+    getOverlays(): Array<XpoUrlOverlay> { return this.overlays; }
 
     /*
      *  Gets or sets the filetype for this URL
