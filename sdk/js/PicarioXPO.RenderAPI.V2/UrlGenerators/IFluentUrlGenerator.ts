@@ -24,7 +24,7 @@
         /*
          * Adds an object to this URL
          */
-        addObject(xpoObject: Function, options: any): IFluentXpoUrlGenerator;
+        addObject(xpoObject: Function, options?: any): IFluentXpoUrlGenerator;
 
         /*
          * Adds a template to the output

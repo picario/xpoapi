@@ -51,7 +51,7 @@
     /*
      * Adds an object to this URL
      */
-    addObject(xpoObject: Function, options: any) {
+    addObject(xpoObject: Function, options?: any) {
         var fluentXpoObject = new FluentXpoUrlObject();
         fluentXpoObject.setIndex(this.ensureUrlType(this.request).getObjects().length);
         xpoObject(fluentXpoObject, options);
