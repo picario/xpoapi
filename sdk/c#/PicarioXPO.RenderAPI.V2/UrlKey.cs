@@ -31,6 +31,8 @@ namespace PicarioXPO.RenderAPI.V2
 
             if (!string.IsNullOrEmpty(convertedValue) || omitIfDefault == false)
                 keyList.Add(ConvertNumberToCultureNumber(value, omitIfDefault));
+            else
+                AddEmpty();
         }
 
         protected void AddEmpty()

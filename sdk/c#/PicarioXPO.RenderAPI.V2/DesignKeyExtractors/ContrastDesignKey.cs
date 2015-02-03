@@ -14,7 +14,7 @@ namespace PicarioXPO.RenderAPI.V2.DesignKeyExtractors
             {
                 var urlObject = xpoUrlObjects.FirstOrDefault(x => x.Index == i);
                 if (urlObject != null)
-                    AddToList(urlObject.Design.Contrast, false);
+                    AddToList(urlObject.Design.Contrast);
                 else if (i != max)
                     AddEmpty();
             }
