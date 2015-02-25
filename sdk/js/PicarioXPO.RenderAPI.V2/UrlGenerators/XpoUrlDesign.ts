@@ -14,6 +14,7 @@
     private rotation: number;
     private flip: boolean;
     private repeat: boolean;
+    private aspectRatio: boolean;
 
     constructor(fileName: string = "") {
         this.entityName = fileName;
@@ -109,4 +110,9 @@
     getRepeat(): boolean { return this.repeat; }
     setRepeat(val: boolean) { this.repeat = val; }
 
+    /*
+     * Specifies whether the design should be rendered once while preserving the aspect ratio.
+     */
+    getAspectRatio(): boolean { return this.aspectRatio; }
+    setAspectRatio(val: boolean) { this.aspectRatio = val; }
 }

@@ -13,7 +13,8 @@
                              new RepeatDesignKey(),
                              new RotationDesignKey(),
                              new WidthDesignKey(),
-                             new FlipDesignKey());
+                             new FlipDesignKey(),
+                             new AspectRatioDesignKey());
     }
 
 

@@ -160,5 +160,15 @@ namespace PicarioXPO.RenderAPI.Fluent
 
             return this;
         }
+
+        /// <summary>
+        /// Sets the aspect ratio for this object
+        /// </summary>
+        public FluentXpoUrlDesign SetAspectRatio(bool aspectRatio)
+        {
+            XpoUrlDesign.AspectRatio = aspectRatio;
+
+            return this;
+        }
     }
 }

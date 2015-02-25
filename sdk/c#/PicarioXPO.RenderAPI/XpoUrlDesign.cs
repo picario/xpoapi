@@ -87,5 +87,10 @@ namespace PicarioXPO.RenderAPI
         /// Specifies whether the design should repeat itself throughout the object.
         /// </summary>
         public bool Repeat { get; set; }
+
+        /// <summary>
+        /// Specifies whether the design should be rendered once while preserving the aspect ratio.
+        /// </summary>
+        public bool AspectRatio { get; set; }
     }
 }

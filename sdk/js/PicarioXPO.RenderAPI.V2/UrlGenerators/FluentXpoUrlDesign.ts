@@ -129,4 +129,13 @@
 
         return this;
     }
+
+    /*
+     * Sets the aspect ratio for this object.
+     */
+    setAspectRatio(aspectRatio: boolean) {
+        this.xpoUrlDesign.setAspectRatio(aspectRatio);
+
+        return this;
+    }
 } 

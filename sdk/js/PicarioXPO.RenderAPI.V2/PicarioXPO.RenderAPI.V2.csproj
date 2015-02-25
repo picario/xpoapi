@@ -33,6 +33,7 @@
     <TypeScriptCompile Include="XpoUrlGenerator\GeneralKeys.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\GlossDesignKey.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\HeightDesignKey.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\AspectRatioDesignKey.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\TimeOverlayKey.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\OperationOverlayKey.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\LocationOverlayKey.ts" />

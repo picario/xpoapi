@@ -44,6 +44,7 @@
     <Compile Include="DesignKeyExtractors\ContrastDesignKey.cs" />
     <Compile Include="DesignKeyExtractors\DesignKey.cs" />
     <Compile Include="DesignKeyExtractors\FlipDesignKey.cs" />
+    <Compile Include="DesignKeyExtractors\AspectRatioDesignKey.cs" />
     <Compile Include="OverlayKeyExtractors\LocationOverlayKey.cs" />
     <Compile Include="OverlayKeyExtractors\OperationOverlayKey.cs" />
     <Compile Include="OverlayKeyExtractors\TimeOverlayKey.cs" />
