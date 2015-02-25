@@ -7,6 +7,7 @@
 /// <reference path="String\String.ts" />
 /// <reference path="XpoUrlGenerator\ColorKeys.ts" />
 /// <reference path="XpoUrlGenerator\DesignKey.ts" />
+/// <reference path="XpoUrlGenerator\AspectRatioDesignKey.ts" />
 /// <reference path="XpoUrlGenerator\DesignKeyContrast.ts" />
 /// <reference path="XpoUrlGenerator\DesignKeys.ts" />
 /// <reference path="XpoUrlGenerator\DropXDesignKey.ts" />
