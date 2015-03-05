@@ -20,7 +20,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="PicarioXPO.RenderAPI.V2.ts" />
     <TypeScriptCompile Include="Collections\Collections.ts" />
-    <TypeScriptCompile Include="Scripts\PicarioXPO.RenderAPI.V2.d.ts" />
     <TypeScriptCompile Include="Scripts\Pix2.d.ts" />
     <TypeScriptCompile Include="UrlGenerators\FluentXpoUrlOverlay.ts" />
     <TypeScriptCompile Include="UrlGenerators\IXpoCanvasGenerator.ts" />
@@ -72,10 +71,6 @@
     <TypeScriptCompile Include="UrlGenerators\XpoUrlText.ts" />
     <TypeScriptCompile Include="UrlGenerators\XpoUrlTextDecoration.ts" />
     <TypeScriptCompile Include="UrlGenerators\UrlGeneratorHelpers.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\PicarioXPO.RenderAPI.V2.js" />
-    <Content Include="Scripts\Pix2.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
