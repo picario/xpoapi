@@ -25,6 +25,7 @@
     private imageType: UrlGeneratorModule.XpoUrlImageTypes;
     private resizeMethod: UrlGeneratorModule.XpoUrlResizeMethods;
     private height: number;
+    private canvasContainerId: string;
     urlType: UrlGeneratorModule.UrlTypes;
 
     /*
@@ -200,5 +201,10 @@
      *  Custom parameters and values to use in the URL
      */
     getCustomParameters(): Collections.Dictionary<string, Object> { return this.customParameters; }
-    
+
+    /*
+     *  Specifies the id of the container to create the canvas in to render the scene
+     */
+    getCanvasContainerId(): string { return this.canvasContainerId; }
+    setCanvasContainerId(val: string) { this.canvasContainerId = val; }
 }

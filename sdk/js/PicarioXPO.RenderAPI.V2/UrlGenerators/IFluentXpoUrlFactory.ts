@@ -6,7 +6,7 @@
          * Creates a new instance of the currently implemented <c>IXpoUrlGenerator</c> and wraps it
          * inside the <c>IFluentXpoUrlGenerator</c>
          */
-        createFluentUrlGenerator(generator: IXpoUrlGenerator, urlType: FluentXpoUrlType): IFluentXpoUrlGenerator;
+        createFluentUrlGenerator(generator: IXpoUrlGenerator, urlType: FluentXpoUrlType, canvasGenerator?: IXpoCanvasGenerator): IFluentXpoUrlGenerator;
     }
 
 }

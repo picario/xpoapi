@@ -146,8 +146,18 @@
         setFrame(frame: number): IFluentXpoUrlGenerator;
 
         /*
+         * Specifies the id of the container to render the canvas in
+         */
+        setCanvasContainerId(canvasContainerId: string): IFluentXpoUrlGenerator;
+
+        /*
          * Returns the URL generated using these parameters
          */
         getUrl(): string;
+
+        /*
+         * Returns the Canvas generated using these parameters
+         */
+        getCanvas(): HTMLCanvasElement;
     }
 }

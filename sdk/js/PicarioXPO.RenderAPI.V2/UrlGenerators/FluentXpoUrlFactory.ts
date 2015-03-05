@@ -1,8 +1,8 @@
 ﻿class FluentXpoUrlFactory implements UrlGeneratorModule.IFluentXpoUrlFactory {
     
-    createFluentUrlGenerator(generator: UrlGeneratorModule.IXpoUrlGenerator, urlType: UrlGeneratorModule.FluentXpoUrlType)
+    createFluentUrlGenerator(generator: UrlGeneratorModule.IXpoUrlGenerator, urlType: UrlGeneratorModule.FluentXpoUrlType, canvasGenerator?: UrlGeneratorModule.IXpoCanvasGenerator)
     {
-        return new FluentXpoUrlGenerator(generator, this.getUrlRequest(urlType));
+        return new FluentXpoUrlGenerator(generator, this.getUrlRequest(urlType), canvasGenerator);
     }
 
     getUrlRequest(urltype: UrlGeneratorModule.FluentXpoUrlType )

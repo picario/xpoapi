@@ -1,9 +1,10 @@
 ﻿class FluentXpoUrlGenerator implements UrlGeneratorModule.IFluentXpoUrlGenerator {
 
     generator: UrlGeneratorModule.IXpoUrlGenerator;
+    canvasGenerator: UrlGeneratorModule.IXpoCanvasGenerator;
     request: XpoUrlRequest;
 
-    constructor(generator: UrlGeneratorModule.IXpoUrlGenerator, request: XpoUrlRequest = new XpoUrlRequest) {
+    constructor(generator: UrlGeneratorModule.IXpoUrlGenerator, request: XpoUrlRequest = new XpoUrlRequest, canvasGenerator?: UrlGeneratorModule.IXpoCanvasGenerator) {
         if (generator == null)
             throw ("Generator cannot be null.");
         if (request == null)
@@ -11,6 +12,7 @@
 
         this.generator = generator;
         this.request = request;
+        this.canvasGenerator = canvasGenerator;
     }
 
     private ensureUrlType(urlRequest: XpoUrlRequest): XpoUrlRequest {
@@ -256,7 +258,17 @@
         return this;
     }
 
+    setCanvasContainerId(canvasContainerId: string) {
+        this.request.setCanvasContainerId(canvasContainerId);
+
+        return this;
+    }
+
     getUrl() {
         return this.generator.getUrl(this.request);
+    }
+
+    getCanvas() {
+        return this.canvasGenerator.getCanvas(this.request);
     }
 }

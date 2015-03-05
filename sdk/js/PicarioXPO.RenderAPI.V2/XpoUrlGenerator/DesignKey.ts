@@ -2,6 +2,9 @@
     private keyList = new Array<string>();
     private americanCulture = "en-US";
 
+    constructor() {
+    }
+
     addToList(value: any, omitIfDefault: boolean = true) {
         if (value === undefined || value === null) {
             this.addEmpty();

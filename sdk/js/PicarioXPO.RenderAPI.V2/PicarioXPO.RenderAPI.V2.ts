@@ -3,6 +3,7 @@
 //* Authors : Picario
 
 /// <reference path="Collections\Collections.ts" />
+/// <reference path="Scripts\Pix2.d.ts" />
 /// <reference path="String\Base64.ts" />
 /// <reference path="String\String.ts" />
 /// <reference path="XpoUrlGenerator\ColorKeys.ts" />
@@ -40,6 +41,7 @@
 /// <reference path="UrlGenerators\IFluentXpoUrlFactory.ts" />
 /// <reference path="UrlGenerators\IFluentUrlGenerator.ts" />
 /// <reference path="UrlGenerators\IXpoUrlFactory.ts" />
+/// <reference path="UrlGenerators\IXpoCanvasGenerator.ts" />
 /// <reference path="UrlGenerators\IXpoUrlGenerator.ts" />
 /// <reference path="UrlGenerators\XpoUrlColor.ts" />
 /// <reference path="UrlGenerators\XpoUrlDesign.ts" />

@@ -1,5 +1,9 @@
 ﻿class AspectRatioDesignKey extends DesignKey {
 
+    constructor() {
+        super();
+    }
+
     getValues(designs: Array<XpoUrlObject>) {
         var max = UrlGeneratorModule.getMaxObjectNumber(designs);
 
