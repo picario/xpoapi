@@ -8,10 +8,10 @@ namespace PicarioXPO.RenderAPI
     [SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue", Justification = "Enum values have to match current URL api values which start with 1.")]
     public enum XpoUrlTextAlignment
     {
-        Left = 1,
+        Left = 0,
 
-        Middle = 2,
+        Middle = 1,
 
-        Right = 3
+        Right = 2
     }
 }

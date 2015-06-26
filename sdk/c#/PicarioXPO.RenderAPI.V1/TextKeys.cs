@@ -30,7 +30,7 @@ namespace PicarioXPO.RenderAPI.V1
                     .Append(index, Color, xpoUrlText.Color)
                     .Append(index, FontName, xpoUrlText.FontName)
                     .Append(index, FontSize, xpoUrlText.FontSize)
-                    .Append(index, Alignment, xpoUrlText.Alignment)
+                    .Append(index, Alignment, xpoUrlText.Alignment + 1)
                     .Append(index, Decoration, xpoUrlText.FontStyle.ToString().Replace(" ", "").ToLower())
                     .Append(index, DropX, ConvertNumberToCultureNumber(xpoUrlText.DropX,americanCulture))
                     .Append(index, DropY, ConvertNumberToCultureNumber(xpoUrlText.DropY, americanCulture))
