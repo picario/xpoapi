@@ -4,15 +4,15 @@
     private fontname: string;
     private fontsize: number;
     private alignment: UrlGeneratorModule.XpoUrlTextAlignment;
-    decorations: Array<string>;
+    private fontStyle: UrlGeneratorModule.TextFontStyle;
     private dropX: number;
     private dropY: number;
     private placingPointX: number;
     private placingPointY: number;
     private rotation: number;
+    private multiplier: number;
 
     constructor(text: string = "") {
-        this.decorations = new Array<string>();
         this.text = text;
     }
 
@@ -54,8 +54,8 @@
      * The decoration of the text.
      * To use more than one decoration use a comma (,) to separate.
      */
-    getDecorations(): Array<string> { return this.decorations; }
-    setDecorations(val: Array<string>) { this.decorations = val; }
+    getFontStyle(): UrlGeneratorModule.TextFontStyle { return this.fontStyle; }
+    setFontStyle(val: UrlGeneratorModule.TextFontStyle) { this.fontStyle = val; }
 
     /*
      * Gets or sets the drop x of this object
@@ -86,4 +86,10 @@
      */
     getRotation(): number { return this.rotation; }
     setRotation(val: number){ this.rotation = val; }
+
+    /*
+     * Gets or sets the multiplier of this object
+     */
+    getMultiplier(): number { return this.multiplier; }
+    setMultiplier(val: number) { this.multiplier = val; }
  }

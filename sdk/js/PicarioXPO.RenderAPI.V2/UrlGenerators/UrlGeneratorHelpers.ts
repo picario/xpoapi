@@ -34,9 +34,9 @@
      }
 
      export enum XpoUrlTextAlignment {
-         Left = 1,
-         Middle = 2,
-         Right = 3
+         Left = 0,
+         Middle = 1,
+         Right = 2
      }
 
      /*
@@ -182,6 +182,17 @@
         /// Currently unsupported
         /// </summary>
         ColoredMapping = 1
+    }
+
+    /*  <summary>
+     *  Specifies style information applied to text.
+     */
+    export enum TextFontStyle {
+        Regular = 0,
+        Bold = 1,
+        Italic = 2,
+        Underline = 4,
+        Strikeout = 8,
     }
 
     /* <summary>

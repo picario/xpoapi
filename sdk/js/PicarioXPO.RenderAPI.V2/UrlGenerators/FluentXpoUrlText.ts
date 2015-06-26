@@ -49,29 +49,11 @@
         return this;
     }
 
-    /*
-     * Sets the text to be bold
+    /*  
+     *  Sets the font style of this object
      */
-    bold() {
-        this.xpoUrlText.decorations.push(UrlGeneratorModule.XpoUrlTextDecoration.bold);
-
-        return this;
-    }
-
-    /*
-     * Sets the text to be italic
-     */
-    italic() {
-        this.xpoUrlText.decorations.push(UrlGeneratorModule.XpoUrlTextDecoration.italic);
-
-        return this;
-    }
-
-    /*
-     * Sets the text to be underline
-     */
-    underline() {
-        this.xpoUrlText.decorations.push(UrlGeneratorModule.XpoUrlTextDecoration.underline);
+    setFontStyle(fontStyle: UrlGeneratorModule.TextFontStyle) {
+        this.xpoUrlText.setFontStyle(fontStyle);
 
         return this;
     }
@@ -117,6 +99,15 @@
      */
     setRotation(rotation: number) {
         this.xpoUrlText.setRotation(rotation);
+
+        return this;
+    }
+
+    /*
+     * Sets the multiplier for this object
+     */
+    setMultiplier(multiplier: number) {
+        this.xpoUrlText.setMultiplier(multiplier);
 
         return this;
     }

@@ -31,6 +31,17 @@
 /// <reference path="XpoUrlGenerator\RotationDesignKey.ts" />
 /// <reference path="XpoUrlGenerator\TimeOverlayKey.ts" />
 /// <reference path="XpoUrlGenerator\WidthDesignKey.ts" />
+/// <reference path="XpoUrlGenerator\TextKey.ts"/>
+/// <reference path="XpoUrlGenerator\TextKeys.ts"/>
+/// <reference path="XpoUrlGenerator\TextTextKey.ts"/>
+/// <reference path="XpoUrlGenerator\TextAlignmentTextKey.ts"/>
+/// <reference path="XpoUrlGenerator\TextColorTextKey.ts"/>
+/// <reference path="XpoUrlGenerator\TextFontTextKey.ts"/>
+/// <reference path="XpoUrlGenerator\TextMultiplierTextKey.ts"/>
+/// <reference path="XpoUrlGenerator\TextPlacingPointXTextKey.ts"/>
+/// <reference path="XpoUrlGenerator\TextPlacingPointYTextKey.ts"/>
+/// <reference path="XpoUrlGenerator\TextSizeTextKey.ts"/>
+/// <reference path="XpoUrlGenerator\TextStyleTextKey.ts"/>
 /// <reference path="UrlGenerators\FluentXpoUrlColor.ts" />
 /// <reference path="UrlGenerators\FluentXpoUrlDesign.ts" />
 /// <reference path="UrlGenerators\FluentXpoUrlFactory.ts" />

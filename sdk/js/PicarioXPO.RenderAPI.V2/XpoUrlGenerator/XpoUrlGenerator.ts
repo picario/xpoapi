@@ -45,6 +45,7 @@ class XpoUrlGenerator implements UrlGeneratorModule.IXpoUrlGenerator, UrlGenerat
         var generalKeys = new GeneralKeys();
         var designKeys = new DesignKeys();
         var colorKeys = new ColorKeys();
+        var textKeys = new TextKeys();
         var overlayKeys = new OverlayKeys();
 
         var baseUri = this.getXpoBaseUrl(request);
@@ -55,6 +56,7 @@ class XpoUrlGenerator implements UrlGeneratorModule.IXpoUrlGenerator, UrlGenerat
         stringBuilder = generalKeys.appendRequest(stringBuilder, request); 
         stringBuilder = designKeys.appendDesigns(stringBuilder, request.getObjects().filter(value => value.getDesign() != null)); 
         stringBuilder = colorKeys.appendColors(stringBuilder, request.getObjects().filter(value => value.getColor() != null)); 
+        stringBuilder = textKeys.appendTexts(stringBuilder, request.getObjects().filter(value => value.getText() != null));
         stringBuilder = overlayKeys.appendOverlays(stringBuilder, request.getOverlays());
 
         return stringBuilder;

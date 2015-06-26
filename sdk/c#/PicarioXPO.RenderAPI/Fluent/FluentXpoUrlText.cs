@@ -60,6 +60,9 @@ namespace PicarioXPO.RenderAPI.Fluent
             return this;
         }
 
+        /// <summary>
+        /// Sets the font style of this object
+        /// </summary>
         public FluentXpoUrlText SetFontStyle(TextFontStyle fontStyle)
         {
             XpoUrlText.FontStyle = fontStyle;

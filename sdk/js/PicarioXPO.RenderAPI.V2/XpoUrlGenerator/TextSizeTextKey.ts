@@ -1,0 +1,24 @@
+﻿class TextSizeTextKey extends TextKey {
+
+    constructor() {
+        super();
+    }
+
+    getValues(texts: Array<XpoUrlObject>) {
+        var max = UrlGeneratorModule.getMaxObjectNumber(texts);
+
+        for (var i = 0; i <= max; i++) {
+            var index = texts.map(e => e.getIndex()).indexOf(i);
+
+            var urlObject = texts[index];
+            if (urlObject != null)
+                this.addToList(urlObject.getText().getFontsize());
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty()) return "";
+
+        return "p.text.size=" + this.getUrlValue();
+    }
+} 
