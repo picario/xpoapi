@@ -54,6 +54,9 @@
 	var multipleOverlaySceneUrl = urlDemo.GetMultipleOverlaySceneUrl(defaultImageWidth, defaultImageHeight);
 	$('img#multipleOverlay').attr('src', multipleOverlaySceneUrl);
 	
+	var textSceneUrl = urlDemo.GetTextSceneUrl(defaultImageWidth, defaultImageHeight);
+	$('img#text').attr('src', textSceneUrl);
+	
 	/* Coordinates demo */
 	var coordsSceneUrl = urlDemo.GetBaseSceneUrl(750, 750);
 	$('img#coordsScene').attr('src', coordsSceneUrl);

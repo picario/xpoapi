@@ -1,4 +1,5 @@
-﻿/**
+﻿/// <reference path="../PicarioXPO.RenderAPI.V2/Scripts/Pix2.d.ts" />
+/**
 * @namespace Top level namespace for collections, a TypeScript data structure library.
 */
 declare module Collections {
@@ -1317,12 +1318,17 @@ declare class ColorKeys {
 declare class DesignKey {
     private keyList;
     private americanCulture;
+    constructor();
     public addToList(value: any, omitIfDefault?: boolean): void;
     public addDouble(value: number, omitIfDefault?: boolean): void;
     public getUrlValue(): string;
     public getValues(designs: XpoUrlObject[]): string;
     public addEmpty(): void;
     public isEmpty(): boolean;
+}
+declare class AspectRatioDesignKey extends DesignKey {
+    constructor();
+    public getValues(designs: XpoUrlObject[]): string;
 }
 declare class ContrastDesignKey extends DesignKey {
     public getValues(designs: XpoUrlObject[]): string;
@@ -1404,11 +1410,15 @@ declare class NameOverlayKey extends OverlayKey {
 declare class OperationOverlayKey extends OverlayKey {
     public getValues(overlays: XpoUrlOverlay[]): string;
 }
-declare class XpoUrlGenerator implements UrlGeneratorModule.IXpoUrlGenerator {
+declare class XpoUrlGenerator implements UrlGeneratorModule.IXpoUrlGenerator, UrlGeneratorModule.IXpoCanvasGenerator {
+    public workspace: Pix2.IWorkSpace;
     public getUrl(request: XpoUrlRequest): string;
+    public getCanvas(request: XpoUrlRequest): any;
     public getImageUrl(request: XpoImageUrlRequest): string;
     public getCoordsUrl(request: XpoCoordinatesUrlRequest): string;
     public getXpoBaseUrl(urlRequest: XpoUrlRequest): string;
+    public getDesignImageUrl(design: XpoUrlDesign, urlRequest: XpoUrlRequest): string;
+    public ensureWorkspace(canvasContainerId: string): void;
 }
 declare class PlacingPointXDesignKey extends DesignKey {
     public getValues(designs: XpoUrlObject[]): string;
@@ -1427,6 +1437,58 @@ declare class TimeOverlayKey extends OverlayKey {
 }
 declare class WidthDesignKey extends DesignKey {
     public getValues(designs: XpoUrlObject[]): string;
+}
+declare class TextKey {
+    private keyList;
+    private americanCulture;
+    constructor();
+    public addToList(value: any, omitIfDefault?: boolean): void;
+    public addDouble(value: number, omitIfDefault?: boolean): void;
+    public getUrlValue(): string;
+    public getValues(texts: XpoUrlObject[]): string;
+    public addEmpty(): void;
+    public isEmpty(): boolean;
+}
+declare class TextKeys {
+    private textKeys;
+    constructor();
+    public appendTexts(stringBuilder: string, xpoUrlTexts: XpoUrlObject[]): string;
+}
+declare class TextTextKey extends TextKey {
+    constructor();
+    public getValues(texts: XpoUrlObject[]): string;
+}
+declare class TextAlignmentTextKey extends TextKey {
+    constructor();
+    public getValues(texts: XpoUrlObject[]): string;
+}
+declare class TextColorTextKey extends TextKey {
+    constructor();
+    public getValues(texts: XpoUrlObject[]): string;
+}
+declare class TextFontTextKey extends TextKey {
+    constructor();
+    public getValues(texts: XpoUrlObject[]): string;
+}
+declare class TextMultiplierTextKey extends TextKey {
+    constructor();
+    public getValues(texts: XpoUrlObject[]): string;
+}
+declare class TextPlacingPointXTextKey extends TextKey {
+    constructor();
+    public getValues(texts: XpoUrlObject[]): string;
+}
+declare class TextPlacingPointYTextKey extends TextKey {
+    constructor();
+    public getValues(texts: XpoUrlObject[]): string;
+}
+declare class TextSizeTextKey extends TextKey {
+    constructor();
+    public getValues(texts: XpoUrlObject[]): string;
+}
+declare class TextStyleTextKey extends TextKey {
+    constructor();
+    public getValues(texts: XpoUrlObject[]): string;
 }
 declare class FluentXpoUrlColor {
     private xpoUrlColor;
@@ -1450,20 +1512,22 @@ declare class FluentXpoUrlDesign {
     public setRotation(rotation: number): FluentXpoUrlDesign;
     public setFlip(flip: boolean): FluentXpoUrlDesign;
     public setRepeat(repeat: boolean): FluentXpoUrlDesign;
+    public setAspectRatio(aspectRatio: boolean): FluentXpoUrlDesign;
 }
 declare class FluentXpoUrlFactory implements UrlGeneratorModule.IFluentXpoUrlFactory {
-    public createFluentUrlGenerator(generator: UrlGeneratorModule.IXpoUrlGenerator, urlType: UrlGeneratorModule.FluentXpoUrlType): FluentXpoUrlGenerator;
+    public createFluentUrlGenerator(generator: UrlGeneratorModule.IXpoUrlGenerator, urlType: UrlGeneratorModule.FluentXpoUrlType, canvasGenerator?: UrlGeneratorModule.IXpoCanvasGenerator): FluentXpoUrlGenerator;
     public getUrlRequest(urltype: UrlGeneratorModule.FluentXpoUrlType): XpoImageUrlRequest;
 }
 declare class FluentXpoUrlGenerator implements UrlGeneratorModule.IFluentXpoUrlGenerator {
     public generator: UrlGeneratorModule.IXpoUrlGenerator;
+    public canvasGenerator: UrlGeneratorModule.IXpoCanvasGenerator;
     public request: XpoUrlRequest;
-    constructor(generator: UrlGeneratorModule.IXpoUrlGenerator, request?: XpoUrlRequest);
+    constructor(generator: UrlGeneratorModule.IXpoUrlGenerator, request?: XpoUrlRequest, canvasGenerator?: UrlGeneratorModule.IXpoCanvasGenerator);
     private ensureUrlType(urlRequest);
     public setPrimaryKey(primaryKey: string): FluentXpoUrlGenerator;
     public setOutputQuality(outputQuality: number): FluentXpoUrlGenerator;
     public setOutputType(outputType: UrlGeneratorModule.XpoUrlOutputTypes): FluentXpoUrlGenerator;
-    public addObject(xpoObject: Function, options: any): FluentXpoUrlGenerator;
+    public addObject(xpoObject: Function, options?: any): FluentXpoUrlGenerator;
     public addTemplateParameter(index: number, parameterValue: string): FluentXpoUrlGenerator;
     public addOverlay(xpoOverlay: Function, options: any): FluentXpoUrlGenerator;
     public setEntityType(fileType: UrlGeneratorModule.XpoUrlFileTypes): FluentXpoUrlGenerator;
@@ -1485,7 +1549,9 @@ declare class FluentXpoUrlGenerator implements UrlGeneratorModule.IFluentXpoUrlG
     public setWatermarkImage(watermarkImageName: string): FluentXpoUrlGenerator;
     public addCustom(key: string, value: Object): FluentXpoUrlGenerator;
     public setFrame(frame: number): FluentXpoUrlGenerator;
+    public setCanvasContainerId(canvasContainerId: string): FluentXpoUrlGenerator;
     public getUrl(): string;
+    public getCanvas(): HTMLCanvasElement;
 }
 declare class FluentXpoUrlObject {
     private xpoObject;
@@ -1515,18 +1581,17 @@ declare class FluentXpoUrlText {
     public setFontSize(fontSize: number): FluentXpoUrlText;
     public setColor(color: string): FluentXpoUrlText;
     public setAlignment(alignment: UrlGeneratorModule.XpoUrlTextAlignment): FluentXpoUrlText;
-    public bold(): FluentXpoUrlText;
-    public italic(): FluentXpoUrlText;
-    public underline(): FluentXpoUrlText;
+    public setFontStyle(fontStyle: UrlGeneratorModule.TextFontStyle): FluentXpoUrlText;
     public setDropX(dropX: number): FluentXpoUrlText;
     public setDropY(dropY: number): FluentXpoUrlText;
     public setPlacingPointX(placingPointX: number): FluentXpoUrlText;
     public setPlacingPointY(placingPointY: number): FluentXpoUrlText;
-    public setRotation(rotation: number): FluentXpoUrlText;
+    public setRotation(rotation: number): void;
+    public setMultiplier(multiplier: number): FluentXpoUrlText;
 }
 declare module UrlGeneratorModule {
     interface IFluentXpoUrlFactory {
-        createFluentUrlGenerator(generator: IXpoUrlGenerator, urlType: FluentXpoUrlType): IFluentXpoUrlGenerator;
+        createFluentUrlGenerator(generator: IXpoUrlGenerator, urlType: FluentXpoUrlType, canvasGenerator?: IXpoCanvasGenerator): IFluentXpoUrlGenerator;
     }
 }
 declare module UrlGeneratorModule {
@@ -1534,7 +1599,7 @@ declare module UrlGeneratorModule {
         setPrimaryKey(primaryKey: string): IFluentXpoUrlGenerator;
         setOutputQuality(outputQuality: number): IFluentXpoUrlGenerator;
         setOutputType(outputType: XpoUrlOutputTypes): IFluentXpoUrlGenerator;
-        addObject(xpoObject: Function, options: any): IFluentXpoUrlGenerator;
+        addObject(xpoObject: Function, options?: any): IFluentXpoUrlGenerator;
         addTemplateParameter(index: number, parameterValue: string): IFluentXpoUrlGenerator;
         addOverlay(xpoOverlay: Function, options: any): IFluentXpoUrlGenerator;
         setEntityType(fileType: XpoUrlFileTypes): IFluentXpoUrlGenerator;
@@ -1556,12 +1621,19 @@ declare module UrlGeneratorModule {
         setWatermarkImage(watermarkImageName: string): IFluentXpoUrlGenerator;
         addCustom(key: string, value: Object): IFluentXpoUrlGenerator;
         setFrame(frame: number): IFluentXpoUrlGenerator;
+        setCanvasContainerId(canvasContainerId: string): IFluentXpoUrlGenerator;
         getUrl(): string;
+        getCanvas(): HTMLCanvasElement;
     }
 }
 declare module UrlGeneratorModule {
     interface IXpoUrlFactory {
         createUrlGenerator(): IXpoUrlGenerator;
+    }
+}
+declare module UrlGeneratorModule {
+    interface IXpoCanvasGenerator {
+        getCanvas(request: XpoUrlRequest): HTMLCanvasElement;
     }
 }
 declare module UrlGeneratorModule {
@@ -1591,6 +1663,7 @@ declare class XpoUrlDesign {
     private rotation;
     private flip;
     private repeat;
+    private aspectRatio;
     constructor(fileName?: string);
     public getIndex(): number;
     public setIndex(val: number): void;
@@ -1622,6 +1695,8 @@ declare class XpoUrlDesign {
     public setFlip(val: boolean): void;
     public getRepeat(): boolean;
     public setRepeat(val: boolean): void;
+    public getAspectRatio(): boolean;
+    public setAspectRatio(val: boolean): void;
 }
 declare class XpoUrlObject {
     private index;
@@ -1688,6 +1763,7 @@ declare class XpoUrlRequest {
     private imageType;
     private resizeMethod;
     private height;
+    private canvasContainerId;
     public urlType: UrlGeneratorModule.UrlTypes;
     constructor();
     public getPrimaryKey(): string;
@@ -1738,6 +1814,8 @@ declare class XpoUrlRequest {
     public getFrame(): number;
     public setFrame(val: number): void;
     public getCustomParameters(): Collections.Dictionary<string, Object>;
+    public getCanvasContainerId(): string;
+    public setCanvasContainerId(val: string): void;
 }
 declare class XpoCoordinatesUrlRequest extends XpoUrlRequest {
     constructor();
@@ -1760,12 +1838,13 @@ declare class XpoUrlText {
     private fontname;
     private fontsize;
     private alignment;
-    public decorations: string[];
+    private fontStyle;
     private dropX;
     private dropY;
     private placingPointX;
     private placingPointY;
     private rotation;
+    private multiplier;
     constructor(text?: string);
     public getText(): string;
     public setText(val: string): void;
@@ -1777,8 +1856,8 @@ declare class XpoUrlText {
     public setFontsize(val: number): void;
     public getAlignment(): UrlGeneratorModule.XpoUrlTextAlignment;
     public setAlignment(val: UrlGeneratorModule.XpoUrlTextAlignment): void;
-    public getDecorations(): string[];
-    public setDecorations(val: string[]): void;
+    public getFontStyle(): UrlGeneratorModule.TextFontStyle;
+    public setFontStyle(val: UrlGeneratorModule.TextFontStyle): void;
     public getDropX(): number;
     public setDropX(val: number): void;
     public getDropY(): number;
@@ -1789,6 +1868,8 @@ declare class XpoUrlText {
     public setPlacingPointY(val: number): void;
     public getRotation(): number;
     public setRotation(val: number): void;
+    public getMultiplier(): number;
+    public setMultiplier(val: number): void;
 }
 declare module UrlGeneratorModule {
     class XpoUrlTextDecoration {
@@ -1813,9 +1894,9 @@ declare module UrlGeneratorModule {
         Design = 2,
     }
     enum XpoUrlTextAlignment {
-        Left = 1,
-        Middle = 2,
-        Right = 3,
+        Left = 0,
+        Middle = 1,
+        Right = 2,
     }
     enum XpoUrlFileTypes {
         Scene = 1,
@@ -1859,6 +1940,13 @@ declare module UrlGeneratorModule {
     enum XpoUrlOverlayOperations {
         Normal = 0,
         ColoredMapping = 1,
+    }
+    enum TextFontStyle {
+        Regular = 0,
+        Bold = 1,
+        Italic = 2,
+        Underline = 4,
+        Strikeout = 8,
     }
     interface XpoUrlOverlayLocations {
         x: number;

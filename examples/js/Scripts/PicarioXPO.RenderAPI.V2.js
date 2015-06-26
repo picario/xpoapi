@@ -1593,6 +1593,33 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
+var AspectRatioDesignKey = (function (_super) {
+    __extends(AspectRatioDesignKey, _super);
+    function AspectRatioDesignKey() {
+        _super.call(this);
+    }
+    AspectRatioDesignKey.prototype.getValues = function (designs) {
+        var max = UrlGeneratorModule.getMaxObjectNumber(designs);
+
+        for (var i = 0; i <= max; i++) {
+            var index = designs.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlObject = designs[index];
+            if (urlObject != null)
+                this.addToList(urlObject.getDesign().getAspectRatio(), false);
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.ta=" + this.getUrlValue();
+    };
+    return AspectRatioDesignKey;
+})(DesignKey);
 var ContrastDesignKey = (function (_super) {
     __extends(ContrastDesignKey, _super);
     function ContrastDesignKey() {
@@ -1623,7 +1650,7 @@ var ContrastDesignKey = (function (_super) {
 var DesignKeys = (function () {
     function DesignKeys() {
         this.designKeys = new Array();
-        this.designKeys.push(new EntityNameDesignKey(), new ContrastDesignKey(), new DropXDesignKey(), new DropYDesignKey(), new GlossDesignKey(), new HeightDesignKey(), new PlacingPointXDesignKey(), new PlacingPointYDesignKey(), new RepeatDesignKey(), new RotationDesignKey(), new WidthDesignKey(), new FlipDesignKey());
+        this.designKeys.push(new EntityNameDesignKey(), new ContrastDesignKey(), new DropXDesignKey(), new DropYDesignKey(), new GlossDesignKey(), new HeightDesignKey(), new PlacingPointXDesignKey(), new PlacingPointYDesignKey(), new RepeatDesignKey(), new RotationDesignKey(), new WidthDesignKey(), new FlipDesignKey(), new AspectRatioDesignKey());
     }
     DesignKeys.prototype.appendDesigns = function (stringBuilder, xpoUrlDesigns) {
         if (xpoUrlDesigns == null || xpoUrlDesigns.length <= 0)
@@ -2090,10 +2117,39 @@ var XpoUrlGenerator = (function () {
         throw ("Input type is not recognized");
     };
 
+    XpoUrlGenerator.prototype.getCanvas = function (request) {
+        var _this = this;
+        this.ensureWorkspace(request.getCanvasContainerId());
+        this.workspace.loadScene(request.getPrimaryKey(), 1).whenData(function () {
+            var allRequestObjects = request.getObjects();
+
+            for (var i = 0; i < allRequestObjects.length; i++) {
+                var requestObject = allRequestObjects[i];
+                var workspaceObject = _this.workspace.getObject(i);
+                var requestDesign = requestObject.getDesign();
+                if (requestDesign != null) {
+                    workspaceObject.Contrast = requestDesign.getContrast();
+                    workspaceObject.PlacingPointX = requestDesign.getPlacingPointX();
+                    workspaceObject.PlacingPointY = requestDesign.getPlacingPointY();
+                    workspaceObject.LoadTextureImage(_this.getDesignImageUrl(requestDesign, request), requestDesign.getWidth(), requestDesign.getHeight());
+                }
+            }
+
+            setInterval(function () {
+                _this.workspace.render(0);
+            }, 1000);
+
+            return _this.workspace.getCanvas();
+        });
+
+        return null;
+    };
+
     XpoUrlGenerator.prototype.getImageUrl = function (request) {
         var generalKeys = new GeneralKeys();
         var designKeys = new DesignKeys();
         var colorKeys = new ColorKeys();
+        var textKeys = new TextKeys();
         var overlayKeys = new OverlayKeys();
 
         var baseUri = this.getXpoBaseUrl(request);
@@ -2107,6 +2163,9 @@ var XpoUrlGenerator = (function () {
         }));
         stringBuilder = colorKeys.appendColors(stringBuilder, request.getObjects().filter(function (value) {
             return value.getColor() != null;
+        }));
+        stringBuilder = textKeys.appendTexts(stringBuilder, request.getObjects().filter(function (value) {
+            return value.getText() != null;
         }));
         stringBuilder = overlayKeys.appendOverlays(stringBuilder, request.getOverlays());
 
@@ -2129,6 +2188,21 @@ var XpoUrlGenerator = (function () {
             return urlRequest.getAbsoluteUrl().endsWith("/") ? urlRequest.getAbsoluteUrl() : urlRequest.getAbsoluteUrl() + "/";
 
         return "/";
+    };
+
+    XpoUrlGenerator.prototype.getDesignImageUrl = function (design, urlRequest) {
+        var newUrlRequest = new XpoUrlRequest();
+        newUrlRequest.setAbsoluteUrl(urlRequest.getAbsoluteUrl());
+        newUrlRequest.setPrimaryKey(design.getEntityName());
+        newUrlRequest.setHeight(design.getHeight());
+        newUrlRequest.setWidth(design.getWidth());
+
+        return this.getImageUrl(newUrlRequest);
+    };
+
+    XpoUrlGenerator.prototype.ensureWorkspace = function (canvasContainerId) {
+        if (!this.workspace)
+            this.workspace = new Pix2.GLWorkspace(canvasContainerId);
     };
     return XpoUrlGenerator;
 })();
@@ -2294,6 +2368,325 @@ var WidthDesignKey = (function (_super) {
     };
     return WidthDesignKey;
 })(DesignKey);
+var TextKey = (function () {
+    function TextKey() {
+        this.keyList = new Array();
+        this.americanCulture = "en-US";
+    }
+    TextKey.prototype.addToList = function (value, omitIfDefault) {
+        if (typeof omitIfDefault === "undefined") { omitIfDefault = true; }
+        if (value === undefined || value === null) {
+            this.addEmpty();
+            return;
+        } else if ((!value || value.toString() == "") && omitIfDefault) {
+            this.addEmpty();
+            return;
+        }
+
+        if (!isNaN(parseFloat(value)) && ((value | 0) != value))
+            this.addDouble(value, omitIfDefault);
+        else
+            this.keyList.push(value.toString());
+    };
+
+    TextKey.prototype.addDouble = function (value, omitIfDefault) {
+        if (typeof omitIfDefault === "undefined") { omitIfDefault = true; }
+        var convertValue = value.toLocaleString(this.americanCulture);
+
+        if ((convertValue.length != null && convertValue != "") || !omitIfDefault)
+            this.keyList.push(convertValue);
+    };
+
+    TextKey.prototype.getUrlValue = function () {
+        return this.keyList.join(",");
+    };
+
+    TextKey.prototype.getValues = function (texts) {
+        throw ("Can't call getValues on base class.");
+    };
+
+    TextKey.prototype.addEmpty = function () {
+        this.keyList.push("");
+    };
+
+    TextKey.prototype.isEmpty = function () {
+        var isEmpty = true;
+
+        for (var i = 0; i < this.keyList.length; i++) {
+            if (this.keyList[i]) {
+                isEmpty = false;
+                break;
+            }
+        }
+
+        return isEmpty;
+    };
+    return TextKey;
+})();
+var TextKeys = (function () {
+    function TextKeys() {
+        this.textKeys = new Array();
+        this.textKeys.push(new TextTextKey(), new TextColorTextKey(), new TextAlignmentTextKey(), new TextFontTextKey(), new TextMultiplierTextKey(), new TextPlacingPointXTextKey(), new TextPlacingPointYTextKey(), new TextSizeTextKey(), new TextStyleTextKey());
+    }
+    TextKeys.prototype.appendTexts = function (stringBuilder, xpoUrlTexts) {
+        if (xpoUrlTexts == null || xpoUrlTexts.length <= 0)
+            return stringBuilder;
+
+        for (var i = 0; i < this.textKeys.length; i++) {
+            var keyValue = this.textKeys[i].getValues(xpoUrlTexts);
+
+            if (keyValue) {
+                stringBuilder = stringBuilder.concat("&").concat(keyValue);
+            }
+        }
+
+        return stringBuilder;
+    };
+    return TextKeys;
+})();
+var TextTextKey = (function (_super) {
+    __extends(TextTextKey, _super);
+    function TextTextKey() {
+        _super.call(this);
+    }
+    TextTextKey.prototype.getValues = function (texts) {
+        var max = UrlGeneratorModule.getMaxObjectNumber(texts);
+
+        for (var i = 0; i <= max; i++) {
+            var index = texts.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlObject = texts[index];
+            if (urlObject != null)
+                this.addToList(urlObject.getText().getText(), false);
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.text=" + this.getUrlValue();
+    };
+    return TextTextKey;
+})(TextKey);
+var TextAlignmentTextKey = (function (_super) {
+    __extends(TextAlignmentTextKey, _super);
+    function TextAlignmentTextKey() {
+        _super.call(this);
+    }
+    TextAlignmentTextKey.prototype.getValues = function (texts) {
+        var max = UrlGeneratorModule.getMaxObjectNumber(texts);
+
+        for (var i = 0; i <= max; i++) {
+            var index = texts.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlObject = texts[index];
+            if (urlObject != null)
+                this.addToList(urlObject.getText().getAlignment());
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.text.align=" + this.getUrlValue();
+    };
+    return TextAlignmentTextKey;
+})(TextKey);
+var TextColorTextKey = (function (_super) {
+    __extends(TextColorTextKey, _super);
+    function TextColorTextKey() {
+        _super.call(this);
+    }
+    TextColorTextKey.prototype.getValues = function (texts) {
+        var max = UrlGeneratorModule.getMaxObjectNumber(texts);
+
+        for (var i = 0; i <= max; i++) {
+            var index = texts.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlObject = texts[index];
+            if (urlObject != null)
+                this.addToList(urlObject.getText().getColor(), false);
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.text.color=" + this.getUrlValue();
+    };
+    return TextColorTextKey;
+})(TextKey);
+var TextFontTextKey = (function (_super) {
+    __extends(TextFontTextKey, _super);
+    function TextFontTextKey() {
+        _super.call(this);
+    }
+    TextFontTextKey.prototype.getValues = function (texts) {
+        var max = UrlGeneratorModule.getMaxObjectNumber(texts);
+
+        for (var i = 0; i <= max; i++) {
+            var index = texts.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlObject = texts[index];
+            if (urlObject != null)
+                this.addToList(urlObject.getText().getFontname(), false);
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.text.font=" + this.getUrlValue();
+    };
+    return TextFontTextKey;
+})(TextKey);
+var TextMultiplierTextKey = (function (_super) {
+    __extends(TextMultiplierTextKey, _super);
+    function TextMultiplierTextKey() {
+        _super.call(this);
+    }
+    TextMultiplierTextKey.prototype.getValues = function (texts) {
+        var max = UrlGeneratorModule.getMaxObjectNumber(texts);
+
+        for (var i = 0; i <= max; i++) {
+            var index = texts.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlObject = texts[index];
+            if (urlObject != null)
+                this.addToList(urlObject.getText().getMultiplier());
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.text.multiplier=" + this.getUrlValue();
+    };
+    return TextMultiplierTextKey;
+})(TextKey);
+var TextPlacingPointXTextKey = (function (_super) {
+    __extends(TextPlacingPointXTextKey, _super);
+    function TextPlacingPointXTextKey() {
+        _super.call(this);
+    }
+    TextPlacingPointXTextKey.prototype.getValues = function (texts) {
+        var max = UrlGeneratorModule.getMaxObjectNumber(texts);
+
+        for (var i = 0; i <= max; i++) {
+            var index = texts.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlObject = texts[index];
+            if (urlObject != null)
+                this.addToList(urlObject.getText().getPlacingPointX());
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.text.px=" + this.getUrlValue();
+    };
+    return TextPlacingPointXTextKey;
+})(TextKey);
+var TextPlacingPointYTextKey = (function (_super) {
+    __extends(TextPlacingPointYTextKey, _super);
+    function TextPlacingPointYTextKey() {
+        _super.call(this);
+    }
+    TextPlacingPointYTextKey.prototype.getValues = function (texts) {
+        var max = UrlGeneratorModule.getMaxObjectNumber(texts);
+
+        for (var i = 0; i <= max; i++) {
+            var index = texts.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlObject = texts[index];
+            if (urlObject != null)
+                this.addToList(urlObject.getText().getPlacingPointY(), false);
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.text.py=" + this.getUrlValue();
+    };
+    return TextPlacingPointYTextKey;
+})(TextKey);
+var TextSizeTextKey = (function (_super) {
+    __extends(TextSizeTextKey, _super);
+    function TextSizeTextKey() {
+        _super.call(this);
+    }
+    TextSizeTextKey.prototype.getValues = function (texts) {
+        var max = UrlGeneratorModule.getMaxObjectNumber(texts);
+
+        for (var i = 0; i <= max; i++) {
+            var index = texts.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlObject = texts[index];
+            if (urlObject != null)
+                this.addToList(urlObject.getText().getFontsize());
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.text.size=" + this.getUrlValue();
+    };
+    return TextSizeTextKey;
+})(TextKey);
+var TextStyleTextKey = (function (_super) {
+    __extends(TextStyleTextKey, _super);
+    function TextStyleTextKey() {
+        _super.call(this);
+    }
+    TextStyleTextKey.prototype.getValues = function (texts) {
+        var max = UrlGeneratorModule.getMaxObjectNumber(texts);
+
+        for (var i = 0; i <= max; i++) {
+            var index = texts.map(function (e) {
+                return e.getIndex();
+            }).indexOf(i);
+
+            var urlObject = texts[index];
+            if (urlObject != null)
+                this.addToList(urlObject.getText().getFontStyle(), false);
+            else if (i != max)
+                this.addEmpty();
+        }
+
+        if (this.isEmpty())
+            return "";
+
+        return "p.text.style=" + this.getUrlValue();
+    };
+    return TextStyleTextKey;
+})(TextKey);
 var FluentXpoUrlColor = (function () {
     function FluentXpoUrlColor(color) {
         this.xpoUrlColor = new XpoUrlColor(color);
@@ -2388,13 +2781,19 @@ var FluentXpoUrlDesign = (function () {
 
         return this;
     };
+
+    FluentXpoUrlDesign.prototype.setAspectRatio = function (aspectRatio) {
+        this.xpoUrlDesign.setAspectRatio(aspectRatio);
+
+        return this;
+    };
     return FluentXpoUrlDesign;
 })();
 var FluentXpoUrlFactory = (function () {
     function FluentXpoUrlFactory() {
     }
-    FluentXpoUrlFactory.prototype.createFluentUrlGenerator = function (generator, urlType) {
-        return new FluentXpoUrlGenerator(generator, this.getUrlRequest(urlType));
+    FluentXpoUrlFactory.prototype.createFluentUrlGenerator = function (generator, urlType, canvasGenerator) {
+        return new FluentXpoUrlGenerator(generator, this.getUrlRequest(urlType), canvasGenerator);
     };
 
     FluentXpoUrlFactory.prototype.getUrlRequest = function (urltype) {
@@ -2410,7 +2809,7 @@ var FluentXpoUrlFactory = (function () {
     return FluentXpoUrlFactory;
 })();
 var FluentXpoUrlGenerator = (function () {
-    function FluentXpoUrlGenerator(generator, request) {
+    function FluentXpoUrlGenerator(generator, request, canvasGenerator) {
         if (typeof request === "undefined") { request = new XpoUrlRequest; }
         if (generator == null)
             throw ("Generator cannot be null.");
@@ -2419,6 +2818,7 @@ var FluentXpoUrlGenerator = (function () {
 
         this.generator = generator;
         this.request = request;
+        this.canvasGenerator = canvasGenerator;
     }
     FluentXpoUrlGenerator.prototype.ensureUrlType = function (urlRequest) {
         if (UrlGeneratorModule.UrlTypes[urlRequest.urlType] != null)
@@ -2585,8 +2985,18 @@ var FluentXpoUrlGenerator = (function () {
         return this;
     };
 
+    FluentXpoUrlGenerator.prototype.setCanvasContainerId = function (canvasContainerId) {
+        this.request.setCanvasContainerId(canvasContainerId);
+
+        return this;
+    };
+
     FluentXpoUrlGenerator.prototype.getUrl = function () {
         return this.generator.getUrl(this.request);
+    };
+
+    FluentXpoUrlGenerator.prototype.getCanvas = function () {
+        return this.canvasGenerator.getCanvas(this.request);
     };
     return FluentXpoUrlGenerator;
 })();
@@ -2705,20 +3115,8 @@ var FluentXpoUrlText = (function () {
         return this;
     };
 
-    FluentXpoUrlText.prototype.bold = function () {
-        this.xpoUrlText.decorations.push(UrlGeneratorModule.XpoUrlTextDecoration.bold);
-
-        return this;
-    };
-
-    FluentXpoUrlText.prototype.italic = function () {
-        this.xpoUrlText.decorations.push(UrlGeneratorModule.XpoUrlTextDecoration.italic);
-
-        return this;
-    };
-
-    FluentXpoUrlText.prototype.underline = function () {
-        this.xpoUrlText.decorations.push(UrlGeneratorModule.XpoUrlTextDecoration.underline);
+    FluentXpoUrlText.prototype.setFontStyle = function (fontStyle) {
+        this.xpoUrlText.setFontStyle(fontStyle);
 
         return this;
     };
@@ -2748,7 +3146,11 @@ var FluentXpoUrlText = (function () {
     };
 
     FluentXpoUrlText.prototype.setRotation = function (rotation) {
-        this.xpoUrlText.setRotation(rotation);
+        throw ("Not implemented.");
+    };
+
+    FluentXpoUrlText.prototype.setMultiplier = function (multiplier) {
+        this.xpoUrlText.setMultiplier(multiplier);
 
         return this;
     };
@@ -2874,6 +3276,13 @@ var XpoUrlDesign = (function () {
     };
     XpoUrlDesign.prototype.setRepeat = function (val) {
         this.repeat = val;
+    };
+
+    XpoUrlDesign.prototype.getAspectRatio = function () {
+        return this.aspectRatio;
+    };
+    XpoUrlDesign.prototype.setAspectRatio = function (val) {
+        this.aspectRatio = val;
     };
     return XpoUrlDesign;
 })();
@@ -3144,6 +3553,13 @@ var XpoUrlRequest = (function () {
     XpoUrlRequest.prototype.getCustomParameters = function () {
         return this.customParameters;
     };
+
+    XpoUrlRequest.prototype.getCanvasContainerId = function () {
+        return this.canvasContainerId;
+    };
+    XpoUrlRequest.prototype.setCanvasContainerId = function (val) {
+        this.canvasContainerId = val;
+    };
     return XpoUrlRequest;
 })();
 var XpoCoordinatesUrlRequest = (function (_super) {
@@ -3185,7 +3601,6 @@ var XpoUrlTemplate = (function () {
 var XpoUrlText = (function () {
     function XpoUrlText(text) {
         if (typeof text === "undefined") { text = ""; }
-        this.decorations = new Array();
         this.text = text;
     }
     XpoUrlText.prototype.getText = function () {
@@ -3223,11 +3638,11 @@ var XpoUrlText = (function () {
         this.alignment = val;
     };
 
-    XpoUrlText.prototype.getDecorations = function () {
-        return this.decorations;
+    XpoUrlText.prototype.getFontStyle = function () {
+        return this.fontStyle;
     };
-    XpoUrlText.prototype.setDecorations = function (val) {
-        this.decorations = val;
+    XpoUrlText.prototype.setFontStyle = function (val) {
+        this.fontStyle = val;
     };
 
     XpoUrlText.prototype.getDropX = function () {
@@ -3263,6 +3678,13 @@ var XpoUrlText = (function () {
     };
     XpoUrlText.prototype.setRotation = function (val) {
         this.rotation = val;
+    };
+
+    XpoUrlText.prototype.getMultiplier = function () {
+        return this.multiplier;
+    };
+    XpoUrlText.prototype.setMultiplier = function (val) {
+        this.multiplier = val;
     };
     return XpoUrlText;
 })();
@@ -3302,9 +3724,9 @@ var UrlGeneratorModule;
     var XpoUrlObjectTypes = UrlGeneratorModule.XpoUrlObjectTypes;
 
     (function (XpoUrlTextAlignment) {
-        XpoUrlTextAlignment[XpoUrlTextAlignment["Left"] = 1] = "Left";
-        XpoUrlTextAlignment[XpoUrlTextAlignment["Middle"] = 2] = "Middle";
-        XpoUrlTextAlignment[XpoUrlTextAlignment["Right"] = 3] = "Right";
+        XpoUrlTextAlignment[XpoUrlTextAlignment["Left"] = 0] = "Left";
+        XpoUrlTextAlignment[XpoUrlTextAlignment["Middle"] = 1] = "Middle";
+        XpoUrlTextAlignment[XpoUrlTextAlignment["Right"] = 2] = "Right";
     })(UrlGeneratorModule.XpoUrlTextAlignment || (UrlGeneratorModule.XpoUrlTextAlignment = {}));
     var XpoUrlTextAlignment = UrlGeneratorModule.XpoUrlTextAlignment;
 
@@ -3379,6 +3801,15 @@ var UrlGeneratorModule;
         XpoUrlOverlayOperations[XpoUrlOverlayOperations["ColoredMapping"] = 1] = "ColoredMapping";
     })(UrlGeneratorModule.XpoUrlOverlayOperations || (UrlGeneratorModule.XpoUrlOverlayOperations = {}));
     var XpoUrlOverlayOperations = UrlGeneratorModule.XpoUrlOverlayOperations;
+
+    (function (TextFontStyle) {
+        TextFontStyle[TextFontStyle["Regular"] = 0] = "Regular";
+        TextFontStyle[TextFontStyle["Bold"] = 1] = "Bold";
+        TextFontStyle[TextFontStyle["Italic"] = 2] = "Italic";
+        TextFontStyle[TextFontStyle["Underline"] = 4] = "Underline";
+        TextFontStyle[TextFontStyle["Strikeout"] = 8] = "Strikeout";
+    })(UrlGeneratorModule.TextFontStyle || (UrlGeneratorModule.TextFontStyle = {}));
+    var TextFontStyle = UrlGeneratorModule.TextFontStyle;
 
     
 

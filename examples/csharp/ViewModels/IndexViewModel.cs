@@ -17,5 +17,6 @@
         public string DesignMappedContrastSceneUrl { get; set; }
         public string SceneWithOverlay { get; set; }
         public string SceneWithMultipleOverlays { get; set; }
+        public string SceneWithText { get; set; }
     }
 }

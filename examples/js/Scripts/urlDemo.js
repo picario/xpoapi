@@ -441,6 +441,42 @@ UrlDemo.prototype.GetMultipleOverlaySceneUrl = function(width, height){
 							 .getUrl();
 }
 
+UrlDemo.prototype.GetTextSceneUrl = function(width, height){
+	// This function creates an image url for a piece of text rendered on a scene.
+	// The reason we don't set the height is because the render engine will calculate the correct height based on the width we provide.
+	// The primary key is used by our render engine to find the correct file to render the image.
+	// We use the reference id of the scene. This can be found in the PicarioXPO backend.
+	// We choose jpg as image type, but we can also choose png or bmp.
+	// The entitytype is always Scene when we want to render a scene so the render engine will use the scene file (.pfs). 
+	// We use the base url of our demo website as the absolute url, the url generator will add the baseurl to the generated url.
+	// We add a text object with a specific text.
+	// We choose what color should be used to render the text, this can be the hex value, a named color or a r_g_b format.
+	// We choose the fontname that should be used to render the text.
+	// By combining the font styles we can use multiple styles to render the text.
+	// We set the font size in pixels that should be used to render the text.
+	// We set the multiplier to get sharper rendered text.
+
+	var self = this;
+	var fluentUrlGenerator = this.GetFluentXpoImageUrlGenerator();
+    return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
+                             .setImageType(UrlGeneratorModule.XpoUrlImageTypes.Jpg)
+                             .setEntityType(UrlGeneratorModule.XpoUrlFileTypes.Scene)
+                             .setWidth(this.GetSmallestWidth(this.scene.displayWidth, width))
+                             .setAbsoluteUrl(this.baseUrl)
+							 .addObject( function(obj)
+							 {
+								 obj.text("Insert text here")
+									 .setFontStyle(UrlGeneratorModule.TextFontStyle.Bold | UrlGeneratorModule.TextFontStyle.Italic) 
+									 .setColor("green")
+									 .setFontName("Georgia")
+									 .setFontSize(150)
+									 .setAlignment(UrlGeneratorModule.XpoUrlTextAlignment.Middle)
+									 .setMultiplier(2);
+								 obj.xpoObject.index = 0;
+							 })
+							 .getUrl();
+}
+
 UrlDemo.prototype.GetSceneCoordsUrl = function() {
     var fluentUrlGenerator = this.fluentXpoUrlFactory.createFluentUrlGenerator(this.xpoUrlGenerator, UrlGeneratorModule.FluentXpoUrlType.Coordinates);
     return fluentUrlGenerator.setPrimaryKey(this.scene.referenceId)
