@@ -56,6 +56,7 @@
     <Compile Include="TextKeyExtractors\TextMultiplierTextKey.cs" />
     <Compile Include="TextKeyExtractors\TextPlacingPointXTextKey.cs" />
     <Compile Include="TextKeyExtractors\TextPlacingPointYTextKey.cs" />
+    <Compile Include="TextKeyExtractors\TextRotationTextKey.cs" />
     <Compile Include="TextKeyExtractors\TextSizeTextKey.cs" />
     <Compile Include="TextKeyExtractors\TextAlignmentTextKey.cs" />
     <Compile Include="TextKeyExtractors\TextKey.cs" />

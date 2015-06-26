@@ -24,6 +24,7 @@
     <TypeScriptCompile Include="UrlGenerators\FluentXpoUrlOverlay.ts" />
     <TypeScriptCompile Include="UrlGenerators\IXpoCanvasGenerator.ts" />
     <TypeScriptCompile Include="UrlGenerators\XpoUrlOverlay.ts" />
+    <TypeScriptCompile Include="XpoUrlGenerator\TextKeys.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\TextAlignmentTextKey.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\TextColorTextKey.ts" />
     <TypeScriptCompile Include="XpoUrlGenerator\TextFontTextKey.ts" />
