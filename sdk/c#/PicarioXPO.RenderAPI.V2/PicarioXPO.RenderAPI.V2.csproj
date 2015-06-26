@@ -52,7 +52,6 @@
     <Compile Include="OverlayKeyExtractors\NameOverlayKey.cs" />
     <Compile Include="OverlayKeyExtractors\OverlayKey.cs" />
     <Compile Include="TextKeyExtractors\TextColorTextKey.cs" />
-    <Compile Include="TextKeyExtractors\TextFontStyle.cs" />
     <Compile Include="TextKeyExtractors\TextFontTextKey.cs" />
     <Compile Include="TextKeyExtractors\TextMultiplierTextKey.cs" />
     <Compile Include="TextKeyExtractors\TextPlacingPointXTextKey.cs" />

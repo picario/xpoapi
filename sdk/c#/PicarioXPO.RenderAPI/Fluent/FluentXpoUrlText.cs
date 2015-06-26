@@ -127,5 +127,15 @@ namespace PicarioXPO.RenderAPI.Fluent
 
             return this;
         }
+
+        /// <summary>
+        /// Sets the multiplier for this object
+        /// </summary>
+        public FluentXpoUrlText SetMultiplier(double multiplier)
+        {
+            XpoUrlText.Multiplier = multiplier;
+
+            return this;
+        }
     }
 }

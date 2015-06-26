@@ -14,7 +14,7 @@ namespace PicarioXPO.RenderAPI.V2.TextKeyExtractors
             {
                 var urlObject = xpoUrlObjects.FirstOrDefault(x => x.Index == i);
                 if (urlObject != null)
-                    AddToList(urlObject.Text.Alignment, false);
+                    AddToList(urlObject.Text.Alignment);
                 else if (i != max)
                     AddEmpty();
             }
