@@ -52,6 +52,7 @@
     <Compile Include="Fluent\IFluentXpoUrlGenerator.cs" />
     <Compile Include="IXpoUrlFactory.cs" />
     <Compile Include="IXpoUrlGenerator.cs" />
+    <Compile Include="TextFontStyle.cs" />
     <Compile Include="XpoCoordinatesUrlRequest.cs" />
     <Compile Include="XpoImageUrlRequest.cs" />
     <Compile Include="XpoUrlColor.cs" />

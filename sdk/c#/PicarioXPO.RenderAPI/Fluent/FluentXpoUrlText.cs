@@ -60,32 +60,9 @@ namespace PicarioXPO.RenderAPI.Fluent
             return this;
         }
 
-        /// <summary>
-        /// Sets the text to be bold
-        /// </summary>
-        public FluentXpoUrlText Bold()
+        public FluentXpoUrlText SetFontStyle(TextFontStyle fontStyle)
         {
-            XpoUrlText.Decorations.Add(XpoUrlTextDecoration.Bold);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the text to be italic
-        /// </summary>
-        public FluentXpoUrlText Italic()
-        {
-            XpoUrlText.Decorations.Add(XpoUrlTextDecoration.Italic);
-
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the text to be underline
-        /// </summary>
-        public FluentXpoUrlText Underline()
-        {
-            XpoUrlText.Decorations.Add(XpoUrlTextDecoration.Underline);
+            XpoUrlText.FontStyle = fontStyle;
 
             return this;
         }

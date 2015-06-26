@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace PicarioXPO.RenderAPI
+﻿namespace PicarioXPO.RenderAPI
 {
     /// <summary>
     /// Represents an text from a Picario scene for the XPO URL generator
@@ -41,7 +39,7 @@ namespace PicarioXPO.RenderAPI
         /// To use more than one decoration use a comma (,) to separate.
         /// <see cref="XpoUrlTextDecoration"/>
         /// </summary>
-        public List<string> Decorations { get; set; }
+        public TextFontStyle FontStyle { get; set; }
 
         /// <summary>
         /// Gets or sets the drop x of this object
@@ -52,6 +50,11 @@ namespace PicarioXPO.RenderAPI
         /// Gets or sets the drop y of this object
         /// </summary>
         public double DropY { get; set; }
+
+        /// <summary>
+        /// Gets or sets the multiplier of this object
+        /// </summary>
+        public double Multiplier { get; set; }
 
         /// <summary>
         /// Gets or sets the placing point x of this object
@@ -72,10 +75,5 @@ namespace PicarioXPO.RenderAPI
         /// Gets or sets the rotation for this object (only used in combination with transformation)
         /// </summary>
         public int Rotation { get; set; }
-
-        public XpoUrlText()
-        {
-            Decorations = new List<string>();
-        }
     }
 }

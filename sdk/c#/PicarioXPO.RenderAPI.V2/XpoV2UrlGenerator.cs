@@ -27,6 +27,7 @@ namespace PicarioXPO.RenderAPI.V2
                 .AppendRequest(request)
                 .AppendColors(request.Objects.Where(x => x.Color != null))
                 .AppendDesigns(request.Objects.Where(x => x.Design != null))
+                .AppendTexts(request.Objects.Where(x => x.Text != null))
                 .AppendOverlays(request.Overlays);
             
             return stringBuilder.ToString();
@@ -76,6 +77,7 @@ namespace PicarioXPO.RenderAPI.V2
                 .AppendRequest(request)
                 .AppendColors(request.Objects.Where(x => x.Color != null))
                 .AppendDesigns(request.Objects.Where(x => x.Design != null))
+                .AppendTexts(request.Objects.Where(x => x.Text != null))
                 .AppendOverlays(request.Overlays);      
 
             return new XpoUrlParts(request.PrimaryKey, stringBuilder.ToString());

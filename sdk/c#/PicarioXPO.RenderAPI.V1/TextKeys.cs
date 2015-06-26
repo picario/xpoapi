@@ -31,7 +31,7 @@ namespace PicarioXPO.RenderAPI.V1
                     .Append(index, FontName, xpoUrlText.FontName)
                     .Append(index, FontSize, xpoUrlText.FontSize)
                     .Append(index, Alignment, xpoUrlText.Alignment)
-                    .Append(index, Decoration, xpoUrlText.Decorations.ToArray().Join(","))
+                    .Append(index, Decoration, xpoUrlText.FontStyle.ToString().Replace(" ", "").ToLower())
                     .Append(index, DropX, ConvertNumberToCultureNumber(xpoUrlText.DropX,americanCulture))
                     .Append(index, DropY, ConvertNumberToCultureNumber(xpoUrlText.DropY, americanCulture))
                     .Append(index, PlacingPointX, ConvertNumberToCultureNumber(xpoUrlText.PlacingPointX,americanCulture))
