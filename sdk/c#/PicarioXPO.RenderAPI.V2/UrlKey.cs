@@ -21,8 +21,8 @@ namespace PicarioXPO.RenderAPI.V2
 
             if (value is Enum)
                 keyList.Add(Convert.ToInt32(value).ToString(CultureInfo.InvariantCulture));
-            
-            keyList.Add(value.ToString());
+            else
+                keyList.Add(value.ToString());
         }
 
         protected void AddToList(double value, bool omitIfDefault = true)
