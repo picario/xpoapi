@@ -98,9 +98,7 @@
      *  Sets the rotation for this object (only used in combination with transformation)
      */
     setRotation(rotation: number) {
-        this.xpoUrlText.setRotation(rotation);
-
-        return this;
+        throw ("Not implemented.");
     }
 
     /*

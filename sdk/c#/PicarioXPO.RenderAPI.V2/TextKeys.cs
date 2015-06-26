@@ -25,7 +25,8 @@ namespace PicarioXPO.RenderAPI.V2
             new TextStyleTextKey(),
             new TextPlacingPointXTextKey(),
             new TextPlacingPointYTextKey(),
-            new TextMultiplierTextKey()
+            new TextMultiplierTextKey(),
+            new TextRotationTextKey()
         };
     }
 
