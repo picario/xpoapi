@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>PicarioXPO.DataAPI.NET.V1</id>
+    <version>1.0.0</version>
+    <title>XPO Data API .NET V1</title>
+    <description>SDK for .NET simplifies working with the XPO Data API v1</description>
+    <dependencies>
+		<group>
+      <dependency id="Newtonsoft.Json" version="[6.0.6,7.0.0)" />
+		</group>
+    <group targetFramework=".NETFramework4.5">
+	    <dependency id="Newtonsoft.Json" version="[6.0.6,7.0.0)" />
+    </group>
+    </dependencies>
+    <authors>Picario</authors>
+    <owners>Picario</owners>
+    <licenseUrl>http://www.picarioxpo.com/pricing-2/</licenseUrl>
+    <projectUrl>http://www.picarioxpo.com/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <iconUrl>http://www.lucrasoft.nl/static/picarioxpo-logo.png</iconUrl>
+    <tags>visualization xpo picarioxpo rendering API SDK</tags>
+  </metadata>
+  <files>
+    <file src="..\c#\PicarioXPO.DataAPI\bin\release\PicarioXPO.DataAPI.dll" target="lib" />
+  </files>
+</package>

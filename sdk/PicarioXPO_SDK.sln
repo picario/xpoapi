@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JS", "JS", "{5E21A179-3291-4027-BEC8-A98DC7C1A251}"
 EndProject
@@ -22,10 +22,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7DFB9F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuSpecs", "NuSpecs", "{38A999A3-351B-4BD6-9A70-F7B66A9506CC}"
 	ProjectSection(SolutionItems) = preProject
+		build\XPO Data API - V1 .NET.nuspec = build\XPO Data API - V1 .NET.nuspec
 		build\XPO Render API - V1 .NET.nuspec = build\XPO Render API - V1 .NET.nuspec
 		build\XPO Render API - V2 .NET.nuspec = build\XPO Render API - V2 .NET.nuspec
 		build\XPO Render API - V2 JS.nuspec = build\XPO Render API - V2 JS.nuspec
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicarioXPO.DataAPI", "c#\PicarioXPO.DataAPI\PicarioXPO.DataAPI.csproj", "{A95B6804-AE01-44F6-A5B0-A4374E2DC7A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +52,10 @@ Global
 		{D82DBBD6-16BD-4A2E-A349-5CDC5AD9A160}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D82DBBD6-16BD-4A2E-A349-5CDC5AD9A160}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D82DBBD6-16BD-4A2E-A349-5CDC5AD9A160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A95B6804-AE01-44F6-A5B0-A4374E2DC7A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A95B6804-AE01-44F6-A5B0-A4374E2DC7A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A95B6804-AE01-44F6-A5B0-A4374E2DC7A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A95B6804-AE01-44F6-A5B0-A4374E2DC7A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +65,6 @@ Global
 		{47A5D002-AE68-48B9-8BD2-2749C6331899} = {140F0071-56FE-4372-B7A7-863A234C2519}
 		{1A9234D1-6CCC-40C9-95CD-489E0E0411ED} = {140F0071-56FE-4372-B7A7-863A234C2519}
 		{D82DBBD6-16BD-4A2E-A349-5CDC5AD9A160} = {5E21A179-3291-4027-BEC8-A98DC7C1A251}
+		{A95B6804-AE01-44F6-A5B0-A4374E2DC7A3} = {140F0071-56FE-4372-B7A7-863A234C2519}
 	EndGlobalSection
 EndGlobal
