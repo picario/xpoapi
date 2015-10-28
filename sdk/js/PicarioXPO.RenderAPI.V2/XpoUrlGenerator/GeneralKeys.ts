@@ -15,6 +15,7 @@
     private coords = "p.coords";
     private watermark = "watermark";
     private frame = "p.frame";
+    private renderMode = "p.mode";
 
     queryStringFormat = "&{0}={1}";
 
@@ -34,6 +35,7 @@
                                      .concat(this.getQueryStringValue(this.highlightObject, request.getHighlightObject()))
                                      .concat(this.getQueryStringValue(this.watermark, request.getWatermarkImage()))
                                      .concat(this.getQueryStringValue(this.frame, request.getFrame()))
+                                     .concat(this.getQueryStringValue(this.renderMode, request.getSceneRenderMode()))
                                      .appendDictionary(request.customParameters);
 
         if (request.urlType == UrlGeneratorModule.UrlTypes.Coords) {

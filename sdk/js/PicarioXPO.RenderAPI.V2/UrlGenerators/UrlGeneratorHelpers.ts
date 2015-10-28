@@ -195,6 +195,14 @@
         Strikeout = 8,
     }
 
+    /*  <summary>
+     *  What mode to use when rendering a scene
+     */
+    export enum XpoUrlRenderModes {
+        Normal = 0,
+        FreeObjects = 1
+    }
+
     /* <summary>
      * Defines an overlay location based on an x and y location
      */

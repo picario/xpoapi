@@ -9,6 +9,7 @@
     private width: number;
     customParameters: Collections.Dictionary<string, Object>;
     private frame: number;
+    private renderMode: UrlGeneratorModule.XpoUrlRenderModes;
     private watermarkImage: string;
     private absoluteUrl: string;
     private sceneThumbnailObjectNumber: number;
@@ -196,6 +197,12 @@
      */
     getFrame(): number { return this.frame; }
     setFrame(val: number) { this.frame = val; }
+
+    /*
+    *  Specifies the RenderMode for a scene request (only for V2)
+    */
+    getSceneRenderMode(): UrlGeneratorModule.XpoUrlRenderModes { return this.renderMode; }
+    setSceneRenderMode(val: UrlGeneratorModule.XpoUrlRenderModes) { this.renderMode = val; }
 
     /*
      *  Custom parameters and values to use in the URL

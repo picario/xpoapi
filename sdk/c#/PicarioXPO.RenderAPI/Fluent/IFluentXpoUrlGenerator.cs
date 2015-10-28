@@ -161,6 +161,11 @@ namespace PicarioXPO.RenderAPI.Fluent
         IFluentXpoUrlGenerator SetFrame(int frame);
 
         /// <summary>
+        /// Sets the rendermode for this scene request
+        /// </summary>
+        IFluentXpoUrlGenerator SetSceneRenderMode(XpoUrlRenderModes renderMode);
+
+        /// <summary>
         /// Returns the URL generated using these parameters
         /// </summary>
         string GetUrl();

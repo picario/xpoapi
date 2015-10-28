@@ -318,7 +318,14 @@ namespace PicarioXPO.RenderAPI.Fluent
 
             return this;
         }
-        
+
+        public IFluentXpoUrlGenerator SetSceneRenderMode(XpoUrlRenderModes renderMode)
+        {
+            request.SceneRenderMode = renderMode;
+
+            return this;
+        }
+
         public string GetUrl()
         {
             return generator.GetUrl(request);
