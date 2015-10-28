@@ -146,6 +146,11 @@
         setFrame(frame: number): IFluentXpoUrlGenerator;
 
         /*
+        * Sets the Render mode when rendering a scene
+        */
+        setSceneRenderMode(mode: UrlGeneratorModule.XpoUrlRenderModes);
+
+        /*
          * Specifies the id of the container to render the canvas in
          */
         setCanvasContainerId(canvasContainerId: string): IFluentXpoUrlGenerator;

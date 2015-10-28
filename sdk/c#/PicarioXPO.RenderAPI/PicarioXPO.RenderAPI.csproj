@@ -57,6 +57,7 @@
     <Compile Include="XpoImageUrlRequest.cs" />
     <Compile Include="XpoUrlColor.cs" />
     <Compile Include="XpoUrlFileTypes.cs" />
+    <Compile Include="XpoUrlRenderModes.cs" />
     <Compile Include="XpoUrlImageTypes.cs" />
     <Compile Include="XpoUrlOverlayLocation.cs" />
     <Compile Include="XpoUrlOverlayOperations.cs" />

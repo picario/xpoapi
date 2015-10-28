@@ -47,6 +47,11 @@ namespace PicarioXPO.RenderAPI
         public XpoUrlFileTypes FileType { get; set; }
 
         /// <summary>
+        /// Gets or sets the scene render mode
+        /// </summary>
+        public XpoUrlRenderModes SceneRenderMode { get; set; }
+
+        /// <summary>
         /// Gets or sets the width of the output image for this URL
         /// </summary>
         public int Width { get; set; }
@@ -65,6 +70,8 @@ namespace PicarioXPO.RenderAPI
         /// Gets or sets the ouput image type for this URL
         /// </summary>
         public XpoUrlImageTypes ImageType { get; set; }
+
+
 
         /// <summary>
         /// Enables or disables debugging for this URL

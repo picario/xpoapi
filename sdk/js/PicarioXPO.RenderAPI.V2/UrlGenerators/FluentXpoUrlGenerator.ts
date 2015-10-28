@@ -234,26 +234,47 @@
         return this;
     }
 
+    /*
+     * Sets the absolute url to use when generating a URL
+     */
     setAbsoluteUrl(absoluteUrl: string) {
         this.ensureUrlType(this.request).setAbsoluteUrl(absoluteUrl);
 
         return this;
     }
 
+    /*
+     * Sets the watermark image for this request
+     */
     setWatermarkImage(watermarkImageName: string) {
         this.ensureUrlType(this.request).setWatermarkImage(watermarkImageName);
 
         return this;
     }
 
+    /*
+     * Adds a custom parameter to the URL
+     */
     addCustom(key: string, value: Object) {
         this.request.customParameters.setValue(key, value);
 
         return this;
     }
 
+    /*
+     * Sets the frame number to use when rendering
+     */
     setFrame(frame: number) {
         this.request.setFrame(frame);
+
+        return this;
+    }
+
+    /*
+     * Sets the Render mode when rendering a scene
+     */
+    setSceneRenderMode(mode: UrlGeneratorModule.XpoUrlRenderModes) {
+        this.request.setSceneRenderMode(mode);
 
         return this;
     }

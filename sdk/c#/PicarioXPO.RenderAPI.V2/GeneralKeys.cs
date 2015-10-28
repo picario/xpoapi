@@ -21,6 +21,7 @@ namespace PicarioXPO.RenderAPI.V2
         public const string Coords = "p.coords";
         public const string Watermark = "watermark";
         public const string Frame = "p.frame";
+        public const string RenderMode = "p.mode";
 
         public static StringBuilder AppendRequest(this StringBuilder stringBuilder, XpoUrlRequest request)
         {
@@ -39,6 +40,7 @@ namespace PicarioXPO.RenderAPI.V2
                 .Append(HighlightObject, request.HighlightObject)
                 .Append(Watermark, request.WatermarkImage)
                 .Append(Frame, request.Frame)
+                .Append(RenderMode, request.SceneRenderMode)
                 .AppendDictionary(request.CustomParameters);
 
             if (request is XpoCoordinatesUrlRequest)
