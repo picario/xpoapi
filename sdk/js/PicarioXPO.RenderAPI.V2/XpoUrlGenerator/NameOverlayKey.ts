@@ -4,7 +4,7 @@
         var max = UrlGeneratorModule.getMaxOverlayNumber(overlays);
 
         for (var i = 0; i <= max; i++) {
-            var index = overlays.map(e => e.getIndex()).indexOf(i);
+            var index = overlays.map(e => e.getIndex()).lastIndexOf(i);
 
             var urlOverlay = overlays[index];
             if (urlOverlay != null)

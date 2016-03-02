@@ -12,7 +12,7 @@ namespace PicarioXPO.RenderAPI.V2.TextKeyExtractors
 
             for (var i = 0; i <= max; i++)
             {
-                var urlObject = xpoUrlObjects.FirstOrDefault(x => x.Index == i);
+                var urlObject = xpoUrlObjects.LastOrDefault(x => x.Index == i);
                 if (urlObject != null)
                     AddToList(urlObject.Text.FontName, false);
                 else if (i != max)

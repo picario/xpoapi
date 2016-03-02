@@ -4,7 +4,7 @@
         var max = UrlGeneratorModule.getMaxObjectNumber(designs);
 
         for (var i = 0; i <= max; i++) {
-            var index = designs.map(e => e.getIndex()).indexOf(i);
+            var index = designs.map(e => e.getIndex()).lastIndexOf(i);
 
             var urlObject = designs[index];
             if (urlObject != null)
