@@ -183,3 +183,4 @@ FakesAssemblies/
 **/sdk/js/**/*.js
 **/sdk/js/**/*.js.map
 **/sdk/js/compiled
+examples/csharp/.vs/*

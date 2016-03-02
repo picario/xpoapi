@@ -15,7 +15,7 @@ namespace PicarioXPO.RenderAPI.V2.DesignKeyExtractors
             
             for (var i = 0; i <= max; i++)
             {
-                var urlObject = xpoUrlObjects.FirstOrDefault(x => x.Index == i);
+                var urlObject = xpoUrlObjects.LastOrDefault(x => x.Index == i);
                 if (urlObject != null && !string.IsNullOrEmpty(urlObject.Design.EntityName))
                     AddToList(ConvertToBase64UrlString(urlObject.Design.EntityName));
                 else if (i != max)
