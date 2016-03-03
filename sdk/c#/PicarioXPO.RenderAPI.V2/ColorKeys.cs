@@ -20,7 +20,7 @@ namespace PicarioXPO.RenderAPI.V2
 
             for (var i = 0; i <= max; i++)
             {
-                var colorObject = xpoUrlObjects.FirstOrDefault(x => x.Index == i);
+                var colorObject = xpoUrlObjects.LastOrDefault(x => x.Index == i);
                 if (colorObject == null)
                     colorBuilder.Append(",");
                 else

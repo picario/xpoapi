@@ -12,7 +12,7 @@ namespace PicarioXPO.RenderAPI.V2.OverlayKeyExtractors
 
             for (var i = 0; i <= max; i++)
             {
-                var urlObject = xpoUrlOverlays.FirstOrDefault(x => x.Index == i);
+                var urlObject = xpoUrlOverlays.LastOrDefault(x => x.Index == i);
                 if (urlObject != null)
                     AddToList(urlObject.OverlayLocation);
                 else if (i != max)

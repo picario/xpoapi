@@ -15,7 +15,7 @@ namespace PicarioXPO.RenderAPI.V2.OverlayKeyExtractors
 
             for (var i = 0; i <= max; i++)
             {
-                var urlOverlay = urlOverlays.FirstOrDefault(x => x.Index == i);
+                var urlOverlay = urlOverlays.LastOrDefault(x => x.Index == i);
                 if (urlOverlay != null && !string.IsNullOrEmpty(urlOverlay.OverlayName))
                     AddToList(ConvertToBase64UrlString(urlOverlay.OverlayName));
                 else if (i != max)

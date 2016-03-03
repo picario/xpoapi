@@ -12,7 +12,7 @@ namespace PicarioXPO.RenderAPI.V2.DesignKeyExtractors
             
             for (var i = 0; i <= max; i++)
             {
-                var urlObject = xpoUrlObjects.FirstOrDefault(x => x.Index == i);
+                var urlObject = xpoUrlObjects.LastOrDefault(x => x.Index == i);
                 if (urlObject != null)
                     AddToList(urlObject.Design.Height);
                 else if (i != max)
