@@ -31,7 +31,7 @@
                                      .concat(this.getQueryStringValue(this.textureRepeat, this.getRepeatMethod(request)))
                                      .concat(this.getQueryStringValue(this.outputQuality, request.getOutputQuality()))
                                      .concat(this.getQueryStringValue(this.imageType, this.getFormat(request.getImageType())))
-                                     .concat(this.getQueryStringValue(this.sceneThumbnailObjectNumber, request.getSceneThumbnailObjectNumber()))
+                                     .concat(this.getQueryStringValue(this.sceneThumbnailObjectNumber, this.getStringValue(request.getSceneThumbnailObjectNumber())))
                                      .concat(this.getQueryStringValue(this.highlightObject, request.getHighlightObject()))
                                      .concat(this.getQueryStringValue(this.watermark, request.getWatermarkImage()))
                                      .concat(this.getQueryStringValue(this.frame, request.getFrame()))
@@ -90,5 +90,9 @@
         }
 
         return "";
+    }
+
+    private getStringValue(value: any) {
+        return value != null ? value.toString() : "";
     }
 }
