@@ -326,6 +326,13 @@ namespace PicarioXPO.RenderAPI.Fluent
             return this;
         }
 
+        public IFluentXpoUrlGenerator SetFastRender(bool fastRender)
+        {
+            EnsureUrlType<XpoImageUrlRequest>(request).FastRender = fastRender;
+
+            return this;
+        }
+
         public string GetUrl()
         {
             return generator.GetUrl(request);

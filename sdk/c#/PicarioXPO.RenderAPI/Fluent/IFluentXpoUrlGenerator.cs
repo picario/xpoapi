@@ -166,6 +166,13 @@ namespace PicarioXPO.RenderAPI.Fluent
         IFluentXpoUrlGenerator SetSceneRenderMode(XpoUrlRenderModes renderMode);
 
         /// <summary>
+        /// Enables or disablesd fast rendering
+        /// 
+        /// Default is false, fast rendering uses small versions of design images
+        /// </summary>
+        IFluentXpoUrlGenerator SetFastRender(bool fastRender);
+
+        /// <summary>
         /// Returns the URL generated using these parameters
         /// </summary>
         string GetUrl();

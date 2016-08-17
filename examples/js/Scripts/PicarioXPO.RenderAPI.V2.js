@@ -1596,10 +1596,11 @@ var GeneralKeys = (function () {
         this.watermark = "watermark";
         this.frame = "p.frame";
         this.renderMode = "p.mode";
+        this.fastRender = "p.fastrender";
         this.queryStringFormat = "&{0}={1}";
     }
     GeneralKeys.prototype.appendRequest = function (stringBuilder, request) {
-        stringBuilder = stringBuilder.concat("?1=1").concat(this.getQueryStringValue(this.width, request.getWidth())).concat(this.getQueryStringValue(this.backgroundColor, request.getBackgroundColor())).concat(this.getQueryStringValue(this.caching, this.getCachingMethod(request))).concat(this.getQueryStringValue(this.height, request.getHeight())).concat(this.getQueryStringValue(this.designCaching, request.getDesignCaching())).concat(this.getQueryStringValue(this.resizeMethod, this.getResizeMethod(request))).concat(this.getQueryStringValue(this.textureRepeat, this.getRepeatMethod(request))).concat(this.getQueryStringValue(this.outputQuality, request.getOutputQuality())).concat(this.getQueryStringValue(this.imageType, this.getFormat(request.getImageType()))).concat(this.getQueryStringValue(this.sceneThumbnailObjectNumber, request.getSceneThumbnailObjectNumber())).concat(this.getQueryStringValue(this.highlightObject, request.getHighlightObject())).concat(this.getQueryStringValue(this.watermark, request.getWatermarkImage())).concat(this.getQueryStringValue(this.frame, request.getFrame())).concat(this.getQueryStringValue(this.renderMode, request.getSceneRenderMode())).appendDictionary(request.customParameters);
+        stringBuilder = stringBuilder.concat("?1=1").concat(this.getQueryStringValue(this.width, request.getWidth())).concat(this.getQueryStringValue(this.backgroundColor, request.getBackgroundColor())).concat(this.getQueryStringValue(this.caching, this.getCachingMethod(request))).concat(this.getQueryStringValue(this.height, request.getHeight())).concat(this.getQueryStringValue(this.designCaching, request.getDesignCaching())).concat(this.getQueryStringValue(this.resizeMethod, this.getResizeMethod(request))).concat(this.getQueryStringValue(this.textureRepeat, this.getRepeatMethod(request))).concat(this.getQueryStringValue(this.outputQuality, request.getOutputQuality())).concat(this.getQueryStringValue(this.imageType, this.getFormat(request.getImageType()))).concat(this.getQueryStringValue(this.sceneThumbnailObjectNumber, this.getStringValue(request.getSceneThumbnailObjectNumber()))).concat(this.getQueryStringValue(this.highlightObject, request.getHighlightObject())).concat(this.getQueryStringValue(this.watermark, request.getWatermarkImage())).concat(this.getQueryStringValue(this.frame, request.getFrame())).concat(this.getQueryStringValue(this.renderMode, request.getSceneRenderMode())).concat(this.getQueryStringValue(this.fastRender, request.getFastRender())).appendDictionary(request.customParameters);
         if (request.urlType == 2 /* Coords */) {
             stringBuilder = stringBuilder.concat(this.getQueryStringValue(this.coords, true));
         }
@@ -1643,6 +1644,9 @@ var GeneralKeys = (function () {
                 return "canvas";
         }
         return "";
+    };
+    GeneralKeys.prototype.getStringValue = function (value) {
+        return value != null ? value.toString() : "";
     };
     return GeneralKeys;
 })();
@@ -2519,6 +2523,10 @@ var FluentXpoUrlGenerator = (function () {
         this.request.setCanvasContainerId(canvasContainerId);
         return this;
     };
+    FluentXpoUrlGenerator.prototype.setFastRender = function (fastRender) {
+        this.ensureUrlType(this.request).setFastRender(fastRender);
+        return this;
+    };
     FluentXpoUrlGenerator.prototype.getUrl = function () {
         return this.generator.getUrl(this.request);
     };
@@ -3000,6 +3008,12 @@ var XpoUrlRequest = (function () {
     };
     XpoUrlRequest.prototype.setCanvasContainerId = function (val) {
         this.canvasContainerId = val;
+    };
+    XpoUrlRequest.prototype.getFastRender = function () {
+        return this.fastRender;
+    };
+    XpoUrlRequest.prototype.setFastRender = function (val) {
+        this.fastRender = val;
     };
     return XpoUrlRequest;
 })();
