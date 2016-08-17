@@ -285,6 +285,16 @@
         return this;
     }
 
+    /*
+     * Enables or disables fast rendering
+     *  Default is false, fast rendering uses small versions of design images
+     */
+    setFastRender(fastRender: boolean) {
+        this.ensureUrlType(this.request).setFastRender(fastRender);
+
+        return this;
+    }
+
     getUrl() {
         return this.generator.getUrl(this.request);
     }
