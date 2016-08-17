@@ -15,7 +15,7 @@
     <tags>visualization xpo picarioxpo rendering API SDK</tags>
   </metadata>
   <files>
-    <file src="..\js\compiledJS\PicarioXPO.RenderAPI.V2.js" target="Content\Scripts\PicarioXPO.RenderAPI.V2.js" />
-    <file src="..\js\compiledDTS\PicarioXPO.RenderAPI.V2.d.ts" target="Content\Scripts\PicarioXPO.RenderAPI.V2.d.ts" />
+    <file src="..\js\compiled\PicarioXPO.RenderAPI.V2.js" target="Content\Scripts\PicarioXPO.RenderAPI.V2.js" />
+    <file src="..\js\compiled\PicarioXPO.RenderAPI.V2.d.ts" target="Content\Scripts\PicarioXPO.RenderAPI.V2.d.ts" />
   </files>
 </package>
