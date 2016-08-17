@@ -22,6 +22,7 @@ namespace PicarioXPO.RenderAPI.V2
         public const string Watermark = "watermark";
         public const string Frame = "p.frame";
         public const string RenderMode = "p.mode";
+        public const string FastRender = "p.fastrender";
 
         public static StringBuilder AppendRequest(this StringBuilder stringBuilder, XpoUrlRequest request)
         {
@@ -41,6 +42,7 @@ namespace PicarioXPO.RenderAPI.V2
                 .Append(Watermark, request.WatermarkImage)
                 .Append(Frame, request.Frame)
                 .Append(RenderMode, request.SceneRenderMode)
+                .Append(FastRender, request.FastRender)
                 .AppendDictionary(request.CustomParameters);
 
             if (request is XpoCoordinatesUrlRequest)

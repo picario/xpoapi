@@ -27,6 +27,7 @@
     private resizeMethod: UrlGeneratorModule.XpoUrlResizeMethods;
     private height: number;
     private canvasContainerId: string;
+    private fastRender: boolean;
     urlType: UrlGeneratorModule.UrlTypes;
 
     /*
@@ -214,4 +215,11 @@
      */
     getCanvasContainerId(): string { return this.canvasContainerId; }
     setCanvasContainerId(val: string) { this.canvasContainerId = val; }
+
+    /*
+     *  Enables or disables fast rendering
+     *  Default is false, fast rendering uses small versions of design images
+     */
+    getFastRender(): boolean { return this.fastRender; }
+    setFastRender(val: boolean) { this.fastRender = val; }
 }

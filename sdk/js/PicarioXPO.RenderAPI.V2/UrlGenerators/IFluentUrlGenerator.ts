@@ -164,5 +164,11 @@
          * Returns the Canvas generated using these parameters
          */
         getCanvas(): HTMLCanvasElement;
+
+        /*
+         * Enables or disables fast rendering
+         *  Default is false, fast rendering uses small versions of design images
+         */
+        setFastRender(fastRender: boolean): IFluentXpoUrlGenerator;
     }
 }

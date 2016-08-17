@@ -1369,6 +1369,7 @@ declare class GeneralKeys {
     private watermark;
     private frame;
     private renderMode;
+    private fastRender;
     queryStringFormat: string;
     appendRequest(stringBuilder: string, request: XpoUrlRequest): string;
     private getQueryStringValue(key, value);
@@ -1376,6 +1377,7 @@ declare class GeneralKeys {
     private getRepeatMethod(request);
     private getFormat(imageType);
     private getResizeMethod(request);
+    private getStringValue(value);
 }
 declare class GlossDesignKey extends DesignKey {
     getValues(designs: Array<XpoUrlObject>): string;
@@ -1552,6 +1554,7 @@ declare class FluentXpoUrlGenerator implements UrlGeneratorModule.IFluentXpoUrlG
     setFrame(frame: number): FluentXpoUrlGenerator;
     setSceneRenderMode(mode: UrlGeneratorModule.XpoUrlRenderModes): FluentXpoUrlGenerator;
     setCanvasContainerId(canvasContainerId: string): FluentXpoUrlGenerator;
+    setFastRender(fastRender: boolean): FluentXpoUrlGenerator;
     getUrl(): string;
     getCanvas(): HTMLCanvasElement;
 }
@@ -1627,6 +1630,7 @@ declare module UrlGeneratorModule {
         setCanvasContainerId(canvasContainerId: string): IFluentXpoUrlGenerator;
         getUrl(): string;
         getCanvas(): HTMLCanvasElement;
+        setFastRender(fastRender: boolean): IFluentXpoUrlGenerator;
     }
 }
 declare module UrlGeneratorModule {
@@ -1768,6 +1772,7 @@ declare class XpoUrlRequest {
     private resizeMethod;
     private height;
     private canvasContainerId;
+    private fastRender;
     urlType: UrlGeneratorModule.UrlTypes;
     constructor();
     getPrimaryKey(): string;
@@ -1822,6 +1827,8 @@ declare class XpoUrlRequest {
     getCustomParameters(): Collections.Dictionary<string, Object>;
     getCanvasContainerId(): string;
     setCanvasContainerId(val: string): void;
+    getFastRender(): boolean;
+    setFastRender(val: boolean): void;
 }
 declare class XpoCoordinatesUrlRequest extends XpoUrlRequest {
     constructor();

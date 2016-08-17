@@ -162,7 +162,14 @@ namespace PicarioXPO.RenderAPI
         /// <summary>
         /// Custom parameters and values to use in the URL
         /// </summary>
-        public Dictionary<string, object> CustomParameters { get; private set; } 
+        public Dictionary<string, object> CustomParameters { get; private set; }
+
+        /// <summary>
+        /// Enables or disables fast rendering
+        ///
+        /// Default is false, fast rendering uses small versions of design images
+        /// </summary>
+        public bool FastRender { get; set; }
 
         #endregion "Properties"
 
