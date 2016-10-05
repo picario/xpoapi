@@ -28,6 +28,7 @@
     private height: number;
     private canvasContainerId: string;
     private fastRender: boolean;
+    private fastRenderSet: boolean;
     urlType: UrlGeneratorModule.UrlTypes;
 
     /*
@@ -221,5 +222,7 @@
      *  Default is false, fast rendering uses small versions of design images
      */
     getFastRender(): boolean { return this.fastRender; }
-    setFastRender(val: boolean) { this.fastRender = val; }
+    setFastRender(val: boolean) { this.fastRender = val; this.fastRenderSet = true; }
+
+    getFastRenderSet(): boolean { return this.fastRenderSet; }
 }

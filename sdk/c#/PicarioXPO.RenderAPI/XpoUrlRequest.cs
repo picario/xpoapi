@@ -169,7 +169,7 @@ namespace PicarioXPO.RenderAPI
         ///
         /// Default is false, fast rendering uses small versions of design images
         /// </summary>
-        public bool FastRender { get; set; }
+        public bool? FastRender { get; set; }
 
         #endregion "Properties"
 

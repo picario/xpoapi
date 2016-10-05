@@ -37,8 +37,10 @@
                                      .concat(this.getQueryStringValue(this.watermark, request.getWatermarkImage()))
                                      .concat(this.getQueryStringValue(this.frame, request.getFrame()))
                                      .concat(this.getQueryStringValue(this.renderMode, request.getSceneRenderMode()))
-                                     .concat(this.getQueryStringValue(this.fastRender, request.getFastRender()))
                                      .appendDictionary(request.customParameters);
+
+        if (request.getFastRenderSet())
+            stringBuilder = stringBuilder.concat(this.getQueryStringValue(this.fastRender, request.getFastRender()));
 
         if (request.urlType == UrlGeneratorModule.UrlTypes.Coords) {
             stringBuilder = stringBuilder.concat(this.getQueryStringValue(this.coords, true));
