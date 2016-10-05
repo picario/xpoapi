@@ -11,9 +11,9 @@ namespace PicarioXPO.RenderAPI.V2.Extensions
             return stringBuilder.Append(key, value ? "1" : omitIfDefault ? "" : "0", omitIfDefault);
         }
 
-        public static StringBuilder Append(this StringBuilder stringBuilder, string key, bool? value, bool omitIfDefault = true)
+        public static StringBuilder Append(this StringBuilder stringBuilder, string key, bool? value)
         {
-            return value.HasValue ? stringBuilder.Append(key, value.Value ? "1" : omitIfDefault ? "" : "0", omitIfDefault) : stringBuilder;
+            return value.HasValue ? stringBuilder.Append(key, value.Value ? "1" : "0", false) : stringBuilder;
         }
 
         public static StringBuilder Append<T>(this StringBuilder stringBuilder, string key, T value, bool omitIfDefault = true) 

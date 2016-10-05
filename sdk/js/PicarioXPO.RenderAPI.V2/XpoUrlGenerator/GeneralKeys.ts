@@ -40,7 +40,7 @@
                                      .appendDictionary(request.customParameters);
 
         if (request.getFastRenderSet())
-            stringBuilder = stringBuilder.concat(this.getQueryStringValue(this.fastRender, request.getFastRender()));
+            stringBuilder = stringBuilder.concat(this.getQueryStringValueForce(this.fastRender, request.getFastRender()));
 
         if (request.urlType == UrlGeneratorModule.UrlTypes.Coords) {
             stringBuilder = stringBuilder.concat(this.getQueryStringValue(this.coords, true));
@@ -55,6 +55,11 @@
 
         return this.queryStringFormat.format(key, value);
     }
+
+    private getQueryStringValueForce(key: string, value: any) {
+        return this.queryStringFormat.format(key, value);
+    }
+
 
     private getCachingMethod(request: XpoUrlRequest){
         return request.getCaching() ? "Default" : "No";
