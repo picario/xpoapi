@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JS", "JS", "{5E21A179-3291-4027-BEC8-A98DC7C1A251}"
 EndProject
@@ -30,6 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuSpecs", "NuSpecs", "{38A9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicarioXPO.DataAPI", "c#\PicarioXPO.DataAPI\PicarioXPO.DataAPI.csproj", "{A95B6804-AE01-44F6-A5B0-A4374E2DC7A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicarioXPO.BabylonSDK", "js\PicarioXPO.BabylonSDK\PicarioXPO.BabylonSDK.csproj", "{9A0DDA5D-64CC-4543-8B86-8433D72B5B3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{A95B6804-AE01-44F6-A5B0-A4374E2DC7A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A95B6804-AE01-44F6-A5B0-A4374E2DC7A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A95B6804-AE01-44F6-A5B0-A4374E2DC7A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A0DDA5D-64CC-4543-8B86-8433D72B5B3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A0DDA5D-64CC-4543-8B86-8433D72B5B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A0DDA5D-64CC-4543-8B86-8433D72B5B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A0DDA5D-64CC-4543-8B86-8433D72B5B3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,5 +72,6 @@ Global
 		{1A9234D1-6CCC-40C9-95CD-489E0E0411ED} = {140F0071-56FE-4372-B7A7-863A234C2519}
 		{D82DBBD6-16BD-4A2E-A349-5CDC5AD9A160} = {5E21A179-3291-4027-BEC8-A98DC7C1A251}
 		{A95B6804-AE01-44F6-A5B0-A4374E2DC7A3} = {140F0071-56FE-4372-B7A7-863A234C2519}
+		{9A0DDA5D-64CC-4543-8B86-8433D72B5B3F} = {5E21A179-3291-4027-BEC8-A98DC7C1A251}
 	EndGlobalSection
 EndGlobal
