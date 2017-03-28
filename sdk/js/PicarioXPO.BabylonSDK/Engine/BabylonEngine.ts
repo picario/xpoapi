@@ -8,9 +8,11 @@
         private currentScene: BABYLON.Scene;
         private environment: Classes.Environment;
         private camera: BABYLON.ArcRotateCamera;
+        private meshClickCallback: Function;
 
-        constructor(canvasSelector: string) {
+        constructor(canvasSelector: string, meshClickCallback: Function) {
             this.restApiService = new Services.RestApiService();
+            this.meshClickCallback = meshClickCallback;
 
             if (BABYLON.Engine.isSupported()) {
                 this.canvas = <HTMLCanvasElement>document.getElementById(canvasSelector);
@@ -98,6 +100,16 @@
             this.engine.runRenderLoop(() => {
                 this.currentScene.render();
             });
+
+            this.currentScene.onPointerDown = (evt, pickResult) => {
+                 if(evt.button > 0)
+                    return;
+                 
+                 if (pickResult.hit && pickResult.pickedMesh) {
+                     if (typeof this.meshClickCallback === "function")
+                         this.meshClickCallback(pickResult.pickedMesh);
+                 }
+             };
         }
 
         private getMeshByName = (meshName: string) => {
