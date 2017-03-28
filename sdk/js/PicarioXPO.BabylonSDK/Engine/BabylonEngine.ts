@@ -67,6 +67,22 @@
             });
         }
 
+        public setCameraPosition = (x: number, y: number, z: number) => {
+            this.setCameraPositionAnimation(x, y, z);
+            this.currentScene.beginAnimation(this.currentScene.activeCamera, 0, 120, false);
+        }
+
+        public setCameraTarget = (x: number, y: number, z: number) => {
+            this.setCameraTargetAnimation(x, y, z);
+            this.currentScene.beginAnimation(this.currentScene.activeCamera, 0, 120, false); 
+        }
+
+        public setCameraPositionAndTarget = (positionX: number, positionY: number, positionZ: number, targetX: number, targetY: number, targetZ: number) => {
+            this.setCameraPositionAnimation(positionX, positionY, positionZ);
+            this.setCameraTargetAnimation(targetX, targetY, targetZ);
+            this.currentScene.beginAnimation(this.currentScene.activeCamera, 0, 120, false); 
+        }
+
         private loadNewScene = (loadedCallback: Function) => {
             BABYLON.SceneLoader.Load("", this.currentModel.babylonUrl, this.engine, (scene) => {
                 this.currentScene = scene;
@@ -149,6 +165,42 @@
 
             sceneMesh = null;
             textureMaterial = null;
+        }
+
+        private setCameraTargetAnimation = (x: number, y: number, z: number) => {
+            var targetXAnimation = new BABYLON.Animation("targetXAnimation", "target.x", 60, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+            var targetYAnimation = new BABYLON.Animation("targetYAnimation", "target.y", 60, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+            var targetZAnimation = new BABYLON.Animation("targetZAnimation", "target.z", 60, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+
+            var targetXKeys = [{ frame: 0, value: (<BABYLON.ArcRotateCamera>this.currentScene.activeCamera).target.x }, { frame: 120, value: x }];
+            var targetYKeys = [{ frame: 0, value: (<BABYLON.ArcRotateCamera>this.currentScene.activeCamera).target.y }, { frame: 120, value: y }];
+            var targetZKeys = [{ frame: 0, value: (<BABYLON.ArcRotateCamera>this.currentScene.activeCamera).target.z }, { frame: 120, value: z }];
+
+            targetXAnimation.setKeys(targetXKeys);
+            targetYAnimation.setKeys(targetYKeys);
+            targetZAnimation.setKeys(targetZKeys);
+
+            this.currentScene.activeCamera.animations.push(targetXAnimation);
+            this.currentScene.activeCamera.animations.push(targetYAnimation);
+            this.currentScene.activeCamera.animations.push(targetZAnimation);
+        }
+
+        private setCameraPositionAnimation = (x: number, y: number, z: number) => {
+            var alphaAnimation = new BABYLON.Animation("alphaAnimation", "alpha", 60, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+            var betaAnimation = new BABYLON.Animation("betaAnimation", "beta", 60, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+            var radiusAnimation = new BABYLON.Animation("radiusAnimation", "radius", 60, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+
+            var alphaKeys = [{ frame: 0, value: (<BABYLON.ArcRotateCamera>this.currentScene.activeCamera).alpha }, { frame: 120, value: x }];
+            var betaKeys = [{ frame: 0, value: (<BABYLON.ArcRotateCamera>this.currentScene.activeCamera).beta }, { frame: 120, value: y }];
+            var radiusKeys = [{ frame: 0, value: (<BABYLON.ArcRotateCamera>this.currentScene.activeCamera).radius }, { frame: 120, value: z }];
+
+            alphaAnimation.setKeys(alphaKeys);
+            betaAnimation.setKeys(betaKeys);
+            radiusAnimation.setKeys(radiusKeys);
+
+            this.currentScene.activeCamera.animations.push(alphaAnimation);
+            this.currentScene.activeCamera.animations.push(betaAnimation);
+            this.currentScene.activeCamera.animations.push(radiusAnimation);
         }
     }
 }
