@@ -110,11 +110,14 @@
             this.camera.setTarget(new BABYLON.Vector3(0, size.boundingBox.center.y, 0));
             this.camera.attachControl(this.canvas);
 
+            this.currentScene.activeCamera = this.camera;
+
             if (typeof loadedCallback === "function")
                 loadedCallback();
 
             this.engine.runRenderLoop(() => {
-                this.currentScene.render();
+                if(this.currentScene.activeCamera)
+                    this.currentScene.render();
             });
 
             this.currentScene.onPointerDown = (evt, pickResult) => {
