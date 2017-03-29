@@ -1,9 +1,17 @@
 ﻿module BabylonSdk.Services {
     export class RestApiService {
+        private xpoUrl: string;
+        private xpoApiKey: string;
+
+        constructor(xpoUrl: string, xpoApiKey: string) {
+            this.xpoUrl = xpoUrl;
+            this.xpoApiKey = xpoApiKey;
+        }
+
         public getModelByName(modelName: string): JQueryXHR {
             return $.ajax({
                 type: 'POST',
-                url: 'http://localhost:63639/xpo/api/v2/models/query?api_key=5420d4187ceb48c19eb6416a46c8562e',
+                url: this.xpoUrl + '/xpo/api/v2/models/query?api_key=' + this.xpoApiKey,
                 data: {
                     searchTerm: modelName,
                     skip: 0,
@@ -21,7 +29,7 @@
         public getEnvironmentByName(environmentName: string): JQueryXHR {
             return $.ajax({
                 type: 'GET',
-                url: 'http://localhost:63639/xpo/api/v2/environments/getbyname/' + environmentName + '?api_key=5420d4187ceb48c19eb6416a46c8562e',
+                url: this.xpoUrl + '/xpo/api/v2/environments/getbyname/' + environmentName + '?api_key=' + this.xpoApiKey,
                 data: {
                     searchTerm: environmentName,
                     skip: 0,
@@ -39,7 +47,7 @@
         public getMaterialByName(materialRestrictionLabels: string[], materialName: string, take: number): JQueryXHR {
             return $.ajax({
                 type: 'POST',
-                url: 'http://localhost:63639/xpo/api/v2/materials/query?api_key=5420d4187ceb48c19eb6416a46c8562e',
+                url: this.xpoUrl + '/xpo/api/v2/materials/query?api_key=' + this.xpoApiKey,
                 data: {
                     labelIds: materialRestrictionLabels,
                     searchTerm: materialName,

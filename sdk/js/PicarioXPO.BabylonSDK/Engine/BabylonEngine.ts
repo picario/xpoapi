@@ -10,8 +10,8 @@
         private camera: BABYLON.ArcRotateCamera;
         private meshClickCallback: Function;
 
-        constructor(canvasSelector: string, meshClickCallback: Function) {
-            this.restApiService = new Services.RestApiService();
+        constructor(xpoUrl: string, xpoApiKey: string, canvasSelector: string, meshClickCallback: Function) {
+            this.restApiService = new Services.RestApiService(xpoUrl, xpoApiKey);
             this.meshClickCallback = meshClickCallback;
 
             if (BABYLON.Engine.isSupported()) {

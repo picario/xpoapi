@@ -65,17 +65,22 @@
   <ItemGroup>
     <TypeScriptCompile Include="Classes\meshObject.ts" />
     <TypeScriptCompile Include="Classes\environment.ts" />
+    <TypeScriptCompile Include="Classes\environmentsApiResult.ts" />
+    <TypeScriptCompile Include="Classes\materialsApiResult.ts" />
+    <TypeScriptCompile Include="Classes\material.ts" />
+    <TypeScriptCompile Include="Classes\modelsApiResult.ts" />
     <TypeScriptCompile Include="Classes\model.ts" />
-    <TypeScriptCompile Include="Engine\BabylonEngine.ts" />
+    <TypeScriptCompile Include="Engine\babylonEngine.ts" />
     <TypeScriptCompile Include="PicarioXPO.BabylonSDK.ts" />
-    <TypeScriptCompile Include="Scripts\typings\babylonjs\index.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\babylonjs\babylonjs.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\custom\custom.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Services\restApiService.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
