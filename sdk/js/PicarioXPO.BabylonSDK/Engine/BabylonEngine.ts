@@ -10,7 +10,13 @@
         private camera: BABYLON.ArcRotateCamera;
         private meshClickCallback: Function;
 
-        constructor(xpoUrl: string, xpoApiKey: string, canvasSelector: string, meshClickCallback: Function) {
+        /*
+            Create a new babylon sdk engine.
+            xpoUrl: required to query the XPO for models, environments and materials.
+            xpoApiKey: required to make API calls, can be found in XPO in the admin menu -> user management.
+            canvasSelector: jQuery selector to find the canvas element to bind Babylon to. Example: #renderCanvas
+        */
+        constructor(xpoUrl: string, xpoApiKey: string, canvasSelector: string, meshClickCallback?: Function) {
             this.restApiService = new Services.RestApiService(xpoUrl, xpoApiKey);
             this.meshClickCallback = meshClickCallback;
 
@@ -26,6 +32,14 @@
                 throw new Error("Babylon is not supported by this browser");
         }
 
+        /*
+            Load a model with a specific environment.
+            The SDK will query the XPO for a model with the given name and an environment with the given name.
+            Can throw an error when:
+            - Model can't be found
+            - Model doesn't have a babylon file
+            - Environment can't be found
+        */
         public loadModelWithEnvironment = (modelName: string, environmentName: string, loadedCallback: Function) => {
             this.restApiService.getModelByName(modelName).then((data: Classes.ModelsApiResult) => {
                 if (data.totalRows === 1) {
@@ -49,15 +63,28 @@
             });
         }
 
+        /*
+            Gets the mesh info for all the meshes in the loaded model
+        */
         public getModelMeshInfo = (): Classes.MeshObject[] => {
             return this.currentModel.meshes;
         }
 
+        /*
+            Queries XPO and returns a list of the materials that are allowed to placed on the specified mesh
+        */
         public getAllowedMaterials = (meshName: string): JQueryPromise<Classes.Material[]> => {
             var mesh = this.getMeshByName(meshName);
             return this.restApiService.getMaterialByName(mesh ? mesh.materialRestrictionLabels : [], "", 25);
         }
 
+        /*
+            Place a material on a specified mesh.
+            Use the name of the material and the name of the mesh.
+            Can throw an error when:
+            - Material can't be found
+            - Material doesn't have a diffuse image to render
+        */
         public addMaterialToMesh = (materialName: string, meshName: string) => {
             var mesh = this.getMeshByName(meshName);
             this.restApiService.getMaterialByName(mesh ? mesh.materialRestrictionLabels : [], materialName, 1).then((data: Classes.MaterialsApiResult) => {
@@ -71,16 +98,28 @@
             });
         }
 
+        /*
+            Set the x/y/z position of the camera.
+            An animation will play to make the camera 'fly' to the given position.
+        */
         public setCameraPosition = (x: number, y: number, z: number) => {
             this.setCameraPositionAnimation(x, y, z);
             this.currentScene.beginAnimation(this.currentScene.activeCamera, 0, 120, false);
         }
 
+        /*
+            Set the x/y/z target of the camera, this is where the camera is pointing towards.
+            An animation will play to make the camera turn to the given target.
+        */
         public setCameraTarget = (x: number, y: number, z: number) => {
             this.setCameraTargetAnimation(x, y, z);
             this.currentScene.beginAnimation(this.currentScene.activeCamera, 0, 120, false); 
         }
 
+        /*
+            Set the x/y/z position and x/y/z target of the camera in one call.
+            An animation will play to make the camera 'fly' and turn to the given points.
+        */
         public setCameraPositionAndTarget = (positionX: number, positionY: number, positionZ: number, targetX: number, targetY: number, targetZ: number) => {
             this.setCameraPositionAnimation(positionX, positionY, positionZ);
             this.setCameraTargetAnimation(targetX, targetY, targetZ);
