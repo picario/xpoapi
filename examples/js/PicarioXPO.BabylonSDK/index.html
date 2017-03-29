@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>PicarioXPO Babylon SDK Example</title>
+	<link rel='stylesheet' href='Css/style.css' />
+	<!-- jQuery Version 1.11.0 -->
+    <script src="Scripts/jquery-1.11.0.js"></script>
+	<script src="Scripts/hand-1.3.7.js"></script>
+    <script src="http://www.babylonjs.com/cannon.js"></script>
+    <script src="http://www.babylonjs.com/oimo.js"></script>
+	<script src="http://cdn.babylonjs.com/2-5/babylon.js"></script>
+	
+	<script src="Scripts/PicarioXPO.BabylonSDK.js"></script>
+	<script src="Scripts/index.js"></script>
+</head>
+
+<body>
+	<div class="header">
+        <img src="Images/logo.png" alt="Picario" title="Picario">
+        <select id="modelList"></select>
+    </div>
+    <div class="info">
+        <img src="Images/360.png" />
+        <div>
+            Drag object to view it from all angles.
+        </div>
+    </div>
+
+	<div id="canvasZone">
+        <canvas id="renderCanvas"></canvas>
+        <div class="loadscreen">
+            <div class="container">
+                <div class="loader"></div>
+                Loading scene...
+            </div>
+        </div>
+    </div>
+	
+    <div class="imageText">
+        <img src="Images/push.png" alt="push" title="push" />
+        <div>
+            Style it your way <b>and</b> <br/>
+            <b>Change the materials</b>
+        </div>
+    </div>
+	<div class="objectsContainer">
+	</div>
+</body>
+
+</html>

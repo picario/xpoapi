@@ -17,6 +17,12 @@
             canvasSelector: jQuery selector to find the canvas element to bind Babylon to. Example: #renderCanvas
         */
         constructor(xpoUrl: string, xpoApiKey: string, canvasSelector: string, meshClickCallback?: Function) {
+            if (!xpoUrl)
+                throw new Error("Invalid XPO URL");
+
+            if (!xpoApiKey)
+                throw new Error("Invalid API key");
+
             this.restApiService = new Services.RestApiService(xpoUrl, xpoApiKey);
             this.meshClickCallback = meshClickCallback;
 
