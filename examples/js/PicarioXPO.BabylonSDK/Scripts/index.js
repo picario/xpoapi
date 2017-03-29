@@ -1,11 +1,14 @@
-﻿$(document).ready(function () {
+﻿//IMPORTANT: fill in your own XPO URL and API key!
+var xpoUrl = "";
+var xpoApiKey = "";
+
+$(document).ready(function () {
 	var meshes, materials;	
 	loadAllModels();
 	
 	//Create a new babylon sdk engine with a given XPO URL, API key and canvas selector.
 	//Added an example on how to use the callback for a click on a mesh.
-	//IMPORTANT: fill in your own XPO URL and API key!
-	var engine = new BabylonSdk.BabylonEngine("YOUR_XPO_URL", "YOUR_XPO_API_KEY", "renderCanvas", function(pickedMesh){		
+	var engine = new BabylonSdk.BabylonEngine(xpoUrl, xpoApiKey, "renderCanvas", function(pickedMesh){		
 		var foundMeshes = meshes.filter(function(mesh){
 			return mesh.name == pickedMesh.id;
 		});
@@ -89,9 +92,12 @@
 	
 	//Load all the available models from XPO to display in a dropdown so the user can switch between models.
 	function loadAllModels(){
+		if(!xpoUrl || !xpoApiKey)
+			return;
+		
 		$.ajax({
 			type: 'POST',
-			url: 'http://localhost:63639/xpo/api/v2/models/query?api_key=5420d4187ceb48c19eb6416a46c8562e',
+			url: xpoUrl + '/xpo/api/v2/models/query?api_key=' + xpoApiKey,
 			data: {
 				skip: 0,
 				take: 25
@@ -105,7 +111,7 @@
 	
 	//Add the models to a dropdown list
 	function displayModels(){
-		var html = '';
+		var html = '<option value="">Select a model</option>';
 		for(var i =0; i<models.length; i++){
 			html += '<option value="' + models[i].name + '">' + models[i].name + '</option>';
 		}		
@@ -117,10 +123,12 @@
 			$("select#modelList").hide();
 		
 		$("select#modelList").on('change', function(){
-			var model = engine.loadModelWithEnvironment($(this).val(), "White room with reflecting floor", function(){
-				meshes = engine.getModelMeshInfo();			
-				displayMeshes();			
-			});
+			if($(this).val()){
+				var model = engine.loadModelWithEnvironment($(this).val(), "White room with reflecting floor", function(){
+					meshes = engine.getModelMeshInfo();			
+					displayMeshes();			
+				});
+			}
 		});
 	}
 });
