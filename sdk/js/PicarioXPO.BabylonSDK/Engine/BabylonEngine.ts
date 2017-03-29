@@ -22,28 +22,30 @@
                 window.onresize = () => {
                     this.engine.resize();
                 };
-
-            } else {
-                //show message??
-            }
+            } else
+                throw new Error("Babylon is not supported by this browser");
         }
 
         public loadModelWithEnvironment = (modelName: string, environmentName: string, loadedCallback: Function) => {
             this.restApiService.getModelByName(modelName).then((data: Classes.ModelsApiResult) => {
-                if (data.totalRows === 1 && data.values[0].babylonUrl) {
-                    this.currentModel = data.values[0];
-                    this.restApiService.getEnvironmentByName(environmentName).then((data: Classes.Environment[]) => {
-                        if (data.length === 1 && data[0].environmentJs) {
-                            this.environment = data[0];
-                            $("body").append("<script>" + this.environment.environmentJs + "</script>");
-                            this.loadNewScene(loadedCallback);
-                        } else {
-                            //show message??
-                        }
-                    });
-                } else {
-                    //show message??
-                }
+                if (data.totalRows === 1) {
+                    if (data.values[0].babylonUrl) {
+                        this.currentModel = data.values[0];
+                        this.restApiService.getEnvironmentByName(environmentName).then((data: Classes.Environment[]) => {
+                            if (data.length === 1) {
+                                if (data[0].environmentJs) {
+                                    this.environment = data[0];
+                                    $("body").append("<script>" + this.environment.environmentJs + "</script>");
+                                }
+
+                                this.loadNewScene(loadedCallback);
+                            } else
+                                throw new Error("No environment found with name: " + environmentName);
+                        });
+                    } else
+                        throw new Error("No model with name: " + modelName + " has no babylon file");
+                } else
+                    throw new Error("No model found with name: " + modelName);
             });
         }
 
@@ -59,11 +61,13 @@
         public addMaterialToMesh = (materialName: string, meshName: string) => {
             var mesh = this.getMeshByName(meshName);
             this.restApiService.getMaterialByName(mesh ? mesh.materialRestrictionLabels : [], materialName, 1).then((data: Classes.MaterialsApiResult) => {
-                if (data.totalRows === 1 && data.values[0].renderDiffuseUrl) {
-                    this.addMaterial(mesh, data.values[0]);
-                } else {
-                    //show message??
-                }
+                if (data.totalRows === 1) {
+                    if (data.values[0].renderDiffuseUrl)
+                        this.addMaterial(mesh, data.values[0]);
+                    else
+                        throw new Error("Material with name: " + materialName + " has no diffuse render URL");
+                } else
+                    throw new Error("No material found with name: " + materialName);
             });
         }
 
