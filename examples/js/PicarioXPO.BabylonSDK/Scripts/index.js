@@ -1,6 +1,7 @@
 ﻿//IMPORTANT: fill in your own XPO URL and API key!
 var xpoUrl = "";
 var xpoApiKey = "";
+var modelName = "";
 
 $(document).ready(function () {
 	var meshes, materials;	
@@ -18,10 +19,12 @@ $(document).ready(function () {
 	});
 	
 	//Load a specific model and environment to display inside Babylon.
-	var model = engine.loadModelWithEnvironment("ArmChairFrancesco", "White room with reflecting floor", function(){
-		meshes = engine.getModelMeshInfo();			
-		displayMeshes();			
-	});
+	if(modelName){
+		var model = engine.loadModelWithEnvironment(modelName, "White room with reflecting floor", function(){
+			meshes = engine.getModelMeshInfo();			
+			displayMeshes();			
+		});
+	}
 	
 	//Show the material information on screen so the user can click on a material to apply it to a specific mesh.
 	function displayMaterials(meshName){
@@ -130,5 +133,11 @@ $(document).ready(function () {
 				});
 			}
 		});
+		
+		//Only load first model if there isn't already a model to load
+		if(models.length && !modelName){
+			$("select#modelList").val(models[0].name);
+			$("select#modelList").trigger('change');
+		}
 	}
 });
