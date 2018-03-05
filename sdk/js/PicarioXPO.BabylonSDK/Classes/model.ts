@@ -4,5 +4,8 @@
         name: string;
         meshes: MeshObject[];
         babylonUrl: string;
+        defaultCameraPosition: number[];
+        boundingBoxMin: number[];
+        boundingBoxMax: number[];
     }
 }

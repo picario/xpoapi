@@ -6,7 +6,7 @@ var BabylonSdk;
             function Environment() {
             }
             return Environment;
-        })();
+        }());
         Classes.Environment = Environment;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -18,7 +18,7 @@ var BabylonSdk;
             function EnvironmentsApiResult() {
             }
             return EnvironmentsApiResult;
-        })();
+        }());
         Classes.EnvironmentsApiResult = EnvironmentsApiResult;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -30,7 +30,7 @@ var BabylonSdk;
             function Material() {
             }
             return Material;
-        })();
+        }());
         Classes.Material = Material;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -42,7 +42,7 @@ var BabylonSdk;
             function MaterialsApiResult() {
             }
             return MaterialsApiResult;
-        })();
+        }());
         Classes.MaterialsApiResult = MaterialsApiResult;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -54,7 +54,7 @@ var BabylonSdk;
             function MeshObject() {
             }
             return MeshObject;
-        })();
+        }());
         Classes.MeshObject = MeshObject;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -66,7 +66,7 @@ var BabylonSdk;
             function Model() {
             }
             return Model;
-        })();
+        }());
         Classes.Model = Model;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -78,7 +78,7 @@ var BabylonSdk;
             function ModelsApiResult() {
             }
             return ModelsApiResult;
-        })();
+        }());
         Classes.ModelsApiResult = ModelsApiResult;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -144,7 +144,7 @@ var BabylonSdk;
                 });
             };
             return RestApiService;
-        })();
+        }());
         Services.RestApiService = RestApiService;
     })(Services = BabylonSdk.Services || (BabylonSdk.Services = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -222,12 +222,20 @@ var BabylonSdk;
                 if (typeof setupEnvironment === "function")
                     setupEnvironment(scene);
                 _this.camera = new BABYLON.ArcRotateCamera("arcCamera1", 0, 1, 10, new BABYLON.Vector3(0, 0, 0), _this.currentScene);
-                var size = _this.currentScene.meshes[0].getBoundingInfo();
-                _this.camera.wheelPrecision = 75;
-                _this.camera.pinchPrecision = 75;
+                var min = new BABYLON.Vector3(_this.currentModel.boundingBoxMin[0], _this.currentModel.boundingBoxMin[1], _this.currentModel.boundingBoxMin[2]);
+                var max = new BABYLON.Vector3(_this.currentModel.boundingBoxMax[0], _this.currentModel.boundingBoxMax[1], _this.currentModel.boundingBoxMax[2]);
+                _this.camera.setTarget(min.add(max.subtract(min).scale(0.5)));
+                var camera = _this.currentModel.defaultCameraPosition;
+                if (camera) {
+                    _this.camera.setPosition(new BABYLON.Vector3(camera[0], camera[1], camera[2]));
+                }
+                else {
+                    _this.camera.setPosition(new BABYLON.Vector3(_this.camera.target.x, _this.camera.target.y + (max.y - _this.camera.target.y) * 3, _this.camera.target.z + (max.z - _this.camera.target.z) * 6));
+                }
+                _this.camera.wheelPrecision = 1000 / _this.camera.position.subtract(_this.camera.target).length();
+                _this.camera.pinchPrecision = _this.camera.wheelPrecision;
                 _this.camera.minZ = 0;
                 _this.camera.lowerRadiusLimit = 0.1;
-                _this.camera.setTarget(new BABYLON.Vector3(0, size.boundingBox.center.y, 0));
                 _this.camera.attachControl(_this.canvas);
                 _this.currentScene.activeCamera = _this.camera;
                 if (typeof loadedCallback === "function")
@@ -323,21 +331,6 @@ var BabylonSdk;
                 throw new Error("Babylon is not supported by this browser");
         }
         return BabylonEngine;
-    })();
+    }());
     BabylonSdk.BabylonEngine = BabylonEngine;
 })(BabylonSdk || (BabylonSdk = {}));
-//* PicarioXPO Babylon SDK
-//*
-//* Authors : Picario
-/// <reference path="scripts/typings/custom/custom.d.ts" />
-/// <reference path="scripts/typings/babylonjs/babylonjs.d.ts" />
-/// <reference path="scripts/typings/jquery/jquery.d.ts" />
-/// <reference path="classes/environment.ts" />
-/// <reference path="classes/environmentsapiresult.ts" />
-/// <reference path="classes/material.ts" />
-/// <reference path="classes/materialsapiresult.ts" />
-/// <reference path="classes/meshobject.ts" />
-/// <reference path="classes/model.ts" />
-/// <reference path="classes/modelsapiresult.ts" />
-/// <reference path="services/restapiservice.ts" />
-/// <reference path="engine/babylonengine.ts" /> 

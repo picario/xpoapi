@@ -150,13 +150,25 @@
                                                       1, //vertical viewpoint
                                                       10, //distance viewpoint
                                                       new BABYLON.Vector3(0, 0, 0), this.currentScene);
-
-            var size = this.currentScene.meshes[0].getBoundingInfo();
-            this.camera.wheelPrecision = 75;
-            this.camera.pinchPrecision = 75;
+            
+            var min = new BABYLON.Vector3(this.currentModel.boundingBoxMin[0], this.currentModel.boundingBoxMin[1], this.currentModel.boundingBoxMin[2]);
+            var max = new BABYLON.Vector3(this.currentModel.boundingBoxMax[0], this.currentModel.boundingBoxMax[1], this.currentModel.boundingBoxMax[2]);
+            this.camera.setTarget(min.add(max.subtract(min).scale(0.5)));
+            var camera = this.currentModel.defaultCameraPosition;
+            if (camera) {
+                this.camera.setPosition(new BABYLON.Vector3(camera[0], camera[1], camera[2]));
+            }
+            else {
+                this.camera.setPosition(new BABYLON.Vector3(
+                    this.camera.target.x,
+                    this.camera.target.y + (max.y - this.camera.target.y) * 3,
+                    this.camera.target.z + (max.z - this.camera.target.z) * 6
+                ));
+            }
+            this.camera.wheelPrecision = 1000/this.camera.position.subtract(this.camera.target).length();
+            this.camera.pinchPrecision = this.camera.wheelPrecision;
             this.camera.minZ = 0;
             this.camera.lowerRadiusLimit = 0.1;
-            this.camera.setTarget(new BABYLON.Vector3(0, size.boundingBox.center.y, 0));
             this.camera.attachControl(this.canvas);
 
             this.currentScene.activeCamera = this.camera;
