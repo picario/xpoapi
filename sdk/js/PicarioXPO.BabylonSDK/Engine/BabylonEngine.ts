@@ -48,7 +48,7 @@
         */
         public loadModelWithEnvironment = (modelName: string, environmentName: string, loadedCallback: Function) => {
             this.restApiService.getModelByName(modelName).then((data: Classes.ModelsApiResult) => {
-                if (data.totalRows === 1) {
+                if (data.values.length === 1) {
                     if (data.values[0].babylonUrl) {
                         this.currentModel = data.values[0];
                         this.restApiService.getEnvironmentByName(environmentName).then((data: Classes.Environment[]) => {
@@ -201,26 +201,27 @@
 
         private addMaterial = (mesh: Classes.MeshObject, material: Classes.Material) => {
             var textureMaterial: BABYLON.StandardMaterial = <BABYLON.StandardMaterial>this.currentScene.getMaterialByName(material.name + mesh.name);
+            
             if (!textureMaterial)
                 textureMaterial = new BABYLON.StandardMaterial(material.name + mesh.name, this.currentScene);
-
+            textureMaterial.backFaceCulling = false;
             if (material.renderDiffuseUrl) {
                 textureMaterial.diffuseTexture = new BABYLON.Texture(material.renderDiffuseUrl, this.currentScene);
-                textureMaterial.diffuseTexture.uScale = 1;
-                textureMaterial.diffuseTexture.vScale = 1;
+                textureMaterial.diffuseTexture.uScale = material.materialOptions.repeatX;
+                textureMaterial.diffuseTexture.vScale = material.materialOptions.repeatY;
             }
 
             if (material.renderBumpUrl) {
                 textureMaterial.bumpTexture = new BABYLON.Texture(material.renderBumpUrl, this.currentScene);
-                textureMaterial.bumpTexture.uScale = 1;
-                textureMaterial.bumpTexture.vScale = 1;
+                textureMaterial.bumpTexture.uScale = material.materialOptions.repeatX;
+                textureMaterial.bumpTexture.vScale = material.materialOptions.repeatY;
                 textureMaterial.bumpTexture.level = 1;
             }
             
             if (material.renderSpecularUrl) {
                 textureMaterial.specularTexture = new BABYLON.Texture(material.renderSpecularUrl, this.currentScene);
-                textureMaterial.specularTexture.uScale = 1;
-                textureMaterial.specularTexture.vScale = 1;
+                textureMaterial.specularTexture.uScale = material.materialOptions.repeatX;
+                textureMaterial.specularTexture.vScale = material.materialOptions.repeatY;
             }
 
             var sceneMesh = this.currentScene.getMeshByName(mesh.name);

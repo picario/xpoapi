@@ -8,5 +8,11 @@
         renderDiffuseUrl: string;
         renderBumpUrl: string;
         renderSpecularUrl: string;
+        materialOptions: MaterialOptions;
+    }
+
+    export class MaterialOptions {
+        repeatX : number;
+        repeatY : number;
     }
 }
