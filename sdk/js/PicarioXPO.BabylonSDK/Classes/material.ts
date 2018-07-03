@@ -13,6 +13,9 @@
 
     export class MaterialOptions {
         repeatX : number;
-        repeatY : number;
+        repeatY: number;
+        metallic: number;
+        alpha: number;
+        roughness: number;
     }
 }

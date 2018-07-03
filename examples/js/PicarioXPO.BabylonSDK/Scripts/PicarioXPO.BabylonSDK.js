@@ -6,7 +6,7 @@ var BabylonSdk;
             function Environment() {
             }
             return Environment;
-        }());
+        })();
         Classes.Environment = Environment;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -18,7 +18,7 @@ var BabylonSdk;
             function EnvironmentsApiResult() {
             }
             return EnvironmentsApiResult;
-        }());
+        })();
         Classes.EnvironmentsApiResult = EnvironmentsApiResult;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -30,8 +30,14 @@ var BabylonSdk;
             function Material() {
             }
             return Material;
-        }());
+        })();
         Classes.Material = Material;
+        var MaterialOptions = (function () {
+            function MaterialOptions() {
+            }
+            return MaterialOptions;
+        })();
+        Classes.MaterialOptions = MaterialOptions;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
 var BabylonSdk;
@@ -42,7 +48,7 @@ var BabylonSdk;
             function MaterialsApiResult() {
             }
             return MaterialsApiResult;
-        }());
+        })();
         Classes.MaterialsApiResult = MaterialsApiResult;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -54,7 +60,7 @@ var BabylonSdk;
             function MeshObject() {
             }
             return MeshObject;
-        }());
+        })();
         Classes.MeshObject = MeshObject;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -66,7 +72,7 @@ var BabylonSdk;
             function Model() {
             }
             return Model;
-        }());
+        })();
         Classes.Model = Model;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -78,7 +84,7 @@ var BabylonSdk;
             function ModelsApiResult() {
             }
             return ModelsApiResult;
-        }());
+        })();
         Classes.ModelsApiResult = ModelsApiResult;
     })(Classes = BabylonSdk.Classes || (BabylonSdk.Classes = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -144,7 +150,7 @@ var BabylonSdk;
                 });
             };
             return RestApiService;
-        }());
+        })();
         Services.RestApiService = RestApiService;
     })(Services = BabylonSdk.Services || (BabylonSdk.Services = {}));
 })(BabylonSdk || (BabylonSdk = {}));
@@ -155,7 +161,7 @@ var BabylonSdk;
             var _this = this;
             this.loadModelWithEnvironment = function (modelName, environmentName, loadedCallback) {
                 _this.restApiService.getModelByName(modelName).then(function (data) {
-                    if (data.totalRows === 1) {
+                    if (data.values.length === 1) {
                         if (data.values[0].babylonUrl) {
                             _this.currentModel = data.values[0];
                             _this.restApiService.getEnvironmentByName(environmentName).then(function (data) {
@@ -184,12 +190,12 @@ var BabylonSdk;
                 var mesh = _this.getMeshByName(meshName);
                 return _this.restApiService.getMaterialByName(mesh ? mesh.materialRestrictionLabels : [], "", 25);
             };
-            this.addMaterialToMesh = function (materialName, meshName) {
+            this.addMaterialToMesh = function (materialName, meshName, useEnvironmentReflectionTexture) {
                 var mesh = _this.getMeshByName(meshName);
                 _this.restApiService.getMaterialByName(mesh ? mesh.materialRestrictionLabels : [], materialName, 1).then(function (data) {
                     if (data.totalRows === 1) {
                         if (data.values[0].renderDiffuseUrl)
-                            _this.addMaterial(mesh, data.values[0]);
+                            _this.addMaterial(mesh, data.values[0], useEnvironmentReflectionTexture);
                         else
                             throw new Error("Material with name: " + materialName + " has no diffuse render URL");
                     }
@@ -216,7 +222,7 @@ var BabylonSdk;
                     scene.executeWhenReady(function () {
                         _this.setupLoadedScene(scene, loadedCallback);
                     });
-                });
+                }, function (progress) { }, function (scene) { }, _this.currentModel.fileType);
             };
             this.setupLoadedScene = function (scene, loadedCallback) {
                 if (typeof setupEnvironment === "function")
@@ -259,26 +265,33 @@ var BabylonSdk;
                 });
                 return meshes.length > 0 ? meshes[0] : null;
             };
-            this.addMaterial = function (mesh, material) {
+            this.addMaterial = function (mesh, material, useEnvironmentReflectionTexture) {
                 var textureMaterial = _this.currentScene.getMaterialByName(material.name + mesh.name);
                 if (!textureMaterial)
-                    textureMaterial = new BABYLON.StandardMaterial(material.name + mesh.name, _this.currentScene);
+                    textureMaterial = new BABYLON.PBRMetallicRoughnessMaterial(material.name + mesh.name, _this.currentScene);
                 if (material.renderDiffuseUrl) {
-                    textureMaterial.diffuseTexture = new BABYLON.Texture(material.renderDiffuseUrl, _this.currentScene);
-                    textureMaterial.diffuseTexture.uScale = 1;
-                    textureMaterial.diffuseTexture.vScale = 1;
+                    textureMaterial.baseTexture = new BABYLON.Texture(material.renderDiffuseUrl, _this.currentScene);
+                    textureMaterial.baseTexture.uScale = material.materialOptions.repeatX;
+                    textureMaterial.baseTexture.vScale = material.materialOptions.repeatY;
                 }
                 if (material.renderBumpUrl) {
                     textureMaterial.bumpTexture = new BABYLON.Texture(material.renderBumpUrl, _this.currentScene);
-                    textureMaterial.bumpTexture.uScale = 1;
-                    textureMaterial.bumpTexture.vScale = 1;
+                    textureMaterial.bumpTexture.uScale = material.materialOptions.repeatX;
+                    textureMaterial.bumpTexture.vScale = material.materialOptions.repeatY;
                     textureMaterial.bumpTexture.level = 1;
                 }
                 if (material.renderSpecularUrl) {
                     textureMaterial.specularTexture = new BABYLON.Texture(material.renderSpecularUrl, _this.currentScene);
-                    textureMaterial.specularTexture.uScale = 1;
-                    textureMaterial.specularTexture.vScale = 1;
+                    textureMaterial.specularTexture.uScale = material.materialOptions.repeatX;
+                    textureMaterial.specularTexture.vScale = material.materialOptions.repeatY;
                 }
+                textureMaterial.metallic = material.materialOptions.metallic;
+                textureMaterial.alpha = material.materialOptions.alpha;
+                textureMaterial.roughness = material.materialOptions.roughness;
+                textureMaterial.backFaceCulling = false;
+                textureMaterial.needDepthPrePass = true;
+                if (useEnvironmentReflectionTexture && _this.environment.environmentImageUrls.length > 0)
+                    textureMaterial.environmentTexture = BABYLON.CubeTexture.CreateFromImages(_this.environment.environmentImageUrls, _this.currentScene);
                 var sceneMesh = _this.currentScene.getMeshByName(mesh.name);
                 if (sceneMesh)
                     sceneMesh.material = textureMaterial;
@@ -331,6 +344,21 @@ var BabylonSdk;
                 throw new Error("Babylon is not supported by this browser");
         }
         return BabylonEngine;
-    }());
+    })();
     BabylonSdk.BabylonEngine = BabylonEngine;
 })(BabylonSdk || (BabylonSdk = {}));
+//* PicarioXPO Babylon SDK
+//*
+//* Authors : Picario
+/// <reference path="scripts/typings/custom/custom.d.ts" />
+/// <reference path="scripts/typings/babylonjs/babylonjs.d.ts" />
+/// <reference path="scripts/typings/jquery/jquery.d.ts" />
+/// <reference path="classes/environment.ts" />
+/// <reference path="classes/environmentsapiresult.ts" />
+/// <reference path="classes/material.ts" />
+/// <reference path="classes/materialsapiresult.ts" />
+/// <reference path="classes/meshobject.ts" />
+/// <reference path="classes/model.ts" />
+/// <reference path="classes/modelsapiresult.ts" />
+/// <reference path="services/restapiservice.ts" />
+/// <reference path="engine/babylonengine.ts" /> 

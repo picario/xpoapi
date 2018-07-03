@@ -91,12 +91,12 @@
             - Material can't be found
             - Material doesn't have a diffuse image to render
         */
-        public addMaterialToMesh = (materialName: string, meshName: string) => {
+        public addMaterialToMesh = (materialName: string, meshName: string, useEnvironmentReflectionTexture: boolean) => {
             var mesh = this.getMeshByName(meshName);
             this.restApiService.getMaterialByName(mesh ? mesh.materialRestrictionLabels : [], materialName, 1).then((data: Classes.MaterialsApiResult) => {
                 if (data.totalRows === 1) {
                     if (data.values[0].renderDiffuseUrl)
-                        this.addMaterial(mesh, data.values[0]);
+                        this.addMaterial(mesh, data.values[0], useEnvironmentReflectionTexture);
                     else
                         throw new Error("Material with name: " + materialName + " has no diffuse render URL");
                 } else
@@ -138,7 +138,7 @@
                 scene.executeWhenReady(() => {
                     this.setupLoadedScene(scene, loadedCallback);
                 });
-            });
+            }, progress => { }, scene => { }, this.currentModel.fileType);
         }
 
         private setupLoadedScene = (scene: BABYLON.Scene, loadedCallback: Function) => {
@@ -199,16 +199,16 @@
             return meshes.length > 0 ? meshes[0] : null;
         }
 
-        private addMaterial = (mesh: Classes.MeshObject, material: Classes.Material) => {
-            var textureMaterial: BABYLON.StandardMaterial = <BABYLON.StandardMaterial>this.currentScene.getMaterialByName(material.name + mesh.name);
-            
+        private addMaterial = (mesh: Classes.MeshObject, material: Classes.Material, useEnvironmentReflectionTexture: boolean) => {
+            var textureMaterial: BABYLON.PBRMetallicRoughnessMaterial = <BABYLON.PBRMetallicRoughnessMaterial>this.currentScene.getMaterialByName(material.name + mesh.name);
+
             if (!textureMaterial)
-                textureMaterial = new BABYLON.StandardMaterial(material.name + mesh.name, this.currentScene);
-            textureMaterial.backFaceCulling = false;
+                textureMaterial = new BABYLON.PBRMetallicRoughnessMaterial(material.name + mesh.name, this.currentScene);
+
             if (material.renderDiffuseUrl) {
-                textureMaterial.diffuseTexture = new BABYLON.Texture(material.renderDiffuseUrl, this.currentScene);
-                textureMaterial.diffuseTexture.uScale = material.materialOptions.repeatX;
-                textureMaterial.diffuseTexture.vScale = material.materialOptions.repeatY;
+                textureMaterial.baseTexture = new BABYLON.Texture(material.renderDiffuseUrl, this.currentScene);
+                textureMaterial.baseTexture.uScale = material.materialOptions.repeatX;
+                textureMaterial.baseTexture.vScale = material.materialOptions.repeatY;
             }
 
             if (material.renderBumpUrl) {
@@ -217,12 +217,21 @@
                 textureMaterial.bumpTexture.vScale = material.materialOptions.repeatY;
                 textureMaterial.bumpTexture.level = 1;
             }
-            
+
             if (material.renderSpecularUrl) {
                 textureMaterial.specularTexture = new BABYLON.Texture(material.renderSpecularUrl, this.currentScene);
                 textureMaterial.specularTexture.uScale = material.materialOptions.repeatX;
                 textureMaterial.specularTexture.vScale = material.materialOptions.repeatY;
             }
+
+            textureMaterial.metallic = material.materialOptions.metallic;
+            textureMaterial.alpha = material.materialOptions.alpha;
+            textureMaterial.roughness = material.materialOptions.roughness;
+            textureMaterial.backFaceCulling = false;
+            textureMaterial.needDepthPrePass = true;
+
+            if (useEnvironmentReflectionTexture && this.environment.environmentImageUrls.length > 0)
+                textureMaterial.environmentTexture = BABYLON.CubeTexture.CreateFromImages(this.environment.environmentImageUrls, this.currentScene);
 
             var sceneMesh = this.currentScene.getMeshByName(mesh.name);
             if (sceneMesh)

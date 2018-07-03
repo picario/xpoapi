@@ -7,5 +7,6 @@
         defaultCameraPosition: number[];
         boundingBoxMin: number[];
         boundingBoxMax: number[];
+        fileType: string;
     }
 }

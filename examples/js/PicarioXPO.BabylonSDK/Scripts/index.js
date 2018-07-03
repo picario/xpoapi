@@ -49,7 +49,7 @@ $(document).ready(function () {
 			
 			if(foundMeshes.length){
 				if(foundMaterials.length)
-					engine.addMaterialToMesh(foundMaterials[0].name, foundMeshes[0].name)
+					engine.addMaterialToMesh(foundMaterials[0].name, foundMeshes[0].name, true)
 			}
 		});
 	}

@@ -3,5 +3,6 @@
         id: number;
         name: string;
         environmentJs: string;
+        environmentImageUrls: string[];
     }
 }

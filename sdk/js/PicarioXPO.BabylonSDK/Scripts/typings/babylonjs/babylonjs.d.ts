@@ -2680,6 +2680,8 @@ declare namespace BABYLON {
         * @param engine is the instance of BABYLON.Engine to use to create the scene
         */
         static Load(rootUrl: string, sceneFilename: any, engine: Engine, onsuccess?: (scene: Scene) => void, progressCallBack?: any, onerror?: (scene: Scene) => void): void;
+        static Load(rootUrl: string, sceneFilename: any, engine: Engine, onsuccess?: (scene: Scene) => void, progressCallBack?: any, onerror?: (scene: Scene) => void, fileType?: string): void;
+
         /**
         * Append a scene
         * @param rootUrl a string that defines the root url for scene and resources
@@ -3448,6 +3450,7 @@ declare namespace BABYLON {
         emissiveTexture: BaseTexture;
         specularTexture: BaseTexture;
         bumpTexture: BaseTexture;
+        baseTexture: BaseTexture;
         lightmapTexture: BaseTexture;
         ambientColor: Color3;
         diffuseColor: Color3;
@@ -3503,6 +3506,14 @@ declare namespace BABYLON {
         static FresnelEnabled: boolean;
         static LightmapEnabled: boolean;
         static Parse(source: any, scene: Scene, rootUrl: string): StandardMaterial;
+    }
+    class PBRMetallicRoughnessMaterial extends StandardMaterial {
+        baseTexture: BaseTexture;
+        environmentTexture: CubeTexture;
+        baseColor: Color3;
+        metallic: number;
+        roughness: number;
+        needDepthPrePass: boolean;
     }
 }
 
@@ -6531,6 +6542,7 @@ declare namespace BABYLON {
         }[]): void;
         static DumpFramebuffer(width: number, height: number, engine: Engine, successCallback?: (data: string) => void): void;
         static CreateScreenshot(engine: Engine, camera: Camera, size: any, successCallback?: (data: string) => void): void;
+        static CreateScreenshotUsingRenderTarget(engine: Engine, camera: Camera, size: any, successCallback?: (data: string) => void): void;
         static ValidateXHRData(xhr: XMLHttpRequest, dataType?: number): boolean;
         private static _NoneLogLevel;
         private static _MessageLogLevel;
