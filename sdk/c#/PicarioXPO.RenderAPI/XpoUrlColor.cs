@@ -9,5 +9,10 @@
         /// Gets or sets the color for this object
         /// </summary>
         public string Color { get; set; }
+
+        /// <summary>
+        /// Gets or sets the gloss of this object
+        /// </summary>
+        public double Gloss { get; set; }
     }
 }
