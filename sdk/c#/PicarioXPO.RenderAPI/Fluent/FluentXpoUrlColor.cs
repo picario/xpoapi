@@ -19,5 +19,15 @@ namespace PicarioXPO.RenderAPI.Fluent
         {
             XpoUrlColor = new XpoUrlColor {Color = color};
         }
+
+        /// <summary>
+        /// Sets the gloss of this object
+        /// </summary>
+        public FluentXpoUrlColor SetGloss(double gloss)
+        {
+            XpoUrlColor.Gloss = gloss;
+
+            return this;
+        }
     }
 }
