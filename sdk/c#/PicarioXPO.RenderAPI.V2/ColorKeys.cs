@@ -17,7 +17,7 @@ namespace PicarioXPO.RenderAPI.V2
             if (!xpoUrlObjects.Any())
                 return stringBuilder;
 
-            var colorBuilder = new StringBuilder(Color);
+            var colorBuilder = new StringBuilder();
             CreateStringForKey(colorBuilder,xpoUrlObjects,Color,color => color.Color);
             CreateStringForKey(colorBuilder,xpoUrlObjects,ColorGloss,color => color.Gloss);
             stringBuilder.Append(colorBuilder);
