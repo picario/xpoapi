@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -17,14 +18,14 @@ namespace PicarioXPO.RenderAPI.V2
             if (!xpoUrlObjects.Any())
                 return stringBuilder;
 
-            var colorBuilder = new StringBuilder(Color);
+            var colorBuilder = new StringBuilder();
             CreateStringForKey(colorBuilder,xpoUrlObjects,Color,color => color.Color);
-            CreateStringForKey(colorBuilder,xpoUrlObjects,ColorGloss,color => color.Gloss);
+            CreateStringForKey(colorBuilder,xpoUrlObjects,ColorGloss,color => color.Gloss.ToString(new CultureInfo("en-US").NumberFormat));
             stringBuilder.Append(colorBuilder);
             return stringBuilder;
         }
 
-        private static void CreateStringForKey(StringBuilder builder,IList<XpoUrlObject> objects ,string keyName, Func<XpoUrlColor, object> getProperty)
+        private static void CreateStringForKey(StringBuilder builder,IList<XpoUrlObject> objects ,string keyName, Func<XpoUrlColor, string> getProperty)
         {
             var max = objects.Select(x => x.Index).OrderByDescending(x => x).FirstOrDefault();
             builder.Append(keyName);
